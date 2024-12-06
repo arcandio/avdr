@@ -11,16 +11,16 @@ public class thrower : MonoBehaviour
     public float rerollTime = 1;
     public float randomVectorSize = 1;
     public float throwForceMultiplier = 1;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] float torqueMultiplier = 3;
 
     float squaredAccelerationThreshold;
-    AudioSource audioSource;
     SingleDie[] dicePool;
     float lastRollTime;
 
     void Start()
     {
         squaredAccelerationThreshold = Mathf.Pow(accelerationThreshold, 2);
-        audioSource = GetComponent<AudioSource>();
         GetDice();
     }
 
@@ -37,7 +37,7 @@ public class thrower : MonoBehaviour
     public void AttemptThrow() {
         Vector3 randomDirection = new Vector3(
             Random.Range(-1 * randomVectorSize, randomVectorSize), 
-            Random.Range(-1 * randomVectorSize, randomVectorSize), 
+            Random.Range(0, randomVectorSize * 2), 
             Random.Range(-1 * randomVectorSize, randomVectorSize));
         AttemptThrow(randomDirection);
     }
@@ -49,20 +49,21 @@ public class thrower : MonoBehaviour
     }
 
     void DoThrow(Vector3 direction) {
-        Debug.Log("Do Throw: " + direction.ToString() + " : " + direction.sqrMagnitude);
+        // Debug.Log("Do Throw: " + direction.ToString() + " : " + direction.sqrMagnitude);
         audioSource.clip = throwSound;
         audioSource.Play();
         lastRollTime = Time.unscaledTime;
-        Debug.Log(dicePool.Length);
+        // Debug.Log(dicePool.Length);
         if(dicePool.Length == 0) return;
         foreach(SingleDie die in dicePool) {
             Rigidbody rigidbody = die.GetComponent<Rigidbody>();
             rigidbody.AddForce(direction * throwForceMultiplier, ForceMode.Impulse);
+            rigidbody.AddTorque(Random.insideUnitSphere * torqueMultiplier, ForceMode.Impulse);
         }
     }
 
     void GetDice() {
-        dicePool = GameObject.FindObjectsByType<SingleDie>(FindObjectsSortMode.None);
-        Debug.Log(dicePool.Length);
+        dicePool = FindObjectsByType<SingleDie>(FindObjectsSortMode.None);
+        // Debug.Log(dicePool.Length);
     }
 }
