@@ -3,8 +3,9 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class thrower : MonoBehaviour
+public class Thrower : MonoBehaviour
 {
+    public static Thrower instance;
     public TextMeshProUGUI tmp;
     public AudioClip[] rollClips;
     public float accelerationThreshold = 2;
@@ -15,9 +16,18 @@ public class thrower : MonoBehaviour
     [SerializeField] float torqueMultiplier = 3;
 
     float squaredAccelerationThreshold;
-    SingleDie[] dicePool;
+    SingleDie[] diceInstances;
     float lastRollTime;
 
+    void Awake() {
+        if(instance == null) {
+            instance = this;
+        }
+        else {
+            Debug.LogError("Duplicate Thrower instance destroyed.");
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         squaredAccelerationThreshold = Mathf.Pow(accelerationThreshold, 2);
@@ -60,16 +70,16 @@ public class thrower : MonoBehaviour
         audioSource.Play();
         lastRollTime = Time.unscaledTime;
         // Debug.Log(dicePool.Length);
-        if(dicePool.Length == 0) return;
-        foreach(SingleDie die in dicePool) {
+        if(diceInstances.Length == 0) return;
+        foreach(SingleDie die in diceInstances) {
             Vector3 force = direction * throwForceMultiplier;
             Vector3 torque = Random.insideUnitSphere * torqueMultiplier;
             die.DoThrow(force, torque);
         }
     }
 
-    void GetDice() {
-        dicePool = FindObjectsByType<SingleDie>(FindObjectsSortMode.None);
+    public void GetDice() {
+        diceInstances = FindObjectsByType<SingleDie>(FindObjectsSortMode.None);
         // Debug.Log(dicePool.Length);
     }
 }

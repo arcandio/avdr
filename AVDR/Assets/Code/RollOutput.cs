@@ -21,7 +21,8 @@ public class RollOutput : MonoBehaviour
             instance = this;
         }
         else {
-            Destroy(this);
+            Debug.LogError("destroying duplicate RollOutput");
+            Destroy(gameObject);
         }
     }
 

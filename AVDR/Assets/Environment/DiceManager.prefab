@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4471243273026304295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1990750106819817313}
+  - component: {fileID: 8046544703173595733}
+  m_Layer: 0
+  m_Name: DiceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1990750106819817313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471243273026304295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8046544703173595733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471243273026304295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427a9e37e89b10d49b4161047d411850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  d4CaltropPrefab: {fileID: 5312348197640893989, guid: c51c714d535e23c448437402a4735b58, type: 3}
+  d4CrystalPrefab: {fileID: 7112815720732814277, guid: e326524b0055e6044b91cff677ce22b4, type: 3}
+  d4PendantPrefab: {fileID: 4249416951732806733, guid: 9760c22b07274b14292fc4131583bcf2, type: 3}
+  d6Prefab: {fileID: 8087074312752840239, guid: 2e3a35c4cff5615499bd836e8e40a53d, type: 3}
+  d8Prefab: {fileID: 2134171488300191699, guid: 3bd06b006eda7c6408d98717469e79b5, type: 3}
+  d10Prefab: {fileID: 4109723479904856207, guid: 5aa9d0519f1c8bf4daf1589108c8d788, type: 3}
+  d12Prefab: {fileID: 2234057422914795532, guid: 91a1601ab8ff0a14caf4c156b90c33e4, type: 3}
+  d20Prefab: {fileID: 2505445690124151882, guid: 050b43bb62bb9154cb1fca3a0c96593d, type: 3}
+  d100Prefab: {fileID: 1496617101837048839, guid: c66262cb3006c474db47708cbc67e4a0, type: 3}
+  dicePoolData:
+    d4s: 3
+    d6s: 0
+    d8s: 0
+    d10s: 5
+    d12s: 0
+    d20s: 1
+    d100s: 0
+    bonus: 0
+    penalty: 0
+    multiplier: 1
+    divisor: 1
+    keepHighest: 0
+    keepLowest: 0
+  diceInstances: []
