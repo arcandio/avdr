@@ -36,6 +36,7 @@ public class SingleDie : MonoBehaviour
     /// resetting the roll status.
     /// </summary>
     public void DoThrow(Vector3 force, Vector3 torque) {
+        RollOutput.instance.RegisterDie(this);
         RespawnDie();
         rb.constraints = RigidbodyConstraints.None;
         hasCheckedRollOutcome = false;
@@ -93,7 +94,7 @@ public class SingleDie : MonoBehaviour
             // Debug.Break();
             rb.constraints = RigidbodyConstraints.FreezeAll;
             if(!hasCheckedRollOutcome) {
-                rollOutcome = FindRolledFace();
+                FindRolledFace();
             }
             hasCheckedRollOutcome = true;
         }
@@ -104,7 +105,7 @@ public class SingleDie : MonoBehaviour
     /// This will get more complicated with compound dice like d%.
     /// </summary>
     /// <returns>Integer value of the die</returns>
-    int FindRolledFace() {
+    void FindRolledFace() {
         float height = float.NegativeInfinity;
         Transform highestFace = null;
         foreach(Transform face in faces) {
@@ -114,9 +115,9 @@ public class SingleDie : MonoBehaviour
             }
         }
         rollOutcome = int.Parse(highestFace.name);
-        // Debug.Log(rollOutcome + " on " + name);
+        Debug.Log(rollOutcome + " on " + name);
         // Debug.Break();
-        return rollOutcome;
+        RollOutput.instance.ReturnDie(this, rollOutcome);
     }
 
     

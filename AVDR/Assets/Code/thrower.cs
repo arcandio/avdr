@@ -49,6 +49,7 @@ public class thrower : MonoBehaviour
     }
 
     void DoThrow(Vector3 direction) {
+        RollOutput.instance.ClearDicePool();
         // Debug.Log("Do Throw: " + direction.ToString() + " : " + direction.sqrMagnitude);
         audioSource.volume = Random.Range(GlobalAdjustments.instance.volumeMin,
             GlobalAdjustments.instance.volumeMax);
