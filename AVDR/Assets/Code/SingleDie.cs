@@ -6,32 +6,69 @@ using UnityEngine;
 public class SingleDie : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float angularSleepThreshold = 300;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip[] audioClips;
-    [SerializeField] private float volumeMax = 1f;
-    [SerializeField] private float volumeMin = 0.9f;
-    [SerializeField] private float pitchMax = 1.1f;
-    [SerializeField] private float pitchMin = .9f;
-    [SerializeField] private float groundedVelocityThreshold = .01f;
+    [SerializeField] private Transform[] faces;
+    [SerializeField] private int rollOutcome;
+    private bool hasCheckedRollOutcome = false;
+    private GlobalAdjustments gai;
+    private float lastRollTime;
 
+
+    [SerializeField] private float sqrAngularVelocity;
+    [SerializeField] private float sqrLinearVelocity;
+    [SerializeField] private float verticalVelocity;
+    [SerializeField] private bool isTouchingGround = false;
+    [SerializeField] private bool stoppedMoving = false;
+    [SerializeField] private bool stoppedFalling = false;
+    [SerializeField] private bool stoppedTurning = false;
+    [SerializeField] private bool notTooEarly = false;
+
+
+    void Start() {
+        if(faces.Length == 0) {
+            Debug.LogError(name + " is missing faces");
+        }
+        gai = GlobalAdjustments.instance;
+    }
+
+    /// <summary>
+    /// Performs die actions when the die is thrown, such as 
+    /// resetting the roll status.
+    /// </summary>
+    public void DoThrow(Vector3 force, Vector3 torque) {
+        RespawnDie();
+        rb.constraints = RigidbodyConstraints.None;
+        hasCheckedRollOutcome = false;
+        rb.AddForce(force, ForceMode.Impulse);
+        rb.AddTorque(torque, ForceMode.Impulse);
+        lastRollTime = Time.unscaledTime;
+    }
 
     void OnCollisionEnter(Collision collision) {
         // Debug.Log("OnCollisionEnter");
         PlayBump(collision);
+        if(collision.collider.tag == "Floor") {
+            isTouchingGround = true;
+        }
     }
+    void OnCollisionExit(Collision collision) {
+        if(collision.collider.tag == "Floor") {
+            isTouchingGround = false;
+        }
+    }
+
     void FixedUpdate() {
-        /* this block stops dice from spinning on the table. */
-        if(rb.angularVelocity.sqrMagnitude < angularSleepThreshold &&
-        Mathf.Abs(rb.linearVelocity.y) < groundedVelocityThreshold) {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
-        else {
-            /* uncomment below to debug dice spinning on the table. */
-            // Debug.Log(rb.angularVelocity.sqrMagnitude);
-            // Debug.Log(rb.linearVelocity.y);
-        }
+        /* check if the die is grounded. */
+        sqrAngularVelocity = rb.angularVelocity.sqrMagnitude;
+        verticalVelocity = Mathf.Abs(rb.linearVelocity.y);
+        sqrLinearVelocity = rb.linearVelocity.sqrMagnitude;
+
+        stoppedFalling = verticalVelocity < gai.groundedVelocityThreshold;
+        stoppedMoving = sqrLinearVelocity < gai.velocityThreshold;
+        stoppedTurning = sqrAngularVelocity < gai.angularSleepThreshold;
+        notTooEarly = Time.unscaledTime > lastRollTime + gai.minCompletionTime;
+
+        IsGrounded();
 
         /* This block will check to see if we've somehow made it out of the tray through
         the physics colliders and reset us if we do. */
@@ -41,10 +78,59 @@ public class SingleDie : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stops dice from spinning on the table, and checks if the die is grounded.
+    /// </summary>
+    void IsGrounded() {
+        if(isTouchingGround &&
+            stoppedFalling &&
+            stoppedMoving &&
+            stoppedTurning &&
+            notTooEarly
+        ) {
+            // OnGrounded();
+            // Debug.LogWarning("IsGrounded check passed.");
+            // Debug.Break();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            if(!hasCheckedRollOutcome) {
+                rollOutcome = FindRolledFace();
+            }
+            hasCheckedRollOutcome = true;
+        }
+    }
+
+    /// <summary>
+    /// Gets the roll outcome of the die by sorting the faces by highest on the Y axis.
+    /// This will get more complicated with compound dice like d%.
+    /// </summary>
+    /// <returns>Integer value of the die</returns>
+    int FindRolledFace() {
+        float height = float.NegativeInfinity;
+        Transform highestFace = null;
+        foreach(Transform face in faces) {
+            if(face.position.y > height) {
+                height = face.position.y;
+                highestFace = face;
+            }
+        }
+        rollOutcome = int.Parse(highestFace.name);
+        // Debug.Log(rollOutcome + " on " + name);
+        // Debug.Break();
+        return rollOutcome;
+    }
+
+    
+    /// <summary>
+    /// Plays a sound from `GlobalAdjustments` when the die contacts something.
+    /// </summary>
+    /// <param name="collision"></param>
     void PlayBump(Collision collision) {
-        audioSource.volume = Random.Range(volumeMin, volumeMax) * collision.relativeVelocity.magnitude;
-        audioSource.pitch = Random.Range(pitchMin, pitchMax);
-        audioSource.clip = audioClips[Random.Range(0,audioClips.Length)];
+        audioSource.volume = Random.Range(GlobalAdjustments.instance.volumeMin,
+            GlobalAdjustments.instance.volumeMax) * collision.relativeVelocity.magnitude;
+        audioSource.pitch = Random.Range(GlobalAdjustments.instance.pitchMin,
+            GlobalAdjustments.instance.pitchMax);
+        audioSource.clip = GlobalAdjustments.instance.diceBumpClips[Random.Range(0,
+            GlobalAdjustments.instance.diceBumpClips.Length)];
         audioSource.Play();
     }
 
@@ -63,5 +149,8 @@ public class SingleDie : MonoBehaviour
         transform.position += Random.insideUnitSphere * .01f;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = false;
+        hasCheckedRollOutcome = false;
     }
+
 }

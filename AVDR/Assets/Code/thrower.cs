@@ -6,7 +6,7 @@ using UnityEngine;
 public class thrower : MonoBehaviour
 {
     public TextMeshProUGUI tmp;
-    public AudioClip throwSound;
+    public AudioClip[] rollClips;
     public float accelerationThreshold = 2;
     public float rerollTime = 1;
     public float randomVectorSize = 1;
@@ -50,15 +50,20 @@ public class thrower : MonoBehaviour
 
     void DoThrow(Vector3 direction) {
         // Debug.Log("Do Throw: " + direction.ToString() + " : " + direction.sqrMagnitude);
-        audioSource.clip = throwSound;
+        audioSource.volume = Random.Range(GlobalAdjustments.instance.volumeMin,
+            GlobalAdjustments.instance.volumeMax);
+        audioSource.pitch = Random.Range(GlobalAdjustments.instance.pitchMin,
+            GlobalAdjustments.instance.pitchMax);
+        audioSource.clip = rollClips[Random.Range(0,
+            rollClips.Length)];
         audioSource.Play();
         lastRollTime = Time.unscaledTime;
         // Debug.Log(dicePool.Length);
         if(dicePool.Length == 0) return;
         foreach(SingleDie die in dicePool) {
-            Rigidbody rigidbody = die.GetComponent<Rigidbody>();
-            rigidbody.AddForce(direction * throwForceMultiplier, ForceMode.Impulse);
-            rigidbody.AddTorque(Random.insideUnitSphere * torqueMultiplier, ForceMode.Impulse);
+            Vector3 force = direction * throwForceMultiplier;
+            Vector3 torque = Random.insideUnitSphere * torqueMultiplier;
+            die.DoThrow(force, torque);
         }
     }
 

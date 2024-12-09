@@ -46,13 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmp: {fileID: 0}
-  throwSound: {fileID: 8300000, guid: 1d7c9752185732145bc6f1813fdecd0f, type: 3}
+  rollClips:
+  - {fileID: 8300000, guid: 0cbd843e1bb2d9747b1cfda37f2fff24, type: 3}
+  - {fileID: 8300000, guid: 514a9c692ced03042b2e1ee94ef4588b, type: 3}
+  - {fileID: 8300000, guid: e82082d4a7fec604c890d6e13e151802, type: 3}
+  - {fileID: 8300000, guid: a0339669bdd6c364e98b62de8bc811ac, type: 3}
   accelerationThreshold: 1.5
   rerollTime: 0.1
   randomVectorSize: 2
-  throwForceMultiplier: 4
+  throwForceMultiplier: 5
   audioSource: {fileID: 5124486000475449540}
-  torqueMultiplier: 100
+  torqueMultiplier: 150
 --- !u!82 &5124486000475449540
 AudioSource:
   m_ObjectHideFlags: 0
