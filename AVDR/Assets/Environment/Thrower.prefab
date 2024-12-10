@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 514a9c692ced03042b2e1ee94ef4588b, type: 3}
   - {fileID: 8300000, guid: e82082d4a7fec604c890d6e13e151802, type: 3}
   - {fileID: 8300000, guid: a0339669bdd6c364e98b62de8bc811ac, type: 3}
-  accelerationThreshold: 1.5
+  accelerationThreshold: 1.75
   rerollTime: 0.1
   randomVectorSize: 2
   throwForceMultiplier: 5

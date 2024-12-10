@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Unity;
+using Unity.VisualScripting;
 
 /// <summary>
 /// A struct-like data class for storing the variables of a single dice pool.
@@ -54,5 +58,78 @@ public class DicePool {
                 keepHighest = 0;
             }
         }
+    }
+
+    /// <summary>
+    /// Construct a simple single die roll dice pool with no modifiers or bonuses.
+    /// </summary>
+    /// <param name="dieSize"></param>
+    public DicePool(DieSize dieSize) {
+        switch(dieSize) {
+            case DieSize.d4: {
+                d4s  = 1;
+                break;
+            }
+            case DieSize.d6: {
+                d6s  = 1;
+                break;
+            }
+            case DieSize.d8: {
+                d8s  = 1;
+                break;
+            }
+            case DieSize.d10: {
+                d10s  = 1;
+                break;
+            }
+            case DieSize.d12: {
+                d12s  = 1;
+                break;
+            }
+            case DieSize.d20: {
+                d20s  = 1;
+                break;
+            }
+            case DieSize.d100: {
+                d100s  = 1;
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Construct a simple DicePool with no modifiers or bonuses.
+    /// </summary>
+    /// <param name="fours">number of d4s</param>
+    /// <param name="sixes">number of d6s</param>
+    /// <param name="eights">number of d8s</param>
+    /// <param name="tens">number of d10s</param>
+    /// <param name="twelves">number of d12s</param>
+    /// <param name="twenties">number of d20s</param>
+    /// <param name="hundreds">number of d100s</param>
+    public DicePool(int fours, int sixes, int eights, int tens, int twelves, int twenties, int hundreds) {
+        d4s = fours;
+        d6s = sixes;
+        d8s = eights;
+        d10s = tens;
+        d12s = twelves;
+        d20s = twenties;
+        d100s = hundreds;
+    }
+
+    public string GetRollText() {
+        List<string> strings = new List<string>();
+        if(d4s > 0) strings.Add(d4s + "d4");
+        if(d6s > 0) strings.Add(d6s + "d6");
+        if(d8s > 0) strings.Add(d8s + "d8");
+        if(d10s > 0) strings.Add(d10s + "d10");
+        if(d12s > 0) strings.Add(d12s + "d12");
+        if(d20s > 0) strings.Add(d20s + "d20");
+        if(d100s > 0) strings.Add(d100s + "d100");
+
+        return String.Join('+', strings);
     }
 }
