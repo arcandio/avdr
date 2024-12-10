@@ -15,6 +15,7 @@ public class DiceManager : MonoBehaviour
     public GameObject d12Prefab;
     public GameObject d20Prefab;
     public GameObject d100Prefab;
+    public D4Type d4Type = D4Type.Crystal;
 
     /// <summary>
     /// The currently "loaded" set of dice being rolled by the app.
@@ -70,13 +71,15 @@ public class DiceManager : MonoBehaviour
         this.dicePoolData = inputDicePool;
         /* create one die for each one in the pool */
         tempInstances = new List<SingleDie>();
-        InstanceDie(d4CrystalPrefab, dicePoolData.d4s);
+        if(d4Type == D4Type.Caltrop) InstanceDie(d4CaltropPrefab, dicePoolData.d4s);
+        if(d4Type == D4Type.Crystal) InstanceDie(d4CrystalPrefab, dicePoolData.d4s);
+        if(d4Type == D4Type.Pendant) InstanceDie(d4PendantPrefab, dicePoolData.d4s);
         InstanceDie(d6Prefab, dicePoolData.d6s);
         InstanceDie(d8Prefab, dicePoolData.d8s);
         InstanceDie(d10Prefab, dicePoolData.d10s);
-        InstanceDie(d8Prefab, dicePoolData.d12s);
-        InstanceDie(d12Prefab, dicePoolData.d20s);
-        InstanceDie(d20Prefab, dicePoolData.d100s);
+        InstanceDie(d12Prefab, dicePoolData.d12s);
+        InstanceDie(d20Prefab, dicePoolData.d20s);
+        InstanceDie(d100Prefab, dicePoolData.d100s);
         InstanceDie(d10Prefab, dicePoolData.d100s);
         // GetDiceInstances();
         diceInstances = tempInstances.ToArray();
