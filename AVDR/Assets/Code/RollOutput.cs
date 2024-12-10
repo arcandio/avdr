@@ -26,12 +26,23 @@ public class RollOutput : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the expectation for a given `SingleDie` to be rolled.
+    /// </summary>
+    /// <param name="die">The `SingleDie` to register with the `RollOutput` system.</param>
     public void RegisterDie(SingleDie die) {
+        Debug.Log(die.name + " Registered");
         diceOutcomes.Add(die, null);
     }
 
-    public void ReturnDie(SingleDie die, int output) {
-        diceOutcomes[die] = output;
+    /// <summary>
+    /// Receives the roll outcome of a single die.
+    /// If all dice are complete in the roll, it will compile the total.
+    /// </summary>
+    /// <param name="die">The die to check.</param>
+    /// <param name="outcome">The value rolled.</param>
+    public void ReturnDie(SingleDie die, int outcome) {
+        diceOutcomes[die] = outcome;
         List<int> ints = new List<int>();
         bool allComplete = true;
         foreach(KeyValuePair<SingleDie, int?> pair in diceOutcomes) {
@@ -46,11 +57,18 @@ public class RollOutput : MonoBehaviour
         outputs = ints.ToArray();
     }
 
-    public void ClearDicePool() {
+    /// <summary>
+    /// Resets the outcome pool so that the last roll doesn't affect the next one.
+    /// </summary>
+    public void ResetOutcomePool() {
+        Debug.LogWarning("reset outcome pool");
         diceOutcomes.Clear();
         outputText.text = "";
     }
 
+    /// <summary>
+    /// Totals up the dice roll and publishes it.
+    /// </summary>
     void CompileRollTotal() {
         int total = 0;
         foreach(KeyValuePair<SingleDie, int?> pair in diceOutcomes) {

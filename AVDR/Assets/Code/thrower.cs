@@ -16,7 +16,6 @@ public class Thrower : MonoBehaviour
     [SerializeField] float torqueMultiplier = 3;
 
     float squaredAccelerationThreshold;
-    SingleDie[] diceInstances;
     float lastRollTime;
 
     void Awake() {
@@ -31,7 +30,6 @@ public class Thrower : MonoBehaviour
     void Start()
     {
         squaredAccelerationThreshold = Mathf.Pow(accelerationThreshold, 2);
-        GetDice();
     }
 
     void Update() {
@@ -59,7 +57,7 @@ public class Thrower : MonoBehaviour
     }
 
     void DoThrow(Vector3 direction) {
-        RollOutput.instance.ClearDicePool();
+        RollOutput.instance.ResetOutcomePool();
         // Debug.Log("Do Throw: " + direction.ToString() + " : " + direction.sqrMagnitude);
         audioSource.volume = Random.Range(GlobalAdjustments.instance.volumeMin,
             GlobalAdjustments.instance.volumeMax);
@@ -70,16 +68,11 @@ public class Thrower : MonoBehaviour
         audioSource.Play();
         lastRollTime = Time.unscaledTime;
         // Debug.Log(dicePool.Length);
-        if(diceInstances.Length == 0) return;
-        foreach(SingleDie die in diceInstances) {
+        if(DiceManager.instance.DiceInstances.Length == 0) return;
+        foreach(SingleDie die in DiceManager.instance.DiceInstances) {
             Vector3 force = direction * throwForceMultiplier;
             Vector3 torque = Random.insideUnitSphere * torqueMultiplier;
             die.DoThrow(force, torque);
         }
-    }
-
-    public void GetDice() {
-        diceInstances = FindObjectsByType<SingleDie>(FindObjectsSortMode.None);
-        // Debug.Log(dicePool.Length);
     }
 }
