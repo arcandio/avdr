@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DiceManager : MonoBehaviour
 {
+    public static DiceManager instance;
+    public Transform dicePoolParent;
     public GameObject d4CaltropPrefab;
     public GameObject d4CrystalPrefab;
     public GameObject d4PendantPrefab;
@@ -13,35 +16,58 @@ public class DiceManager : MonoBehaviour
     public GameObject d20Prefab;
     public GameObject d100Prefab;
 
+    /// <summary>
+    /// The currently "loaded" set of dice being rolled by the app.
+    /// Stored in the `DiceManager` until the roll is complete.
+    /// This gives us someplace to store modifiers as well, for 
+    /// when the roll completes.
+    /// </summary>
     [SerializeField] private DicePool dicePoolData;
 
     [SerializeField] private SingleDie[] diceInstances;
+    public SingleDie[] DiceInstances {
+        get => diceInstances;
+    }
     private List<SingleDie> tempInstances = new List<SingleDie>();
 
-    void Start() {
-        Debug.LogWarning("Start");
-        GetDiceInstances();
-        ClearInstances();
-        // dicePoolData = new DicePool();
-        CreateDice(dicePoolData);
-    }
-    
-    void GetDiceInstances() {
-        Debug.LogWarning("get dice instances");
-        diceInstances = FindObjectsByType<SingleDie>(FindObjectsSortMode.None);
-        Thrower.instance.GetDice();
-    }
-
-    void ClearInstances() {
-        Debug.LogWarning("clear instances");
-        foreach(SingleDie die in diceInstances) {
-            Destroy(die.gameObject);
+    void Awake() {
+        if(instance == null) {
+            instance = this;
+        }
+        else {
+            Debug.LogError("Duplicate DiceManager instance destroyed.");
+            Destroy(gameObject);
         }
     }
 
-    void CreateDice(DicePool dicePool) {
-        Debug.LogWarning("create dice");
-        this.dicePoolData = dicePool;
+    void Start() {
+        CreateDice(dicePoolData);
+    }
+
+    /// <summary>
+    /// Cleans up the scene by removing the current dice.
+    /// </summary>
+    void ClearInstances() {
+        // Debug.Log("clear instances");
+        foreach(SingleDie die in diceInstances) {
+            /* disable the instances so they don't try any last-minute calls
+            on the frame they're destroyed. */
+            die.enabled = false;
+            die.gameObject.SetActive(false);
+            Destroy(die.gameObject);
+        }
+        tempInstances = new List<SingleDie>();
+        diceInstances = new SingleDie[0];
+    }
+
+    /// <summary>
+    /// Clears the scene and creates a new set of dice in the scene.
+    /// </summary>
+    /// <param name="inputDp">The roll to generate dice for.</param>
+    public void CreateDice(DicePool inputDicePool) {
+        ClearInstances();
+        // Debug.Log("create dice");
+        this.dicePoolData = inputDicePool;
         /* create one die for each one in the pool */
         tempInstances = new List<SingleDie>();
         InstanceDie(d4CrystalPrefab, dicePoolData.d4s);
@@ -58,8 +84,9 @@ public class DiceManager : MonoBehaviour
 
     void InstanceDie(GameObject prefab, int count) {
         for(int i = 0; i < count; i++) {
-            Instantiate(prefab);
-            tempInstances.Add(prefab.GetComponent<SingleDie>());
+            GameObject temp = Instantiate(prefab, dicePoolParent);
+            // temp.name += UnityEngine.Random.Range(0, 1000000);
+            tempInstances.Add(temp.GetComponent<SingleDie>());
         }
     }
 }

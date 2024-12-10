@@ -3,6 +3,8 @@ using Unity;
 
 /// <summary>
 /// A struct-like data class for storing the variables of a single dice pool.
+/// Includes number and type of dice.
+/// Includes bonuses, multipliers, and changes to the rolling methodology.
 /// </summary>
 /// <remarks>
 /// One of these will be used at a time in the app, but we'll want a way to pass
@@ -25,6 +27,32 @@ public class DicePool {
     public int multiplier = 1;
     public int divisor = 1;
 
-    public int keepHighest = 0;
-    public int keepLowest = 0;
+    private int keepHighest = 0;
+    /// <summary>
+    /// KeepHighest and KeepLowest are mutually exclusive.
+    /// Setting either resets the other.
+    /// </summary>
+    public int KeepHighest {
+        get => keepHighest;
+        set {
+            if(value > 0) {
+                keepHighest = value;
+                keepLowest = 0;
+            }
+        }
+    }
+    private int keepLowest = 0;
+    /// <summary>
+    /// KeepHighest and KeepLowest are mutually exclusive.
+    /// Setting either resets the other.
+    /// </summary>
+    public int KeepLowest {
+        get => keepLowest;
+        set {
+            if(value > 0) {
+                keepLowest = value;
+                keepHighest = 0;
+            }
+        }
+    }
 }

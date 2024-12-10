@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427a9e37e89b10d49b4161047d411850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dicePoolParent: {fileID: 0}
   d4CaltropPrefab: {fileID: 5312348197640893989, guid: c51c714d535e23c448437402a4735b58, type: 3}
   d4CrystalPrefab: {fileID: 7112815720732814277, guid: e326524b0055e6044b91cff677ce22b4, type: 3}
   d4PendantPrefab: {fileID: 4249416951732806733, guid: 9760c22b07274b14292fc4131583bcf2, type: 3}
@@ -57,14 +58,12 @@ MonoBehaviour:
     d4s: 3
     d6s: 0
     d8s: 0
-    d10s: 5
+    d10s: 0
     d12s: 0
-    d20s: 1
+    d20s: 0
     d100s: 0
     bonus: 0
     penalty: 0
     multiplier: 1
     divisor: 1
-    keepHighest: 0
-    keepLowest: 0
   diceInstances: []
