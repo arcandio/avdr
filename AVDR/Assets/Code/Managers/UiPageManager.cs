@@ -1,16 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UiPageManager : MonoBehaviour
 {
+    public static UiPageManager instance;
     /// <summary>
     /// The existing pages in the scene.
     /// </summary>
-    public UiPage[] pages;
+    [SerializeField] private UiPage[] pages;
 
     /// <summary>
     /// The existing navigation elements in the scene
     /// </summary>
-    public UiNavigation[] navs;
+    [SerializeField] private UiNavigation[] navs;
     
     public Thrower thrower;
 
@@ -25,16 +27,22 @@ public class UiPageManager : MonoBehaviour
     public RectTransform screenArea;
 
     void Awake() {
-        /* gather the pages when the app starts. */
-        pages = FindObjectsByType<UiPage>(FindObjectsSortMode.None);
-        navs = FindObjectsByType<UiNavigation>(FindObjectsSortMode.None);
-        foreach(UiNavigation nav in navs) {
-            nav.SetupPage(this);
+        if(instance == null) {
+            instance = this;
+        }
+        else {
+            Debug.LogError("Destroying duplicate UiPageManager");
+            Destroy(gameObject);
         }
     }
     
     void Start() {
         SetPage("tray");
+    }
+
+    public void CollectAllNavs() {
+        pages = FindObjectsByType<UiPage>(FindObjectsSortMode.None);
+        navs = FindObjectsByType<UiNavigation>(FindObjectsSortMode.None);
     }
     
     /// <summary>
