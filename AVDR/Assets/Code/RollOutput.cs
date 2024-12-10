@@ -61,7 +61,7 @@ public class RollOutput : MonoBehaviour
     /// Resets the outcome pool so that the last roll doesn't affect the next one.
     /// </summary>
     public void ResetOutcomePool() {
-        Debug.LogWarning("reset outcome pool");
+        Debug.Log("reset outcome pool");
         diceOutcomes.Clear();
         outputText.text = "";
     }
