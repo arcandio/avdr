@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class CharacterManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class CharacterManager : MonoBehaviour
     public GameObject characterButtonPrefab;
     public Transform characterButtonListParent;
     public Button characterSettingsButton;
+    public RectTransform characterPageScrollContent;
 
     public TMP_InputField nameField;
     public TMP_Dropdown d4TypeDropdown;
@@ -24,9 +26,17 @@ public class CharacterManager : MonoBehaviour
 
     void Start() {
         characterSettingsButton.gameObject.SetActive(false);
-        CreateCharacter("Alithe");
-        CreateCharacter("Bobbert");
-        CreateCharacter("Cragwater");
+        characterDatas = ioSystem.LoadCharacterData();
+        string selectedName = ioSystem.LoadSelectedCharacter();
+        foreach(CharacterData characterData in characterDatas) {
+            if(characterData.characterName == selectedName) {
+                selectedChar = characterData;
+            }
+        }
+        PopulateCharacterListButtons();
+        // CreateCharacter("Alithe");
+        // CreateCharacter("Bobbert");
+        // CreateCharacter("Cragwater");
     }
 
     void PopulateCharacterInputs() {
@@ -61,6 +71,7 @@ public class CharacterManager : MonoBehaviour
         characterDatas.Add(temp);
         PopulateCharacterInputs();
         PopulateCharacterListButtons();
+        Save();
     }
 
     public void SelectCharacter(int tempIndex) {
@@ -71,16 +82,17 @@ public class CharacterManager : MonoBehaviour
             return;
         }
         selectedChar = characterDatas[tempIndex];
+        characterPageScrollContent.localPosition = Vector3.zero;
         PopulateCharacterInputs();
         characterSettingsButton.gameObject.SetActive(true);
-        ioSystem.SavePrefs();
+        Save();
     }
 
     public void SetName(string newName) {
         if(newName == "") newName = "Character";
         selectedChar.characterName = newName;
         PopulateCharacterListButtons();
-        ioSystem.SavePrefs();
+        Save();
     }
 
     public void SetD4Type (Int32 tempIndex) {
@@ -99,38 +111,44 @@ public class CharacterManager : MonoBehaviour
                 Debug.LogError("Option Text doesn't match: " + option.text);
                 break;
         }
-        ioSystem.SavePrefs();
+        Save();
     }
 
     public void SetDiceSet(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = diceSetDropdown.options[tempIndex];
         selectedChar.diceSet = option.text;
-        ioSystem.SavePrefs();
+        Save();
     }
 
     public void SetTray(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = trayDropdown.options[tempIndex];
         selectedChar.traySet = option.text;
-        ioSystem.SavePrefs();
+        Save();
     }
 
     public void SetLighting(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = lightingDropdown.options[tempIndex];
         selectedChar.lightingSet = option.text;
-        ioSystem.SavePrefs();
+        Save();
     }
 
     public void SetEffects(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = effectsDropdown.options[tempIndex];
         selectedChar.effectsSet = option.text;
-        ioSystem.SavePrefs();
+        Save();
     }
 
     public void DeleteCharacter() {
         characterDatas.Remove(selectedChar);
         selectedChar = null;
-        PopulateCharacterInputs();
+        // PopulateCharacterInputs();
+        characterSettingsButton.gameObject.SetActive(false);
         PopulateCharacterListButtons();
         UiPageManager.instance.SetPage("characters");
+        Save();
+    }
+
+    private void Save() {
+        ioSystem.SaveUserData(characterDatas, selectedChar);
     }
 }
