@@ -30,7 +30,7 @@ public class CharacterManager : MonoBehaviour
     }
 
     void PopulateCharacterInputs() {
-        nameField.text = selectedChar.characterName;
+        nameField.text = selectedChar != null ? selectedChar.characterName : "";
         diceSetDropdown.ClearOptions();
         diceSetDropdown.AddOptions(new List<string>(assetManager.diceSets));
         trayDropdown.ClearOptions();
@@ -127,6 +127,10 @@ public class CharacterManager : MonoBehaviour
     }
 
     public void DeleteCharacter() {
-
+        characterDatas.Remove(selectedChar);
+        selectedChar = null;
+        PopulateCharacterInputs();
+        PopulateCharacterListButtons();
+        UiPageManager.instance.SetPage("characters");
     }
 }
