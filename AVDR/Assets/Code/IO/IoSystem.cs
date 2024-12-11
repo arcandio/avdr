@@ -20,7 +20,7 @@ public class IoSystem : MonoBehaviour
             jsonStrings.Add(str);
         }
         string value = string.Join('|', jsonStrings);
-        Debug.Log("Saving: " + value);
+        // Debug.Log("Saving: " + value);
         PlayerPrefs.SetString(characterDataKey, value);
     }
 
@@ -35,7 +35,7 @@ public class IoSystem : MonoBehaviour
 
     public List<CharacterData> LoadCharacterData() {
         string rawValue = PlayerPrefs.GetString(characterDataKey);
-        Debug.Log("Loading: " + rawValue);
+        // Debug.Log("Loading: " + rawValue);
         string[] jsons = rawValue.Split('|');
         List<CharacterData> value = new List<CharacterData>();
         foreach(string json in jsons) {

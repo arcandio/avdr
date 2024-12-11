@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Unity;
-using Unity.VisualScripting;
+using System.Diagnostics;
+using UnityEngine;
 
 /// <summary>
 /// A struct-like data class for storing the variables of a single dice pool.
@@ -18,7 +16,7 @@ using Unity.VisualScripting;
 /// </remarks>
 [Serializable]
 public class DicePool {
-    public string nameOverride;
+    public string nameOverride = "";
     public int d4s = 0;
     public int d6s = 0;
     public int d8s = 0;
@@ -138,18 +136,21 @@ public class DicePool {
         if(d20s > 0) strings.Add(d20s + "d20");
         if(d100s > 0) strings.Add(d100s + "d100");
 
-        return String.Join('+', strings);
+        return string.Join('+', strings);
     }
 
     public string GetName() {
         string rollText = GetRollText();
         if(nameOverride != "") {
+            UnityEngine.Debug.Log("name Override");
             return nameOverride;
         }
-        else if (rollText != "" && rollText.Length > 1) {
+        else if (rollText != "") {
+            UnityEngine.Debug.Log("roll text");
             return rollText;
         }
         else {
+            UnityEngine.Debug.Log("empty roll preset");
             return "Empty Roll Preset";
         }
     }

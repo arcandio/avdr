@@ -31,7 +31,7 @@ public class RollOutput : MonoBehaviour
     /// </summary>
     /// <param name="die">The `SingleDie` to register with the `RollOutput` system.</param>
     public void RegisterDie(SingleDie die) {
-        Debug.Log(die.name + " Registered");
+        // Debug.Log(die.name + " Registered");
         diceOutcomes.Add(die, null);
     }
 
@@ -61,7 +61,7 @@ public class RollOutput : MonoBehaviour
     /// Resets the outcome pool so that the last roll doesn't affect the next one.
     /// </summary>
     public void ResetOutcomePool() {
-        Debug.Log("reset outcome pool");
+        // Debug.Log("reset outcome pool");
         diceOutcomes.Clear();
         outputText.text = "";
     }

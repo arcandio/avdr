@@ -191,7 +191,7 @@ public class CharacterManager : MonoBehaviour
         foreach(Transform child in presetButtonListParent) {
             if(child.GetComponent<UiPresetButton>() != null) {
                 child.gameObject.SetActive(false);
-                Destroy(child);
+                Destroy(child.gameObject);
             }
         }
         for (int i = 0; i < selectedChar.rollPresets.Length; i ++) {
