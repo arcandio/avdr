@@ -18,6 +18,7 @@ using Unity.VisualScripting;
 /// </remarks>
 [Serializable]
 public class DicePool {
+    public string nameOverride;
     public int d4s = 0;
     public int d6s = 0;
     public int d8s = 0;
@@ -58,6 +59,13 @@ public class DicePool {
                 keepHighest = 0;
             }
         }
+    }
+
+    /// <summary>
+    /// Construct a blank dice roll.
+    /// </summary>
+    public DicePool() {
+
     }
 
     /// <summary>
@@ -120,7 +128,7 @@ public class DicePool {
         d100s = hundreds;
     }
 
-    public string GetRollText() {
+    string GetRollText() {
         List<string> strings = new List<string>();
         if(d4s > 0) strings.Add(d4s + "d4");
         if(d6s > 0) strings.Add(d6s + "d6");
@@ -131,5 +139,18 @@ public class DicePool {
         if(d100s > 0) strings.Add(d100s + "d100");
 
         return String.Join('+', strings);
+    }
+
+    public string GetName() {
+        string rollText = GetRollText();
+        if(nameOverride != "") {
+            return nameOverride;
+        }
+        else if (rollText != "" && rollText.Length > 1) {
+            return rollText;
+        }
+        else {
+            return "Empty Roll Preset";
+        }
     }
 }

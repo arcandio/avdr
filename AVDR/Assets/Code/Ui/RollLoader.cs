@@ -11,7 +11,7 @@ public class RollLoader : MonoBehaviour
     public TextMeshProUGUI buttonText;
 
     void Start() {
-        buttonText.text = dicePool.GetRollText();
+        buttonText.text = dicePool.GetName();
     }
 
     /// <summary>

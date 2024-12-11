@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -7,13 +8,17 @@ using UnityEngine.UI;
 
 public class CharacterManager : MonoBehaviour
 {
+    /* external references */
     public IoSystem ioSystem;
     public AssetManager assetManager;
+
+    /* character list */
     public GameObject characterButtonPrefab;
     public Transform characterButtonListParent;
-    public Button characterSettingsButton;
     public RectTransform characterPageScrollContent;
+    public Button characterSettingsButton;
 
+    /* character editing page */
     public TMP_InputField nameField;
     public TMP_Dropdown d4TypeDropdown;
     public TMP_Dropdown diceSetDropdown;
@@ -21,8 +26,19 @@ public class CharacterManager : MonoBehaviour
     public TMP_Dropdown lightingDropdown;
     public TMP_Dropdown effectsDropdown;
 
+    /* preset list */
+    public GameObject presetButtonPrefab;
+    public Transform presetButtonListParent;
+    public RectTransform presetPageScrollContent;
+
+    /* preset editing page */
+
+
+    /* private variables for the session */
     [SerializeField] private List<CharacterData> characterDatas = new List<CharacterData>();
     [SerializeField] private CharacterData selectedChar;
+    [SerializeField] private DicePool selectedPreset;
+
 
     void Start() {
         characterSettingsButton.gameObject.SetActive(false);
@@ -34,9 +50,6 @@ public class CharacterManager : MonoBehaviour
             }
         }
         PopulateCharacterListButtons();
-        // CreateCharacter("Alithe");
-        // CreateCharacter("Bobbert");
-        // CreateCharacter("Cragwater");
     }
 
     void PopulateCharacterInputs() {
@@ -81,11 +94,14 @@ public class CharacterManager : MonoBehaviour
             characterSettingsButton.gameObject.SetActive(false);
             return;
         }
-        selectedChar = characterDatas[tempIndex];
-        characterPageScrollContent.localPosition = Vector3.zero;
-        PopulateCharacterInputs();
-        characterSettingsButton.gameObject.SetActive(true);
-        Save();
+        else {
+            selectedChar = characterDatas[tempIndex];
+            characterPageScrollContent.localPosition = Vector3.zero;
+            PopulateCharacterInputs();
+            PopulatePresetListButtons();
+            characterSettingsButton.gameObject.SetActive(true);
+            Save();
+        }
     }
 
     public void SetName(string newName) {
@@ -146,6 +162,47 @@ public class CharacterManager : MonoBehaviour
         PopulateCharacterListButtons();
         UiPageManager.instance.SetPage("characters");
         Save();
+    }
+
+    public void CreatePreset() {
+        DicePool dicePool = new DicePool();
+        List<DicePool> listTemp = selectedChar.rollPresets.ToList();
+        listTemp.Add(dicePool);
+        selectedChar.rollPresets = listTemp.ToArray();
+        PopulatePresetListButtons();
+        Save();
+    }
+
+    public void SelectPreset(int tempIndex) {
+        if(tempIndex >= selectedChar.rollPresets.Length) {
+            Debug.LogError("Index out of range on SelectPreset");
+            selectedPreset = null;
+            return;
+        }
+        else {
+            selectedPreset = selectedChar.rollPresets[tempIndex];
+            presetPageScrollContent.localPosition = Vector3.zero;
+            PopulatePresetInputs();
+            Save();
+        }
+    }
+
+    public void PopulatePresetListButtons() {
+        foreach(Transform child in presetButtonListParent) {
+            if(child.GetComponent<UiPresetButton>() != null) {
+                child.gameObject.SetActive(false);
+                Destroy(child);
+            }
+        }
+        for (int i = 0; i < selectedChar.rollPresets.Length; i ++) {
+            DicePool dicePool = selectedChar.rollPresets[i];
+            GameObject instanceTemp = Instantiate(presetButtonPrefab, presetButtonListParent);
+            instanceTemp.GetComponent<UiPresetButton>().SetupPresetButton(this, i, dicePool.GetName());
+        }
+    }
+
+    void PopulatePresetInputs() {
+
     }
 
     private void Save() {
