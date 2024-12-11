@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &395121577485099030
+--- !u!1 &7038345167691705712
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3727158746279055376}
-  - component: {fileID: 4491048002878355537}
+  - component: {fileID: 2646441589149306226}
+  - component: {fileID: 1222973531338506992}
   m_Layer: 0
-  m_Name: CharacterManager
+  m_Name: AssetManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3727158746279055376
+--- !u!4 &2646441589149306226
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395121577485099030}
+  m_GameObject: {fileID: 7038345167691705712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,34 +32,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4491048002878355537
+--- !u!114 &1222973531338506992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395121577485099030}
+  m_GameObject: {fileID: 7038345167691705712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 831f41495eaaf924e946892467717f5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 550c156b75cdb634d8f291a4be00136e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ioSystem: {fileID: 0}
-  assetManager: {fileID: 0}
-  characterButtonPrefab: {fileID: 5133860362586328153, guid: 0eec62699994fc841bea173c59dcfd60, type: 3}
-  characterButtonListParent: {fileID: 0}
-  characterSettingsButton: {fileID: 0}
-  d4TypeDropdown: {fileID: 0}
-  diceSetDropdown: {fileID: 0}
-  trayDropdown: {fileID: 0}
-  lightingDropdown: {fileID: 0}
-  effectsDropdown: {fileID: 0}
-  characterDatas: []
-  selectedChar:
-    characterName: 
-    rollPresets: []
-    diceSet: 
-    d4Type: 0
-    traySet: 
-    lightingSet: 
-    effectsSet: 
+  diceSets:
+  - Humble Commoner
+  - Sinister Vampire
+  - Fire Elemental
+  - Thriving Ocean
+  - Weary Soldier
+  - Energetic Wizard
+  trays:
+  - Gray Felt
+  - Polished Wood
+  - Ancient Stone
+  - Arcane Rune
+  - Someone's Guts
+  lightings:
+  - Daylight
+  - Mystical Library
+  - Enchanted Forest
+  - Roadside Campfire
+  - Flaming Hell
+  - Sickly Glow
+  effects:
+  - None
+  - Bloody Mess
+  - Holy Light
+  - Evil Corruption
+  - Slimy Ooze
