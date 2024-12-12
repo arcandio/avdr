@@ -103,7 +103,6 @@ public class UiPageManager : MonoBehaviour
     /// </summary>
     /// <param name="pageName">string name of the target page.</param>
     public void SetPage(PageName pageName) {
-        Debug.LogWarning(pageName);
         if(pageName != PageName.TrayPage) {
             thrower.enabled = false;
         }

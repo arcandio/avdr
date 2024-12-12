@@ -17,6 +17,7 @@ public class CharacterManager : MonoBehaviour
     public Transform characterButtonListParent;
     public RectTransform characterPageScrollContent;
     public Button characterSettingsButton;
+    public Button presetListButton;
 
     /* character editing page */
     public TMP_InputField nameField;
@@ -42,6 +43,7 @@ public class CharacterManager : MonoBehaviour
 
     void Start() {
         characterSettingsButton.gameObject.SetActive(false);
+        presetListButton.gameObject.SetActive(false);
         characterDatas = ioSystem.LoadCharacterData();
         string selectedName = ioSystem.LoadSelectedCharacter();
         foreach(CharacterData characterData in characterDatas) {
@@ -92,6 +94,7 @@ public class CharacterManager : MonoBehaviour
             Debug.LogError("Index Out of Range on SelectCharacter");
             selectedChar = null;
             characterSettingsButton.gameObject.SetActive(false);
+            presetListButton.gameObject.SetActive(false);
             return;
         }
         else {
@@ -100,6 +103,7 @@ public class CharacterManager : MonoBehaviour
             PopulateCharacterInputs();
             PopulatePresetListButtons();
             characterSettingsButton.gameObject.SetActive(true);
+            presetListButton.gameObject.SetActive(true);
             Save();
         }
     }
@@ -159,6 +163,7 @@ public class CharacterManager : MonoBehaviour
         selectedChar = null;
         // PopulateCharacterInputs();
         characterSettingsButton.gameObject.SetActive(false);
+        presetListButton.gameObject.SetActive(false);
         PopulateCharacterListButtons();
         UiPageManager.instance.SetPage(PageName.CharacterListPage);
         Save();
@@ -212,7 +217,7 @@ public class CharacterManager : MonoBehaviour
     }
 
     void PopulatePresetInputs() {
-
+        
     }
 
     private void Save() {
