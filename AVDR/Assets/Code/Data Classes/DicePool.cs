@@ -72,37 +72,29 @@ public class DicePool {
     /// <param name="dieSize"></param>
     public DicePool(DieSize dieSize) {
         switch(dieSize) {
-            case DieSize.d4: {
+            case DieSize.d4:
                 d4s  = 1;
                 break;
-            }
-            case DieSize.d6: {
+            case DieSize.d6:
                 d6s  = 1;
                 break;
-            }
-            case DieSize.d8: {
+            case DieSize.d8:
                 d8s  = 1;
                 break;
-            }
-            case DieSize.d10: {
+            case DieSize.d10:
                 d10s  = 1;
                 break;
-            }
-            case DieSize.d12: {
+            case DieSize.d12:
                 d12s  = 1;
                 break;
-            }
-            case DieSize.d20: {
+            case DieSize.d20:
                 d20s  = 1;
                 break;
-            }
-            case DieSize.d100: {
+            case DieSize.d100:
                 d100s  = 1;
                 break;
-            }
-            default: {
+            default:
                 break;
-            }
         }
     }
 

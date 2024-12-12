@@ -2,9 +2,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class UiPageManager : MonoBehaviour
 {
     public static UiPageManager instance;
+
+    public AudioSource audioSource;
 
     public UiPage trayPage;
     public UiPage menuPage;
@@ -50,7 +53,7 @@ public class UiPageManager : MonoBehaviour
     }
     
     void Start() {
-        SetPage(PageName.TrayPage);
+        SetPage(PageName.TrayPage, false);
     }
 
     public void CollectAllNavs() {
@@ -102,7 +105,7 @@ public class UiPageManager : MonoBehaviour
     /// and moving the correct one into the view.
     /// </summary>
     /// <param name="pageName">string name of the target page.</param>
-    public void SetPage(PageName pageName) {
+    public void SetPage(PageName pageName, bool playSound = true) {
         if(pageName != PageName.TrayPage) {
             thrower.enabled = false;
         }
@@ -114,5 +117,6 @@ public class UiPageManager : MonoBehaviour
             page.transform.position = holdingCellTransform.position;
         }
         target.transform.position = screenArea.position;
+        if(playSound) audioSource.Play();
     }
 }

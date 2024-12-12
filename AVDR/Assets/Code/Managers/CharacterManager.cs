@@ -33,7 +33,20 @@ public class CharacterManager : MonoBehaviour
     public RectTransform presetPageScrollContent;
 
     /* preset editing page */
-
+    public TMP_InputField nameOverrideField;
+    public TMP_InputField d4NumberField;
+    public TMP_InputField d6NumberField;
+    public TMP_InputField d8NumberField;
+    public TMP_InputField d10NumberField;
+    public TMP_InputField d12NumberField;
+    public TMP_InputField d20NumberField;
+    public TMP_InputField d100NumberField;
+    public TMP_InputField bonusField;
+    public TMP_InputField penaltyField;
+    public TMP_InputField multiplierField;
+    public TMP_InputField divisorField;
+    public TMP_InputField keepHighestField;
+    public TMP_InputField keepLowestField;
 
     /* private variables for the session */
     [SerializeField] private List<CharacterData> characterDatas = new List<CharacterData>();
