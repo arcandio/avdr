@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// A data class that holds the presets and options for a given "character".
@@ -8,7 +9,7 @@ using System;
 public class CharacterData {
 
     public string characterName;
-    public DicePool[] rollPresets;
+    public List<DicePool> rollPresets = new List<DicePool>();
     public string diceSet;
     public D4Type d4Type;
     public string traySet;

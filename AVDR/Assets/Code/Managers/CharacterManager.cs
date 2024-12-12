@@ -1,11 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
+/// <summary>
+/// A manager class for most of the data in the app.
+/// This class handles manipulating CharacterData, and thus
+/// interfaces with navigation, IO, and UI. Because the `DicePool`s
+/// live inside `CharacterData.rollPresets`, this class also manipulates
+/// those as well.
+/// </summary>
+/// <remarks>
+/// It might be possible to split this into CharacterManager and PresetManager
+/// but for now, this is good enough.
+/// </remarks>
 public class CharacterManager : MonoBehaviour
 {
     /* external references */
@@ -184,15 +193,13 @@ public class CharacterManager : MonoBehaviour
 
     public void CreatePreset() {
         DicePool dicePool = new DicePool();
-        List<DicePool> listTemp = selectedChar.rollPresets.ToList();
-        listTemp.Add(dicePool);
-        selectedChar.rollPresets = listTemp.ToArray();
+        selectedChar.rollPresets.Add(dicePool);
         PopulatePresetListButtons();
         Save();
     }
 
     public void SelectPreset(int tempIndex) {
-        if(tempIndex >= selectedChar.rollPresets.Length) {
+        if(tempIndex >= selectedChar.rollPresets.Count) {
             Debug.LogError("Index out of range on SelectPreset");
             selectedPreset = null;
             return;
@@ -212,7 +219,7 @@ public class CharacterManager : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        for (int i = 0; i < selectedChar.rollPresets.Length; i ++) {
+        for (int i = 0; i < selectedChar.rollPresets.Count; i ++) {
             DicePool dicePool = selectedChar.rollPresets[i];
             GameObject instanceTemp = Instantiate(presetButtonPrefab, presetButtonListParent);
             instanceTemp.GetComponent<UiPresetButton>().SetupPresetButton(this, i, dicePool.GetName());
@@ -220,9 +227,7 @@ public class CharacterManager : MonoBehaviour
     }
 
     public void DeletePreset() {
-        List<DicePool> listTemp = selectedChar.rollPresets.ToList();
-        listTemp.Remove(selectedPreset);
-        selectedChar.rollPresets = listTemp.ToArray();
+        selectedChar.rollPresets.Remove(selectedPreset);
         selectedPreset = null;
         PopulatePresetListButtons();
         UiPageManager.instance.SetPage(PageName.PresetListPage);
@@ -230,7 +235,83 @@ public class CharacterManager : MonoBehaviour
     }
 
     void PopulatePresetInputs() {
+        nameOverrideField.text = selectedPreset.nameOverride;
         
+        d4NumberField.text = selectedPreset.d4s.ToString();
+        d6NumberField.text = selectedPreset.d6s.ToString();
+        d8NumberField.text = selectedPreset.d8s.ToString();
+        d10NumberField.text = selectedPreset.d10s.ToString();
+        d12NumberField.text = selectedPreset.d12s.ToString();
+        d20NumberField.text = selectedPreset.d20s.ToString();
+        d100NumberField.text = selectedPreset.d100s.ToString();
+
+        bonusField.text = selectedPreset.bonus.ToString();
+        penaltyField.text = selectedPreset.penalty.ToString();
+        multiplierField.text = selectedPreset.multiplier.ToString();
+        divisorField.text = selectedPreset.divisor.ToString();
+        keepHighestField.text = selectedPreset.KeepHighest.ToString();
+        keepLowestField.text = selectedPreset.KeepLowest.ToString();
+    }
+
+    public void SetPresetData(PresetField presetField, int inputTemp) {
+        switch(presetField) {
+            /* dice cases */
+            case PresetField.D4Number:
+                selectedPreset.d4s = inputTemp;
+                break;
+            case PresetField.D6Number:
+                selectedPreset.d6s = inputTemp;
+                break;
+            case PresetField.D8Number:
+                selectedPreset.d8s = inputTemp;
+                break;
+            case PresetField.D10Number:
+                selectedPreset.d10s = inputTemp;
+                break;
+            case PresetField.D12Number:
+                selectedPreset.d12s = inputTemp;
+                break;
+            case PresetField.D20Number:
+                selectedPreset.d20s = inputTemp;
+                break;
+            case PresetField.D100Number:
+                selectedPreset.d100s = inputTemp;
+                break;
+
+            /* value cases */
+            case PresetField.Bonus:
+                selectedPreset.bonus = inputTemp;
+                break;
+            case PresetField.Penalty:
+                selectedPreset.penalty = inputTemp;
+                break;
+            case PresetField.Multiplier:
+                selectedPreset.multiplier = inputTemp;
+                break;
+            case PresetField.Divisor:
+                selectedPreset.divisor = inputTemp;
+                break;
+            case PresetField.KeepHighest:
+                selectedPreset.KeepHighest = inputTemp;
+                keepLowestField.text = "";
+                break;
+            case PresetField.KeepLowest:
+                selectedPreset.KeepLowest = inputTemp;
+                keepHighestField.text = "";
+                break;
+            
+
+            /* error catching */
+            default:
+                Debug.LogError("Dropped through PresetData Switch");
+                break;
+        }
+        Save();
+    }
+    public void SetPresetNameOverride(string inputTemp) {
+        selectedPreset.nameOverride = inputTemp;
+        Save();
+        PopulatePresetListButtons();
     }
 
     private void Save() {

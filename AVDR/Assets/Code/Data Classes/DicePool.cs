@@ -17,6 +17,8 @@ using UnityEngine;
 [Serializable]
 public class DicePool {
     public string nameOverride = "";
+
+    /* Dice numbers */
     public int d4s = 0;
     public int d6s = 0;
     public int d8s = 0;
@@ -25,12 +27,13 @@ public class DicePool {
     public int d20s = 0;
     public int d100s = 0;
 
+    /* values */
     public int bonus = 0;
     public int penalty = 0;
     public int multiplier = 1;
     public int divisor = 1;
 
-    private int keepHighest = 0;
+    [SerializeField] private int keepHighest = 0;
     /// <summary>
     /// KeepHighest and KeepLowest are mutually exclusive.
     /// Setting either resets the other.
@@ -44,7 +47,7 @@ public class DicePool {
             }
         }
     }
-    private int keepLowest = 0;
+    [SerializeField] private int keepLowest = 0;
     /// <summary>
     /// KeepHighest and KeepLowest are mutually exclusive.
     /// Setting either resets the other.
