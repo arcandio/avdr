@@ -137,15 +137,15 @@ public class DicePool {
     public string GetName() {
         string rollText = GetRollText();
         if(nameOverride != "") {
-            UnityEngine.Debug.Log("name Override");
+            // UnityEngine.Debug.Log("name Override");
             return nameOverride;
         }
         else if (rollText != "") {
-            UnityEngine.Debug.Log("roll text");
+            // UnityEngine.Debug.Log("roll text");
             return rollText;
         }
         else {
-            UnityEngine.Debug.Log("empty roll preset");
+            // UnityEngine.Debug.Log("empty roll preset");
             return "Empty Roll Preset";
         }
     }

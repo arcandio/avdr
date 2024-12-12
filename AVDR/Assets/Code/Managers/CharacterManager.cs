@@ -84,13 +84,13 @@ public class CharacterManager : MonoBehaviour
     void PopulateCharacterInputs() {
         nameField.text = selectedChar != null ? selectedChar.characterName : "";
         diceSetDropdown.ClearOptions();
-        diceSetDropdown.AddOptions(new List<string>(assetManager.diceSets));
+        diceSetDropdown.AddOptions(new List<string>(assetManager.Owned.GetDiceSetKeys()));
         trayDropdown.ClearOptions();
-        trayDropdown.AddOptions(new List<string>(assetManager.trays));
+        trayDropdown.AddOptions(new List<string>(assetManager.Owned.GetTrayKeys()));
         lightingDropdown.ClearOptions();
-        lightingDropdown.AddOptions(new List<string>(assetManager.lightings));
+        lightingDropdown.AddOptions(new List<string>(assetManager.Owned.GetLightingKeys()));
         effectsDropdown.ClearOptions();
-        effectsDropdown.AddOptions(new List<string>(assetManager.effects));
+        effectsDropdown.AddOptions(new List<string>(assetManager.Owned.GetEffectKeys()));
     }
 
     /// <summary>

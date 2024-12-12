@@ -44,29 +44,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550c156b75cdb634d8f291a4be00136e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceSets:
-  - Humble Commoner
-  - Sinister Vampire
-  - Fire Elemental
-  - Thriving Ocean
-  - Weary Soldier
-  - Energetic Wizard
-  trays:
-  - Gray Felt
-  - Polished Wood
-  - Ancient Stone
-  - Arcane Rune
-  - Someone's Guts
-  lightings:
-  - Daylight
-  - Mystical Library
-  - Enchanted Forest
-  - Roadside Campfire
-  - Flaming Hell
-  - Sickly Glow
-  effects:
-  - None
-  - Bloody Mess
-  - Holy Light
-  - Evil Corruption
-  - Slimy Ooze
+  free:
+    diceSets:
+    - key: Humble Commoner
+      prefab: {fileID: 0}
+    - key: Weary Soldier
+      prefab: {fileID: 0}
+    - key: Elderly Wizard
+      prefab: {fileID: 0}
+    - key: Pious Cleric
+      prefab: {fileID: 0}
+    trays:
+    - key: Gray Felt
+      prefab: {fileID: 0}
+    - key: Polished Wood
+      prefab: {fileID: 0}
+    - key: Ancient Stone
+      prefab: {fileID: 0}
+    lightings:
+    - key: Daylight
+      prefab: {fileID: 0}
+    - key: Nighttime
+      prefab: {fileID: 0}
+    - key: Sunset
+      prefab: {fileID: 0}
+    effects:
+    - key: None
+      prefab: {fileID: 0}
+    - key: Magical Sparkles
+      prefab: {fileID: 0}
+  paid:
+    diceSets:
+    - key: Sinister Vampire
+      prefab: {fileID: 0}
+    - key: Turbulent Ocean
+      prefab: {fileID: 0}
+    - key: Nefarious Warlock
+      prefab: {fileID: 0}
+    - key: Starry Witch
+      prefab: {fileID: 0}
+    - key: Golden Throne
+      prefab: {fileID: 0}
+    - key: Hideous Bone
+      prefab: {fileID: 0}
+    - key: Paladin Silver
+      prefab: {fileID: 0}
+    - key: Fleshy Mass
+      prefab: {fileID: 0}
+    trays:
+    - key: Arcane Rune
+      prefab: {fileID: 0}
+    - key: Bloody Sacrifice
+      prefab: {fileID: 0}
+    - key: Fell Altar
+      prefab: {fileID: 0}
+    - key: Lovecraftian Ectoplasm
+      prefab: {fileID: 0}
+    - key: Someone's Guts
+      prefab: {fileID: 0}
+    - key: Desert Sands
+      prefab: {fileID: 0}
+    - key: Gothic Lace
+      prefab: {fileID: 0}
+    - key: Bone Cage
+      prefab: {fileID: 0}
+    lightings:
+    - key: Mystical Library
+      prefab: {fileID: 0}
+    - key: Enchanted Forest
+      prefab: {fileID: 0}
+    - key: Roadside Campfire
+      prefab: {fileID: 0}
+    - key: Flaming Hell
+      prefab: {fileID: 0}
+    - key: Sickly Glow
+      prefab: {fileID: 0}
+    effects:
+    - key: Bloody Mess
+      prefab: {fileID: 0}
+    - key: Holy Light
+      prefab: {fileID: 0}
+    - key: Evil Corruption
+      prefab: {fileID: 0}
+    - key: Blinding Flash
+      prefab: {fileID: 0}
+  purchased:
+    diceSets: []
+    trays: []
+    lightings: []
+    effects: []
