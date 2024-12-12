@@ -19,6 +19,6 @@ public class UiCharacterButton : UiNavigation
 
     public void ClickedCharacterButton() {
         characterManager.SelectCharacter(index);
-        NavigateToPage("character");
+        NavigateToPage(PageName.CharacterEditPage);
     }
 }

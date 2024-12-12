@@ -160,7 +160,7 @@ public class CharacterManager : MonoBehaviour
         // PopulateCharacterInputs();
         characterSettingsButton.gameObject.SetActive(false);
         PopulateCharacterListButtons();
-        UiPageManager.instance.SetPage("characters");
+        UiPageManager.instance.SetPage(PageName.CharacterListPage);
         Save();
     }
 
@@ -207,7 +207,7 @@ public class CharacterManager : MonoBehaviour
         selectedChar.rollPresets = listTemp.ToArray();
         selectedPreset = null;
         PopulatePresetListButtons();
-        UiPageManager.instance.SetPage("presets");
+        UiPageManager.instance.SetPage(PageName.PresetListPage);
         Save();
     }
 

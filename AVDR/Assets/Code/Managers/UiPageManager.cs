@@ -1,9 +1,22 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UiPageManager : MonoBehaviour
 {
     public static UiPageManager instance;
+
+    public UiPage trayPage;
+    public UiPage menuPage;
+    public UiPage characterListPage;
+    public UiPage characterEditPage;
+    public UiPage presetListPage;
+    public UiPage presetEditPage;
+    public UiPage historyPage;
+    public UiPage settingsPage;
+
+
+
     /// <summary>
     /// The existing pages in the scene.
     /// </summary>
@@ -37,7 +50,7 @@ public class UiPageManager : MonoBehaviour
     }
     
     void Start() {
-        SetPage("tray");
+        SetPage(PageName.TrayPage);
     }
 
     public void CollectAllNavs() {
@@ -50,16 +63,36 @@ public class UiPageManager : MonoBehaviour
     /// </summary>
     /// <param name="pageName">Page name as a string</param>
     /// <returns>string name of the target page.</returns>
-    UiPage FindPage(string pageName) {
+    UiPage FindPage(PageName pageName) {
         UiPage foundPage = null;
-        foreach(UiPage page in pages) {
-            if(page.gameObject.name == pageName) {
-                foundPage = page;
-            }
-        }
-        if(foundPage == null) {
-            Debug.LogError("Did not find page: " + pageName);
-            return null;
+        switch(pageName) {
+            case PageName.TrayPage:
+                foundPage = trayPage;
+                break;
+            case PageName.MenuPage:
+                foundPage = menuPage;
+                break;
+            case PageName.CharacterListPage:
+                foundPage = characterListPage;
+                break;
+            case PageName.CharacterEditPage:
+                foundPage = characterEditPage;
+                break;
+            case PageName.PresetListPage:
+                foundPage = presetListPage;
+                break;
+            case PageName.PresetEditPage:
+                foundPage = presetEditPage;
+                break;
+            case PageName.HistoryPage:
+                foundPage = historyPage;
+                break;
+            case PageName.SettingsPage:
+                foundPage = settingsPage;
+                break;
+            default:
+                Debug.LogError("Did not find page " + pageName);
+                break;
         }
         return foundPage;
     }
@@ -69,8 +102,9 @@ public class UiPageManager : MonoBehaviour
     /// and moving the correct one into the view.
     /// </summary>
     /// <param name="pageName">string name of the target page.</param>
-    public void SetPage(string pageName) {
-        if(pageName != "tray") {
+    public void SetPage(PageName pageName) {
+        Debug.LogWarning(pageName);
+        if(pageName != PageName.TrayPage) {
             thrower.enabled = false;
         }
         else {

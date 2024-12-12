@@ -19,6 +19,6 @@ public class UiPresetButton : UiNavigation
 
     public void ClickedPresetButton() {
         characterManager.SelectPreset(index);
-        NavigateToPage("preset");
+        NavigateToPage(PageName.PresetEditPage);
     }
 }
