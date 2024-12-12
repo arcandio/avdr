@@ -9,6 +9,8 @@ public class AppSettings : MonoBehaviour
     public float cameraHeight = 0.3629065f;
     public float tossThreshold = 1.5f;
 
+    public bool autoRollOnLoad = false;
+
     private bool hasLoadedData = false;
 
     /// <summary>

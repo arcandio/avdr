@@ -62,7 +62,9 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private CharacterData selectedChar;
     [SerializeField] private DicePool selectedPreset;
 
-
+    /// <summary>
+    /// Load data on start, and set up scene.
+    /// </summary>
     void Start() {
         characterSettingsButton.gameObject.SetActive(false);
         presetListButton.gameObject.SetActive(false);
@@ -76,6 +78,9 @@ public class CharacterManager : MonoBehaviour
         PopulateCharacterListButtons();
     }
 
+    /// <summary>
+    /// Sets up the dropdowns for existing & owned assets.
+    /// </summary>
     void PopulateCharacterInputs() {
         nameField.text = selectedChar != null ? selectedChar.characterName : "";
         diceSetDropdown.ClearOptions();
@@ -88,6 +93,9 @@ public class CharacterManager : MonoBehaviour
         effectsDropdown.AddOptions(new List<string>(assetManager.effects));
     }
 
+    /// <summary>
+    /// Refreshes the list of characters.
+    /// </summary>
     void PopulateCharacterListButtons() {
         foreach (Transform child in characterButtonListParent) {
             if(child.GetComponent<UiCharacterButton>() != null) {
@@ -102,6 +110,11 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Creates a new character and adds them to the list.
+    /// </summary>
+    /// <param name="nameTemp">what to call the new character. Defaults to "New Character".
+    /// We may not ever pass in an actual name due to UI constraints.</param>
     public void CreateCharacter(string nameTemp = "New Character") {
         CharacterData temp = new CharacterData();
         temp.characterName = nameTemp;
@@ -111,8 +124,13 @@ public class CharacterManager : MonoBehaviour
         Save();
     }
 
+    /// <summary>
+    /// Sets the selected character so we can edit them and their presets, and view
+    /// the presets in the tray.
+    /// </summary>
+    /// <param name="tempIndex">Index in the characterDatas list to set as current.</param>
     public void SelectCharacter(int tempIndex) {
-        if(tempIndex >= characterDatas.Count) {
+        if(tempIndex >= characterDatas.Count || tempIndex < 0) {
             Debug.LogError("Index Out of Range on SelectCharacter");
             selectedChar = null;
             characterSettingsButton.gameObject.SetActive(false);
@@ -130,13 +148,21 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    public void SetName(string newName) {
+    /// <summary>
+    /// Sets the name of the selected character.
+    /// </summary>
+    /// <param name="newName">What to change the name to.</param>
+    public void SetCharacterName(string newName) {
         if(newName == "") newName = "Character";
         selectedChar.characterName = newName;
         PopulateCharacterListButtons();
         Save();
     }
 
+    /// <summary>
+    /// Sets the type of D4 to use for the selected character.
+    /// </summary>
+    /// <param name="tempIndex">index of the selected option the dropdown.</param>
     public void SetD4Type (Int32 tempIndex) {
         TMP_Dropdown.OptionData option = d4TypeDropdown.options[tempIndex];
         switch(option.text) {
@@ -156,30 +182,45 @@ public class CharacterManager : MonoBehaviour
         Save();
     }
 
+    /// <summary>
+    /// Sets the name of the dice set for the selected character.
+    /// </summary>
     public void SetDiceSet(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = diceSetDropdown.options[tempIndex];
         selectedChar.diceSet = option.text;
         Save();
     }
 
+    /// <summary>
+    /// Sets the name of the tray for the selected character.
+    /// </summary>
     public void SetTray(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = trayDropdown.options[tempIndex];
         selectedChar.traySet = option.text;
         Save();
     }
 
+    /// <summary>
+    /// Sets the name of the lighting set for the selected character.
+    /// </summary>
     public void SetLighting(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = lightingDropdown.options[tempIndex];
         selectedChar.lightingSet = option.text;
         Save();
     }
 
+    /// <summary>
+    /// Sets the name of the effects set for the selected character.
+    /// </summary>
     public void SetEffects(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = effectsDropdown.options[tempIndex];
         selectedChar.effectsSet = option.text;
         Save();
     }
 
+    /// <summary>
+    /// Deletes the selected character and clears the character selection.
+    /// </summary>
     public void DeleteCharacter() {
         characterDatas.Remove(selectedChar);
         selectedChar = null;
@@ -191,6 +232,9 @@ public class CharacterManager : MonoBehaviour
         Save();
     }
 
+    /// <summary>
+    /// Creates a new dice pool preset and adds it to the selected character.
+    /// </summary>
     public void CreatePreset() {
         DicePool dicePool = new DicePool();
         selectedChar.rollPresets.Add(dicePool);
@@ -198,6 +242,11 @@ public class CharacterManager : MonoBehaviour
         Save();
     }
 
+    /// <summary>
+    /// Selects a preset on the selected character loads it into the UI.
+    /// It also resets the scroll position for a better UX.
+    /// </summary>
+    /// <param name="tempIndex"></param>
     public void SelectPreset(int tempIndex) {
         if(tempIndex >= selectedChar.rollPresets.Count) {
             Debug.LogError("Index out of range on SelectPreset");
@@ -212,6 +261,9 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets up the list of presets.
+    /// </summary>
     public void PopulatePresetListButtons() {
         foreach(Transform child in presetButtonListParent) {
             if(child.GetComponent<UiPresetButton>() != null) {
@@ -226,6 +278,9 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Removes a preset from the selected character.
+    /// </summary>
     public void DeletePreset() {
         selectedChar.rollPresets.Remove(selectedPreset);
         selectedPreset = null;
@@ -234,6 +289,10 @@ public class CharacterManager : MonoBehaviour
         Save();
     }
 
+    /// <summary>
+    /// Set the values of the preset edit page with data from the selected
+    /// preset on the selected character.
+    /// </summary>
     void PopulatePresetInputs() {
         nameOverrideField.text = selectedPreset.nameOverride;
         
@@ -253,6 +312,18 @@ public class CharacterManager : MonoBehaviour
         keepLowestField.text = selectedPreset.KeepLowest.ToString();
     }
 
+    /// <summary>
+    /// Sets the variable on a preset DicePool by way of an Enum selector
+    /// and an input value.
+    /// </summary>
+    /// <remarks>
+    /// This may *look* like overkill, but the alternative is to build a specific
+    /// method for every single field, which seems stupidly not DRY to me. This cuts the
+    /// interface between `PresetRow` and `CharacterManager` down to a couple calls
+    /// instead of dozens.
+    /// </remarks>
+    /// <param name="presetField"></param>
+    /// <param name="inputTemp"></param>
     public void SetPresetData(PresetField presetField, int inputTemp) {
         switch(presetField) {
             /* dice cases */
@@ -308,12 +379,22 @@ public class CharacterManager : MonoBehaviour
         }
         Save();
     }
+
+    /// <summary>
+    /// Sets the name override of the preset from a UI text field
+    /// OnChange event.
+    /// </summary>
+    /// <param name="inputTemp"></param>
     public void SetPresetNameOverride(string inputTemp) {
         selectedPreset.nameOverride = inputTemp;
         Save();
         PopulatePresetListButtons();
     }
 
+    /// <summary>
+    /// A simple DRY call wrapper for sending save requests to `IoSystem`.
+    /// Clearly used a lot, saves on keystrokes.
+    /// </summary>
     private void Save() {
         ioSystem.SaveUserData(characterDatas, selectedChar);
     }
