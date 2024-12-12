@@ -64,7 +64,7 @@ MonoBehaviour:
     lightings:
     - key: Daylight
       prefab: {fileID: 0}
-    - key: Nighttime
+    - key: Night Time
       prefab: {fileID: 0}
     - key: Sunset
       prefab: {fileID: 0}
@@ -91,6 +91,10 @@ MonoBehaviour:
       prefab: {fileID: 0}
     - key: Fleshy Mass
       prefab: {fileID: 0}
+    - key: Brass Gears
+      prefab: {fileID: 0}
+    - key: Advanced Circuits
+      prefab: {fileID: 0}
     trays:
     - key: Arcane Rune
       prefab: {fileID: 0}
@@ -108,6 +112,8 @@ MonoBehaviour:
       prefab: {fileID: 0}
     - key: Bone Cage
       prefab: {fileID: 0}
+    - key: Fuzzy Belly
+      prefab: {fileID: 0}
     lightings:
     - key: Mystical Library
       prefab: {fileID: 0}
@@ -119,6 +125,8 @@ MonoBehaviour:
       prefab: {fileID: 0}
     - key: Sickly Glow
       prefab: {fileID: 0}
+    - key: Candle Light
+      prefab: {fileID: 0}
     effects:
     - key: Bloody Mess
       prefab: {fileID: 0}
@@ -127,6 +135,14 @@ MonoBehaviour:
     - key: Evil Corruption
       prefab: {fileID: 0}
     - key: Blinding Flash
+      prefab: {fileID: 0}
+    - key: Bam Kapow
+      prefab: {fileID: 0}
+    - key: Occult Glyphs
+      prefab: {fileID: 0}
+    - key: Chilly Blizzard
+      prefab: {fileID: 0}
+    - key: Cosmic Dust
       prefab: {fileID: 0}
   purchased:
     diceSets: []
