@@ -201,6 +201,16 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    public void DeletePreset() {
+        List<DicePool> listTemp = selectedChar.rollPresets.ToList();
+        listTemp.Remove(selectedPreset);
+        selectedChar.rollPresets = listTemp.ToArray();
+        selectedPreset = null;
+        PopulatePresetListButtons();
+        UiPageManager.instance.SetPage("presets");
+        Save();
+    }
+
     void PopulatePresetInputs() {
 
     }

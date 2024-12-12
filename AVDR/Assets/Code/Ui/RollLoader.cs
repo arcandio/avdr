@@ -9,6 +9,7 @@ public class RollLoader : MonoBehaviour
 {
     public DicePool dicePool;
     public TextMeshProUGUI buttonText;
+    public bool isPresetButton;
 
     void Start() {
         buttonText.text = dicePool.GetName();

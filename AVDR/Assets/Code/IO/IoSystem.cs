@@ -12,7 +12,9 @@ public class IoSystem : MonoBehaviour
     private string selectedCharacterKey = "selectedCharacter";
 
     public void SaveUserData(List<CharacterData> characterDatas, CharacterData selectedChar) {
-        PlayerPrefs.SetString(selectedCharacterKey, selectedChar.characterName);
+        if(selectedChar != null) {
+            PlayerPrefs.SetString(selectedCharacterKey, selectedChar.characterName);
+        }
         List<string> jsonStrings = new List<string>();
         foreach(CharacterData characterData in characterDatas) {
             string str = JsonUtility.ToJson(characterData);
