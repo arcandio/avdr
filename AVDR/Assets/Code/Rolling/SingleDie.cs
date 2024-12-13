@@ -1,10 +1,24 @@
 using UnityEngine;
 
+/// <summary>
+/// Handles the rolling and prefab settings of a single die.
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(MeshCollider))]
 public class SingleDie : MonoBehaviour
 {
+    /// <summary>
+    /// The type of die this SingleDie is. This is used by the DiceManager to
+    /// put the prefab of this die in the right slot for instantiation.
+    /// </summary>
+    public DieSize dieSize = DieSize.d4;
+
+    /// <summary>
+    /// The type of d4 this is, if it is one. If it's not, this is ignored.
+    /// </summary>
+    public D4Type d4Type = D4Type.Caltrop;
+
     [SerializeField] private Rigidbody rb;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Transform[] faces;
@@ -154,4 +168,8 @@ public class SingleDie : MonoBehaviour
         hasCheckedRollOutcome = false;
     }
 
+    public override string ToString()
+    {
+        return gameObject.name + ": " + dieSize;
+    }
 }

@@ -1,11 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Manages the physical dice on the table.
+/// </summary>
 public class DiceManager : MonoBehaviour
 {
+    /* Managers */
     public static DiceManager instance;
+    public AssetManager assetManager;
+    public CharacterManager characterManager;
     public Transform dicePoolParent;
+
+    /* diceprefabs */
+    public string defaultDiceName = "Humble Commoner";
     public GameObject d4CaltropPrefab;
     public GameObject d4CrystalPrefab;
     public GameObject d4PendantPrefab;
@@ -15,7 +25,8 @@ public class DiceManager : MonoBehaviour
     public GameObject d12Prefab;
     public GameObject d20Prefab;
     public GameObject d100Prefab;
-    public D4Type d4Type = D4Type.Crystal;
+
+    /* private variables */
 
     /// <summary>
     /// The currently "loaded" set of dice being rolled by the app.
@@ -64,8 +75,9 @@ public class DiceManager : MonoBehaviour
     /// <summary>
     /// Clears the scene and creates a new set of dice in the scene.
     /// </summary>
-    /// <param name="inputDp">The roll to generate dice for.</param>
+    /// <param name="inputDicePool">The roll to generate dice for.</param>
     public void CreateDice(DicePool inputDicePool) {
+        D4Type d4Type = characterManager.GetCurrentD4Type();
         ClearInstances();
         // Debug.Log("create dice");
         this.dicePoolData = inputDicePool;
@@ -85,11 +97,85 @@ public class DiceManager : MonoBehaviour
         diceInstances = tempInstances.ToArray();
     }
 
+    /// <summary>
+    /// Creates a number of instances of a die.
+    /// </summary>
+    /// <param name="prefab">Which object to instantiate.</param>
+    /// <param name="count">How many to make.</param>
     void InstanceDie(GameObject prefab, int count) {
         for(int i = 0; i < count; i++) {
             GameObject temp = Instantiate(prefab, dicePoolParent);
             // temp.name += UnityEngine.Random.Range(0, 1000000);
             tempInstances.Add(temp.GetComponent<SingleDie>());
+        }
+    }
+
+    /// <summary>
+    /// Updates the prefabs in the DiceManager with new ones.
+    /// </summary>
+    /// <param name="diceSet">The set name to use.</param>
+    public void PullDiceFromAssetManager(string diceSet) {
+        /* guard clauses */
+        if(assetManager.All.Contains(diceSet) == AssetType.None) {
+            Debug.LogError("dice set with this name does not exist: " + diceSet);
+            return;
+        }
+        else if(assetManager.Owned.GetDiceSetKeys().Contains(diceSet) == false) {
+            Debug.LogError("User does not own " + diceSet);
+            return;
+        }
+
+        /* Now to place the dice in their proper slots. */
+        AssetKeyValuePair pair = assetManager.Owned.GetAssetPair(AssetType.DiceSet, diceSet);
+        Debug.Log(pair);
+        foreach(GameObject prefab in pair.prefabs) {
+            SingleDie singleDie = prefab.GetComponent<SingleDie>();
+            Debug.Log(singleDie);
+            if(singleDie == null) {
+                Debug.LogError(diceSet + " had a prefab without a SingleDie script instance.");
+                return;
+            }
+            else {
+                switch(singleDie.dieSize) {
+                    case DieSize.d4:
+                        switch(singleDie.d4Type) {
+                            case D4Type.Caltrop:
+                                d4CaltropPrefab = prefab;
+                                break;
+                            case D4Type.Crystal:
+                                d4CrystalPrefab = prefab;
+                                break;
+                            case D4Type.Pendant:
+                                d4PendantPrefab = prefab;
+                                break;
+                            default:
+                                Debug.LogError("Fell through D4Type switch.");
+                                break;
+                        }
+                        break;
+                    case DieSize.d6:
+                        d6Prefab = prefab;
+                        break;
+                    case DieSize.d8:
+                        d8Prefab = prefab;
+                        break;
+                    case DieSize.d10:
+                        d10Prefab = prefab;
+                        break;
+                    case DieSize.d12:
+                        d12Prefab = prefab;
+                        break;
+                    case DieSize.d20:
+                        d20Prefab = prefab;
+                        break;
+                    case DieSize.d100:
+                        d100Prefab = prefab;
+                        break;
+                    default:
+                        Debug.LogError("Fell through DieType switch.");
+                        break;
+                }
+            }
         }
     }
 }

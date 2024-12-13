@@ -9,11 +9,16 @@ using UnityEngine;
 public class AssetKeyValuePair
 {
     public string key;
-    public GameObject prefab;
+    public GameObject[] prefabs;
 
     public override string ToString() {
         string output = key;
-        if(prefab != null) output += " " + prefab.name;
+        if(prefabs.Length > 0) {
+            output += ": ";
+            foreach (GameObject prefab in prefabs) {
+                output += ", " + prefab.name;
+            }
+        }
         return output;
     }
 }

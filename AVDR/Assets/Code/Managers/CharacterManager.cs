@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ public class CharacterManager : MonoBehaviour
     /* external references */
     public IoSystem ioSystem;
     public AssetManager assetManager;
+    public DiceManager diceManager;
 
     /* character list */
     public GameObject characterButtonPrefab;
@@ -82,7 +84,7 @@ public class CharacterManager : MonoBehaviour
     /// Sets up the dropdowns for existing & owned assets.
     /// </summary>
     void PopulateCharacterInputs() {
-        nameField.text = selectedChar != null ? selectedChar.characterName : "";
+        Debug.LogWarning("PopulateCharacterInputs");
         diceSetDropdown.ClearOptions();
         diceSetDropdown.AddOptions(new List<string>(assetManager.Owned.GetDiceSetKeys()));
         trayDropdown.ClearOptions();
@@ -91,6 +93,31 @@ public class CharacterManager : MonoBehaviour
         lightingDropdown.AddOptions(new List<string>(assetManager.Owned.GetLightingKeys()));
         effectsDropdown.ClearOptions();
         effectsDropdown.AddOptions(new List<string>(assetManager.Owned.GetEffectKeys()));
+        if(selectedChar != null) {
+            nameField.text = selectedChar.characterName;
+            SetIndexOfOption(diceSetDropdown, selectedChar.diceSet);
+            SetIndexOfOption(trayDropdown, selectedChar.traySet);
+            SetIndexOfOption(lightingDropdown, selectedChar.lightingSet);
+            SetIndexOfOption(effectsDropdown, selectedChar.effectsSet);
+            // SetIndexOfOption(d4TypeDropdown, selectedChar.d4Type.ToString() + " d4");
+            d4TypeDropdown.value = (int)selectedChar.d4Type;
+        }
+    }
+
+    /// <summary>
+    /// Sets the value of a dropdown to whichever option has the text.
+    /// </summary>
+    /// <param name="dropDown"></param>
+    /// <param name="searchString"></param>
+    void SetIndexOfOption(TMP_Dropdown dropDown, string searchString) {
+        for(int i = 0; i < dropDown.options.Count; i++) {
+            var option = dropDown.options[i];
+            if(option.text == searchString) {
+                dropDown.value = i;
+                return;
+            }
+        }
+        Debug.LogError("dropdown did not contain an option with text: " + searchString);
     }
 
     /// <summary>
@@ -144,6 +171,7 @@ public class CharacterManager : MonoBehaviour
             PopulatePresetListButtons();
             characterSettingsButton.gameObject.SetActive(true);
             presetListButton.gameObject.SetActive(true);
+            UpdateDiceManager();
             Save();
         }
     }
@@ -188,6 +216,8 @@ public class CharacterManager : MonoBehaviour
     public void SetDiceSet(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = diceSetDropdown.options[tempIndex];
         selectedChar.diceSet = option.text;
+        Debug.Log(option.text);
+        UpdateDiceManager();
         Save();
     }
 
@@ -397,5 +427,31 @@ public class CharacterManager : MonoBehaviour
     /// </summary>
     private void Save() {
         ioSystem.SaveUserData(characterDatas, selectedChar);
+    }
+
+    private void UpdateDiceManager() {
+        if(
+            selectedChar != null &&
+            selectedChar.diceSet != null &&
+            selectedChar.diceSet != ""
+        ) {
+            diceManager.PullDiceFromAssetManager(selectedChar.diceSet);
+        }
+        else {
+            Debug.Log("Selected character was null,or their dice set was.");
+        }
+    }
+
+    /// <summary>
+    /// Gives a safe d4 type based on the selected character.
+    /// </summary>
+    /// <returns>D4Type, defaulting to Caltrop</returns>
+    public D4Type GetCurrentD4Type() {
+        if(selectedChar != null) {
+            return selectedChar.d4Type;
+        }
+        else {
+            return D4Type.Caltrop;
+        }
     }
 }
