@@ -22,6 +22,7 @@ public class CharacterManager : MonoBehaviour
     public IoSystem ioSystem;
     public AssetManager assetManager;
     public DiceManager diceManager;
+    public EnvironmentManager environmentManager;
 
     /* character list */
     public GameObject characterButtonPrefab;
@@ -227,6 +228,7 @@ public class CharacterManager : MonoBehaviour
     public void SetTray(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = trayDropdown.options[tempIndex];
         selectedChar.traySet = option.text;
+        environmentManager.RebuildEnv(selectedChar);
         Save();
     }
 
