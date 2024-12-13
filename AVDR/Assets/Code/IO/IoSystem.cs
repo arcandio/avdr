@@ -1,11 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
-using Unity.VisualScripting;
-using UnityEditor.Overlays;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Saves and loads data to the disk for persistence between sessions.
@@ -61,7 +55,7 @@ public class IoSystem : MonoBehaviour
             return new List<CharacterData>();
         }
         SaveData sd = JsonUtility.FromJson<SaveData>(rawValue);
-        List<CharacterData> value = sd.characterDatas.ToList();
+        List<CharacterData> value = new List<CharacterData>(sd.characterDatas);
         return value;
     }
 
