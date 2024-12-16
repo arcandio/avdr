@@ -122,18 +122,23 @@ public class DicePool {
         d100s = hundreds;
     }
 
+    /// <summary>
+    /// Compiles the number of dice to a string.
+    /// </summary>
+    /// <returns></returns>
     string GetRollText() {
         List<string> strings = new List<string>();
-        if(d4s > 0) strings.Add(WrapNoBreak(d4s + "d4"));
-        if(d6s > 0) strings.Add(WrapNoBreak(d6s + "d6"));
-        if(d8s > 0) strings.Add(WrapNoBreak(d8s + "d8"));
-        if(d10s > 0) strings.Add(WrapNoBreak(d10s + "d10"));
-        if(d12s > 0) strings.Add(WrapNoBreak(d12s + "d12"));
-        if(d20s > 0) strings.Add(WrapNoBreak(d20s + "d20"));
-        if(d100s > 0) strings.Add(WrapNoBreak(d100s + "d100"));
+        if(d4s > 0) strings.Add(d4s + "d4");
+        if(d6s > 0) strings.Add(d6s + "d6");
+        if(d8s > 0) strings.Add(d8s + "d8");
+        if(d10s > 0) strings.Add(d10s + "d10");
+        if(d12s > 0) strings.Add(d12s + "d12");
+        if(d20s > 0) strings.Add(d20s + "d20");
+        if(d100s > 0) strings.Add(d100s + "d100");
 
         return string.Join(" + ", strings);
     }
+
 
     public string GetName() {
         string rollText = GetRollText();
@@ -153,5 +158,10 @@ public class DicePool {
 
     private string WrapNoBreak(string strTemp) {
         return "<nobr>" + strTemp + "</nobr>";
+    }
+
+    public override string ToString()
+    {
+        return GetRollText();
     }
 }

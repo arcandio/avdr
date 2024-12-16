@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3534374768871322126}
   - component: {fileID: 7608307277609993945}
   - component: {fileID: 5225665101664342319}
+  - component: {fileID: 604796766789119929}
   m_Layer: 5
-  m_Name: HistoryEntry
+  m_Name: HistoryUiEntry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,6 +121,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 1
+--- !u!114 &604796766789119929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185040804464775510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624fc1b6810727249a4fd50053ce6d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dicePool: {fileID: 7731297975519418339}
+  total: {fileID: 6544507144268498035}
+  diceRolls: {fileID: 4192042268633591640}
+  date: {fileID: 623098366243337104}
+  historyEntry:
+    dicePool: 
+    diceRolls: 
+    total: 
+    date: 
 --- !u!1 &1760840644793240057
 GameObject:
   m_ObjectHideFlags: 0
