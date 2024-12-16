@@ -78,7 +78,7 @@ public class CharacterManager : MonoBehaviour
         string selectedName = ioSystem.LoadSelectedCharacter();
         for(int i = 0; i < characterDatas.Count; i++) {
             CharacterData characterData = characterDatas[i];
-            Debug.Log(characterData.characterName + " : " + selectedName);
+            // Debug.Log(characterData.characterName + " : " + selectedName);
             if(characterData.characterName == selectedName) {
                 SelectCharacter(i);
             }
@@ -222,7 +222,7 @@ public class CharacterManager : MonoBehaviour
     public void SetDiceSet(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = diceSetDropdown.options[tempIndex];
         selectedChar.diceSet = option.text;
-        Debug.Log(option.text);
+        // Debug.Log(option.text);
         UpdateDiceManager();
         Save();
     }

@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngineInternal;
 
 public class RollOutput : MonoBehaviour
 {
     public static RollOutput instance;
     public TextMeshProUGUI outputText;
+    public HistoryManager historyManager;
 
     private Dictionary<SingleDie, int?> diceOutcomes = new Dictionary<SingleDie, int?>();
     [SerializeField] private int[] outputs;
+    [SerializeField] private DicePool dicePool;
 
     /// <summary>
     /// Unity-style singleton pattern
@@ -45,6 +45,7 @@ public class RollOutput : MonoBehaviour
         diceOutcomes[die] = outcome;
         List<int> ints = new List<int>();
         bool allComplete = true;
+        historyManager.RecordStatEntry(die.dieSize, outcome);
         foreach(KeyValuePair<SingleDie, int?> pair in diceOutcomes) {
             ints.Add(pair.Value ?? int.MinValue);
             if(!pair.Value.HasValue) {
@@ -67,16 +68,27 @@ public class RollOutput : MonoBehaviour
     }
 
     /// <summary>
+    /// Remembers the dice pool for history later.
+    /// </summary>
+    /// <param name="dicePoolTemp"></param>
+    public void SetDicePool(DicePool dicePoolTemp) {
+        dicePool = dicePoolTemp;
+    }
+
+    /// <summary>
     /// Totals up the dice roll and publishes it.
     /// </summary>
     void CompileRollTotal() {
         int total = 0;
+        List<string> outcomes = new List<string>();
         foreach(KeyValuePair<SingleDie, int?> pair in diceOutcomes) {
             if(pair.Value.HasValue) {
                 total += pair.Value ?? 0;
+                outcomes.Add(pair.Value.ToString());
             }
         }
         outputText.text = total.ToString();
-        Debug.Log(total);
+        // Debug.Log(total);
+        historyManager.RecordHistoryEntry(dicePool, string.Join(", ", outcomes), total, DateTime.Now);
     }
 }

@@ -129,7 +129,7 @@ public class SingleDie : MonoBehaviour
             }
         }
         rollOutcome = int.Parse(highestFace.name);
-        Debug.Log(rollOutcome + " on " + name);
+        // Debug.Log(rollOutcome + " on " + name);
         // Debug.Break();
         RollOutput.instance.ReturnDie(this, rollOutcome);
     }

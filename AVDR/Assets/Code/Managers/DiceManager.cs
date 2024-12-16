@@ -13,6 +13,7 @@ public class DiceManager : MonoBehaviour
     public AssetManager assetManager;
     public CharacterManager characterManager;
     public Transform dicePoolParent;
+    public RollOutput rollOutput;
 
     /* diceprefabs */
     public string defaultDiceName = "Humble Commoner";
@@ -80,7 +81,7 @@ public class DiceManager : MonoBehaviour
         D4Type d4Type = characterManager.GetCurrentD4Type();
         ClearInstances();
         // Debug.Log("create dice");
-        this.dicePoolData = inputDicePool;
+        dicePoolData = inputDicePool;
         /* create one die for each one in the pool */
         tempInstances = new List<SingleDie>();
         if(d4Type == D4Type.Caltrop) InstanceDie(d4CaltropPrefab, dicePoolData.d4s);
@@ -95,6 +96,7 @@ public class DiceManager : MonoBehaviour
         InstanceDie(d10Prefab, dicePoolData.d100s);
         // GetDiceInstances();
         diceInstances = tempInstances.ToArray();
+        rollOutput.SetDicePool(dicePoolData);
     }
 
     /// <summary>
@@ -127,10 +129,10 @@ public class DiceManager : MonoBehaviour
 
         /* Now to place the dice in their proper slots. */
         AssetKeyValuePair pair = assetManager.Owned.GetAssetPair(AssetType.DiceSet, diceSet);
-        Debug.Log(pair);
+        // Debug.Log(pair);
         foreach(GameObject prefab in pair.prefabs) {
             SingleDie singleDie = prefab.GetComponent<SingleDie>();
-            Debug.Log(singleDie);
+            // Debug.Log(singleDie);
             if(singleDie == null) {
                 Debug.LogError(diceSet + " had a prefab without a SingleDie script instance.");
                 return;
