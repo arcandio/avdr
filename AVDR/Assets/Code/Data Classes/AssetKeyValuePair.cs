@@ -10,6 +10,7 @@ public class AssetKeyValuePair
 {
     public string key;
     public GameObject[] prefabs;
+    public Decimal price;
 
     public override string ToString() {
         string output = key;
