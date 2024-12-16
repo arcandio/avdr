@@ -4098,7 +4098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329644478}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -25826,7 +25826,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 450993385}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999577
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28042,7 +28042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000002861023}
+  m_AnchoredPosition: {x: 0, y: 0.000076159806}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1912123366
@@ -30822,9 +30822,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 866036152}
     - target: {fileID: 4491048002878355537, guid: a6194305faa6a0644bffcd329ac0a079, type: 3}
-      propertyPath: presetButtonPrefab
+      propertyPath: environmentManager
       value: 
-      objectReference: {fileID: 6454518220813192344, guid: 4e988a67d13c236439a4b2e70a8a6c79, type: 3}
+      objectReference: {fileID: 7283719017472792398}
     - target: {fileID: 4491048002878355537, guid: a6194305faa6a0644bffcd329ac0a079, type: 3}
       propertyPath: presetButtonListParent
       value: 
@@ -30837,6 +30837,10 @@ PrefabInstance:
       propertyPath: presetPageScrollContent
       value: 
       objectReference: {fileID: 1513382951}
+    - target: {fileID: 4491048002878355537, guid: a6194305faa6a0644bffcd329ac0a079, type: 3}
+      propertyPath: diceSelectionPanelParent
+      value: 
+      objectReference: {fileID: 329644479}
     - target: {fileID: 4491048002878355537, guid: a6194305faa6a0644bffcd329ac0a079, type: 3}
       propertyPath: characterButtonListParent
       value: 
@@ -31351,6 +31355,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1821754970442812268, guid: cd7c4df6d1b71224d8425d1c097ffce0, type: 3}
   m_PrefabInstance: {fileID: 7283719017472792396}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7283719017472792398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7912851310238064721, guid: cd7c4df6d1b71224d8425d1c097ffce0, type: 3}
+  m_PrefabInstance: {fileID: 7283719017472792396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c22dca193cb8304f9e2df4c1f430661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7720564972058219120
 GameObject:
   m_ObjectHideFlags: 0

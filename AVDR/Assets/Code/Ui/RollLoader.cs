@@ -27,4 +27,14 @@ public class RollLoader : MonoBehaviour
     public void LoadDice() {
         DiceManager.instance.CreateDice(dicePool);
     }
+
+    /// <summary>
+    /// Sets up a new non-preset button from code.
+    /// </summary>
+    /// <param name="dicePoolTemp"></param>
+    public void SetupRoll(DicePool dicePoolTemp) {
+        dicePool = dicePoolTemp;
+        isPresetButton = false;
+        buttonText.text = dicePool.GetName();
+    }
 }

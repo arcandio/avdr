@@ -59,6 +59,10 @@ public class CharacterManager : MonoBehaviour
     public TMP_InputField keepHighestField;
     public TMP_InputField keepLowestField;
 
+    /* tray page */
+    public Transform diceSelectionPanelParent;
+    public GameObject diceSelectionButtonPrefab;
+
     /* private variables for the session */
     [SerializeField] private List<CharacterData> characterDatas = new List<CharacterData>();
     [SerializeField] private CharacterData selectedChar;
@@ -72,9 +76,11 @@ public class CharacterManager : MonoBehaviour
         presetListButton.gameObject.SetActive(false);
         characterDatas = ioSystem.LoadCharacterData();
         string selectedName = ioSystem.LoadSelectedCharacter();
-        foreach(CharacterData characterData in characterDatas) {
+        for(int i = 0; i < characterDatas.Count; i++) {
+            CharacterData characterData = characterDatas[i];
+            Debug.Log(characterData.characterName + " : " + selectedName);
             if(characterData.characterName == selectedName) {
-                selectedChar = characterData;
+                SelectCharacter(i);
             }
         }
         PopulateCharacterListButtons();
@@ -307,6 +313,7 @@ public class CharacterManager : MonoBehaviour
             GameObject instanceTemp = Instantiate(presetButtonPrefab, presetButtonListParent);
             instanceTemp.GetComponent<UiPresetButton>().SetupPresetButton(this, i, dicePool.GetName());
         }
+        PopulateTrayPresetButtons();
     }
 
     /// <summary>
@@ -408,6 +415,7 @@ public class CharacterManager : MonoBehaviour
                 Debug.LogError("Dropped through PresetData Switch");
                 break;
         }
+        PopulatePresetListButtons();
         Save();
     }
 
@@ -439,7 +447,27 @@ public class CharacterManager : MonoBehaviour
             diceManager.PullDiceFromAssetManager(selectedChar.diceSet);
         }
         else {
-            Debug.Log("Selected character was null,or their dice set was.");
+            Debug.Log("Selected character was null, or their dice set was.");
+        }
+    }
+
+    /// <summary>
+    /// Clears and reinstantiates buttons for the selected character's preset rolls.
+    /// </summary>
+    private void PopulateTrayPresetButtons() {
+        /* clear non-preset buttons */
+        foreach(Transform child in diceSelectionPanelParent) {
+            RollLoader rollLoader = child.GetComponent<RollLoader>();
+            if(rollLoader != null && rollLoader.isPresetButton == false) {
+                child.gameObject.SetActive(false);
+                Destroy(child.gameObject);
+            }
+        }
+        /* create buttons for presets */
+        foreach(DicePool dicePool in selectedChar.rollPresets) {
+            GameObject instance = Instantiate(diceSelectionButtonPrefab, diceSelectionPanelParent);
+            RollLoader rollLoader = instance.GetComponent<RollLoader>();
+            rollLoader.SetupRoll(dicePool);
         }
     }
 

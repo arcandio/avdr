@@ -46,14 +46,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ioSystem: {fileID: 0}
   assetManager: {fileID: 0}
+  diceManager: {fileID: 0}
+  environmentManager: {fileID: 0}
   characterButtonPrefab: {fileID: 5133860362586328153, guid: 0eec62699994fc841bea173c59dcfd60, type: 3}
   characterButtonListParent: {fileID: 0}
+  characterPageScrollContent: {fileID: 0}
   characterSettingsButton: {fileID: 0}
+  presetListButton: {fileID: 0}
+  nameField: {fileID: 0}
   d4TypeDropdown: {fileID: 0}
   diceSetDropdown: {fileID: 0}
   trayDropdown: {fileID: 0}
   lightingDropdown: {fileID: 0}
   effectsDropdown: {fileID: 0}
+  presetButtonPrefab: {fileID: 6454518220813192344, guid: 4e988a67d13c236439a4b2e70a8a6c79, type: 3}
+  presetButtonListParent: {fileID: 0}
+  presetPageScrollContent: {fileID: 0}
+  nameOverrideField: {fileID: 0}
+  d4NumberField: {fileID: 0}
+  d6NumberField: {fileID: 0}
+  d8NumberField: {fileID: 0}
+  d10NumberField: {fileID: 0}
+  d12NumberField: {fileID: 0}
+  d20NumberField: {fileID: 0}
+  d100NumberField: {fileID: 0}
+  bonusField: {fileID: 0}
+  penaltyField: {fileID: 0}
+  multiplierField: {fileID: 0}
+  divisorField: {fileID: 0}
+  keepHighestField: {fileID: 0}
+  keepLowestField: {fileID: 0}
+  diceSelectionPanelParent: {fileID: 0}
+  diceSelectionButtonPrefab: {fileID: 8866256211980719106, guid: f79d63b68f1a6f6428d2efcf306674cb, type: 3}
   characterDatas: []
   selectedChar:
     characterName: 
@@ -63,3 +87,18 @@ MonoBehaviour:
     traySet: 
     lightingSet: 
     effectsSet: 
+  selectedPreset:
+    nameOverride: 
+    d4s: 0
+    d6s: 0
+    d8s: 0
+    d10s: 0
+    d12s: 0
+    d20s: 0
+    d100s: 0
+    bonus: 0
+    penalty: 0
+    multiplier: 1
+    divisor: 1
+    keepHighest: 0
+    keepLowest: 0
