@@ -92,8 +92,9 @@ public class DiceManager : MonoBehaviour
         InstanceDie(d10Prefab, dicePoolData.d10s);
         InstanceDie(d12Prefab, dicePoolData.d12s);
         InstanceDie(d20Prefab, dicePoolData.d20s);
-        InstanceDie(d100Prefab, dicePoolData.d100s);
-        InstanceDie(d10Prefab, dicePoolData.d100s);
+        // InstanceDie(d100Prefab, dicePoolData.d100s);
+        // InstanceDie(d10Prefab, dicePoolData.d100s);
+        InstancePairedDice(d10Prefab, d100Prefab, dicePoolData.d100s);
         // GetDiceInstances();
         diceInstances = tempInstances.ToArray();
         rollOutput.SetDicePool(dicePoolData);
@@ -108,7 +109,21 @@ public class DiceManager : MonoBehaviour
         for(int i = 0; i < count; i++) {
             GameObject temp = Instantiate(prefab, dicePoolParent);
             // temp.name += UnityEngine.Random.Range(0, 1000000);
-            tempInstances.Add(temp.GetComponent<SingleDie>());
+            SingleDie singleDie = temp.GetComponent<SingleDie>();
+            tempInstances.Add(singleDie);
+        }
+    }
+    void InstancePairedDice(GameObject prefabA, GameObject prefabB, int count) {
+        for(int i = 0; i < count; i++) {
+            GameObject tempA = Instantiate(prefabA, dicePoolParent);
+            GameObject tempB = Instantiate(prefabB, dicePoolParent);
+            // temp.name += UnityEngine.Random.Range(0, 1000000);
+            SingleDie singleDieA = tempA.GetComponent<SingleDie>();
+            SingleDie singleDieB = tempB.GetComponent<SingleDie>();
+            singleDieA.pairedDie = singleDieB;
+            singleDieB.pairedDie = singleDieA;
+            tempInstances.Add(singleDieA);
+            tempInstances.Add(singleDieB);
         }
     }
 

@@ -95,7 +95,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bbd950aa9179144b9a8d820b846ac2a, type: 2}
+  - {fileID: 2100000, guid: e8d97c8a35ead9d44a3cb2dedf4ed946, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5975721301989704000}
   m_Layer: 0
-  m_Name: 6
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4385165744375078434}
   m_Layer: 0
-  m_Name: 7
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,7 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3015002288245455501}
   m_Layer: 0
-  m_Name: 8
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 1945430641790569007}
   - component: {fileID: 4060549010403941809}
   m_Layer: 0
-  m_Name: d10
+  m_Name: d10 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,6 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dieSize: 3
   d4Type: 0
+  pairedDie: {fileID: 0}
   rb: {fileID: 2888037829983104795}
   audioSource: {fileID: 4071887654849478490}
   faces:
@@ -572,7 +573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2745331307706858365}
   m_Layer: 0
-  m_Name: 9
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

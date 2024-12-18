@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(MeshCollider))]
+[DisallowMultipleComponent]
 public class SingleDie : MonoBehaviour
 {
     /// <summary>
@@ -18,6 +19,8 @@ public class SingleDie : MonoBehaviour
     /// The type of d4 this is, if it is one. If it's not, this is ignored.
     /// </summary>
     public D4Type d4Type = D4Type.Caltrop;
+
+    public SingleDie pairedDie = null;
 
     [SerializeField] private Rigidbody rb;
     [SerializeField] private AudioSource audioSource;
@@ -168,8 +171,46 @@ public class SingleDie : MonoBehaviour
         hasCheckedRollOutcome = false;
     }
 
+    public bool IsPaired() {
+        return pairedDie != null;
+    }
+
     public override string ToString()
     {
         return gameObject.name + ": " + dieSize;
     }
+
+    /* Equality comparison for RollOuput's dictionary */
+
+    /// <summary>
+    /// Returns equality if the other object is a SingleDie and
+    /// the same as this one.
+    /// </summary>
+    public override bool Equals(object other)
+    {
+        if (other == null) {
+            return false;
+        }
+        if (other is not SingleDie otherSD) {
+            return false;
+        }
+        return Equals(other as SingleDie);
+    }
+
+    /// <summary>
+    /// Returns quality if the other SingleDie is the same as this one.
+    /// Uses Unity's game object instance id.
+    /// </summary>
+    public bool Equals(SingleDie other) {
+        if(other == null) {
+            return false;
+        }
+        return GetInstanceID() == other.GetInstanceID();
+    }
+
+    public override int GetHashCode()
+    {
+        return GetInstanceID();
+    }
+
 }
