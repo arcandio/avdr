@@ -45,6 +45,7 @@ public class CharacterManager : MonoBehaviour
 
     /* preset editing page */
     public TMP_InputField nameOverrideField;
+    public TMP_Dropdown rollTypeField;
     public TMP_InputField d4NumberField;
     public TMP_InputField d6NumberField;
     public TMP_InputField d8NumberField;
@@ -58,6 +59,8 @@ public class CharacterManager : MonoBehaviour
     public TMP_InputField divisorField;
     public TMP_InputField keepHighestField;
     public TMP_InputField keepLowestField;
+    public TMP_InputField aboveThresholdField;
+    public TMP_InputField belowThresholdField;
 
     /* tray page */
     public Transform diceSelectionPanelParent;
@@ -342,14 +345,15 @@ public class CharacterManager : MonoBehaviour
         d20NumberField.text = selectedPreset.d20s.ToString();
         d100NumberField.text = selectedPreset.d100s.ToString();
 
+        rollTypeField.value = (int)selectedPreset.rollType;
         bonusField.text = selectedPreset.bonus.ToString();
         penaltyField.text = selectedPreset.penalty.ToString();
         multiplierField.text = selectedPreset.multiplier.ToString();
         divisorField.text = selectedPreset.divisor.ToString();
-        keepHighestField.text = selectedPreset.KeepHighest.ToString();
-        keepLowestField.text = selectedPreset.KeepLowest.ToString();
+        keepHighestField.text = selectedPreset.keepHighest.ToString();
+        keepLowestField.text = selectedPreset.keepLowest.ToString();
     }
-
+    
     /// <summary>
     /// Sets the variable on a preset DicePool by way of an Enum selector
     /// and an input value.
@@ -364,6 +368,13 @@ public class CharacterManager : MonoBehaviour
     /// <param name="inputTemp"></param>
     public void SetPresetData(PresetField presetField, int inputTemp) {
         switch(presetField) {
+            /* roll type setting */
+            case PresetField.RollType:
+                RollType rollType = (RollType)inputTemp;
+                selectedPreset.rollType = rollType;
+                ToggleUnusedFields(rollType);
+                break;
+            
             /* dice cases */
             case PresetField.D4Number:
                 selectedPreset.d4s = inputTemp;
@@ -401,14 +412,17 @@ public class CharacterManager : MonoBehaviour
                 selectedPreset.divisor = inputTemp;
                 break;
             case PresetField.KeepHighest:
-                selectedPreset.KeepHighest = inputTemp;
-                keepLowestField.text = "";
+                selectedPreset.keepHighest = inputTemp;
                 break;
             case PresetField.KeepLowest:
-                selectedPreset.KeepLowest = inputTemp;
-                keepHighestField.text = "";
+                selectedPreset.keepLowest = inputTemp;
                 break;
-            
+            case PresetField.AboveThreshold:
+                selectedPreset.aboveThreshold = inputTemp;
+                break;
+            case PresetField.BelowThreshold:
+                selectedPreset.belowThreshold = inputTemp;
+                break;
 
             /* error catching */
             default:
@@ -417,6 +431,72 @@ public class CharacterManager : MonoBehaviour
         }
         PopulatePresetListButtons();
         Save();
+    }
+
+    /// <summary>
+    /// Shows only the fields valid for the RollType, and hides all others.
+    /// It also resets the hidden fields, so that the data is cleared.
+    /// </summary>
+    /// <param name="rollType"></param>
+    private void ToggleUnusedFields(RollType rollType) {
+        SetRowActive(keepHighestField, false);
+        SetRowActive(keepLowestField, false);
+        SetRowActive(aboveThresholdField, false);
+        SetRowActive(belowThresholdField, false);
+        switch(rollType) {
+            case RollType.Sum:
+                /* we don't want to enable ANY fields. */
+                break;
+            case RollType.KeepHighest:
+                SetRowActive(keepHighestField, true);
+                // selectedPreset.keepHighest = 0;
+                selectedPreset.keepLowest = 0;
+                selectedPreset.aboveThreshold = 0;
+                selectedPreset.belowThreshold = 0;
+                break;
+            case RollType.KeepLowest:
+                SetRowActive(keepLowestField, true);
+                selectedPreset.keepHighest = 0;
+                // selectedPreset.keepLowest = 0;
+                selectedPreset.aboveThreshold = 0;
+                selectedPreset.belowThreshold = 0;
+                break;
+            case RollType.AboveThresholdSingleDie:
+                SetRowActive(aboveThresholdField, true);
+                selectedPreset.keepHighest = 0;
+                selectedPreset.keepLowest = 0;
+                // selectedPreset.aboveThreshold = 0;
+                selectedPreset.belowThreshold = 0;
+                break;
+            case RollType.BelowThresholdSingleDie:
+                SetRowActive(belowThresholdField, true);
+                selectedPreset.keepHighest = 0;
+                selectedPreset.keepLowest = 0;
+                selectedPreset.aboveThreshold = 0;
+                // selectedPreset.belowThreshold = 0;
+                break;
+            case RollType.AboveThresholdAllDice:
+                SetRowActive(aboveThresholdField, true);
+                selectedPreset.keepHighest = 0;
+                selectedPreset.keepLowest = 0;
+                // selectedPreset.aboveThreshold = 0;
+                selectedPreset.belowThreshold = 0;
+                break;
+            case RollType.BelowThresholdAllDice:
+                SetRowActive(belowThresholdField, true);
+                selectedPreset.keepHighest = 0;
+                selectedPreset.keepLowest = 0;
+                selectedPreset.aboveThreshold = 0;
+                // selectedPreset.belowThreshold = 0;
+                break;
+            default:
+                Debug.LogError("Fell through roll type switch.");
+                break;
+        }
+    }
+
+    private void SetRowActive(TMP_InputField inputField, bool enabled) {
+        inputField.transform.parent.gameObject.SetActive(enabled);
     }
 
     /// <summary>
@@ -438,6 +518,9 @@ public class CharacterManager : MonoBehaviour
         ioSystem.SaveUserData(characterDatas, selectedChar);
     }
 
+    /// <summary>
+    /// Tells the DiceManager to swap prefabs for the selected dice set.
+    /// </summary>
     private void UpdateDiceManager() {
         if(
             selectedChar != null &&

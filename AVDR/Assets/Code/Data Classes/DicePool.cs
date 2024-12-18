@@ -35,77 +35,18 @@ public class DicePool {
     public int penalty = 0;
     public int multiplier = 1;
     public int divisor = 1;
-    [SerializeField] private int keepHighest = 0;
-    [SerializeField] private int keepLowest = 0;
+    public int keepHighest = 0;
+    public int keepLowest = 0;
     /* Note: all thresholds are target-inclusive, because that's how
         users will expect it to work.*/
-    [SerializeField] private int aboveThreshold = 0;
-    [SerializeField] private int belowThreshold = 0;
-
-    /* Properties */
-
-    /// <summary>
-    /// KeepHighest and KeepLowest are mutually exclusive.
-    /// Setting either resets the other.
-    /// </summary>
-    public int KeepHighest {
-        get => keepHighest;
-        set {
-            if(value > 0) {
-                ResetMutuallyExclusives();
-                keepHighest = value;
-                rollType = RollType.KeepHighest;
-            }
-        }
-    }
-    /// <summary>
-    /// KeepHighest and KeepLowest are mutually exclusive.
-    /// Setting either resets the other.
-    /// </summary>
-    public int KeepLowest {
-        get => keepLowest;
-        set {
-            if(value > 0) {
-                ResetMutuallyExclusives();
-                keepLowest = value;
-                rollType = RollType.KeepLowest;
-            }
-        }
-    }
-
-    public int AboveThreshold {
-        get => aboveThreshold;
-        set {
-            if(value > 0) {
-                ResetMutuallyExclusives();
-                aboveThreshold = value;
-                rollType = RollType.AboveThresholdSingleDie;
-            }
-        }
-    }
-    public int BelowThreshold {
-        get => belowThreshold;
-        set {
-            if(value > 0) {
-                ResetMutuallyExclusives();
-                belowThreshold = value;
-                rollType = RollType.BelowThresholdSingleDie;
-            }
-        }
-    }
-
-    private void ResetMutuallyExclusives() {
-        keepHighest = 0;
-        keepLowest = 0;
-        aboveThreshold = 0;
-        belowThreshold = 0;
-    }
+    public int aboveThreshold = 0;
+    public int belowThreshold = 0;
 
     /// <summary>
     /// Construct a blank dice roll.
     /// </summary>
     public DicePool() {
-
+        
     }
 
     /// <summary>

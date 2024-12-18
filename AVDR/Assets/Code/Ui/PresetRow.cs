@@ -21,6 +21,10 @@ public class PresetRow : MonoBehaviour
         characterManager.SetPresetData(presetField, temp);
     }
 
+    public void SetOption(int index) {
+        characterManager.SetPresetData(presetField, index);
+    }
+
     public void SetNameOverride(string inputTemp) {
         characterManager.SetPresetNameOverride(inputTemp.Replace("|",""));
     }

@@ -12,5 +12,8 @@ public enum PresetField {
     Multiplier,
     Divisor,
     KeepHighest,
-    KeepLowest
+    KeepLowest,
+    AboveThreshold,
+    BelowThreshold,
+    RollType
 }

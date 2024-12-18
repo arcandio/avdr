@@ -188,21 +188,21 @@ public class RollOutput : MonoBehaviour
             case RollType.KeepHighest:
                 Array.Sort(rollInts);
                 Array.Reverse(rollInts);
-                int[] keptHighest = KeepFromGroup(rollInts, dicePool.KeepHighest);
+                int[] keptHighest = KeepFromGroup(rollInts, dicePool.keepHighest);
                 total = SumCollection(keptHighest);
                 total = ApplyBonuses(total);
                 output = total.ToString();
                 break;
             case RollType.KeepLowest:
                 Array.Sort(rollInts);
-                int[] keptLowest = KeepFromGroup(rollInts, dicePool.KeepHighest);
+                int[] keptLowest = KeepFromGroup(rollInts, dicePool.keepHighest);
                 total = SumCollection(keptLowest);
                 total = ApplyBonuses(total);
                 output = total.ToString();
                 break;
             case RollType.AboveThresholdSingleDie:
                 foreach(int i in rollInts) {
-                    if(i >= dicePool.AboveThreshold) {
+                    if(i >= dicePool.aboveThreshold) {
                         total++;
                     }
                 }
@@ -211,7 +211,7 @@ public class RollOutput : MonoBehaviour
                 break;
             case RollType.BelowThresholdSingleDie:
                 foreach(int i in rollInts) {
-                    if(i <= dicePool.BelowThreshold) {
+                    if(i <= dicePool.belowThreshold) {
                         total++;
                     }
                 }
@@ -221,13 +221,13 @@ public class RollOutput : MonoBehaviour
             case RollType.AboveThresholdAllDice:
                 total = SumCollection(rollInts);
                 total = ApplyBonuses(total);
-                total = total >= dicePool.AboveThreshold ? 1 : 0;
+                total = total >= dicePool.aboveThreshold ? 1 : 0;
                 output = total.ToString();
                 break;
             case RollType.BelowThresholdAllDice:
                 total = SumCollection(rollInts);
                 total = ApplyBonuses(total);
-                total = total <= dicePool.AboveThreshold ? 1 : 0;
+                total = total <= dicePool.aboveThreshold ? 1 : 0;
                 output = total.ToString();
                 break;
             default:
