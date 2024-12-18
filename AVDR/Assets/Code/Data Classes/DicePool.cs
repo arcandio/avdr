@@ -19,6 +19,8 @@ using UnityEngine.UIElements;
 public class DicePool {
     public string nameOverride = "";
 
+    public RollType rollType = RollType.Sum;
+
     /* Dice numbers */
     public int d4s = 0;
     public int d6s = 0;
@@ -33,8 +35,15 @@ public class DicePool {
     public int penalty = 0;
     public int multiplier = 1;
     public int divisor = 1;
-
     [SerializeField] private int keepHighest = 0;
+    [SerializeField] private int keepLowest = 0;
+    /* Note: all thresholds are target-inclusive, because that's how
+        users will expect it to work.*/
+    [SerializeField] private int aboveThreshold = 0;
+    [SerializeField] private int belowThreshold = 0;
+
+    /* Properties */
+
     /// <summary>
     /// KeepHighest and KeepLowest are mutually exclusive.
     /// Setting either resets the other.
@@ -43,12 +52,12 @@ public class DicePool {
         get => keepHighest;
         set {
             if(value > 0) {
+                ResetMutuallyExclusives();
                 keepHighest = value;
-                keepLowest = 0;
+                rollType = RollType.KeepHighest;
             }
         }
     }
-    [SerializeField] private int keepLowest = 0;
     /// <summary>
     /// KeepHighest and KeepLowest are mutually exclusive.
     /// Setting either resets the other.
@@ -57,10 +66,39 @@ public class DicePool {
         get => keepLowest;
         set {
             if(value > 0) {
+                ResetMutuallyExclusives();
                 keepLowest = value;
-                keepHighest = 0;
+                rollType = RollType.KeepLowest;
             }
         }
+    }
+
+    public int AboveThreshold {
+        get => aboveThreshold;
+        set {
+            if(value > 0) {
+                ResetMutuallyExclusives();
+                aboveThreshold = value;
+                rollType = RollType.AboveThresholdSingleDie;
+            }
+        }
+    }
+    public int BelowThreshold {
+        get => belowThreshold;
+        set {
+            if(value > 0) {
+                ResetMutuallyExclusives();
+                belowThreshold = value;
+                rollType = RollType.BelowThresholdSingleDie;
+            }
+        }
+    }
+
+    private void ResetMutuallyExclusives() {
+        keepHighest = 0;
+        keepLowest = 0;
+        aboveThreshold = 0;
+        belowThreshold = 0;
     }
 
     /// <summary>

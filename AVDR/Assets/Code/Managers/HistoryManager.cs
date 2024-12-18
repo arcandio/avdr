@@ -93,7 +93,7 @@ public class HistoryManager : MonoBehaviour
         return output;
     }
 
-    public void RecordHistoryEntry(DicePool dicePool, string outcomes, int total, DateTime time) {
+    public void RecordHistoryEntry(DicePool dicePool, string outcomes, string total, DateTime time) {
         HistoryEntry historyEntry = new HistoryEntry(dicePool, outcomes, total, time);
         data.historyEntries.Add(historyEntry);
         UpdateUi(historyEntry);

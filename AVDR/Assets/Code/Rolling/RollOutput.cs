@@ -161,16 +161,130 @@ public class RollOutput : MonoBehaviour
     /// Totals up the dice roll and publishes it.
     /// </summary>
     void CompileRollTotal() {
-        int total = 0;
-        List<string> outcomes = new List<string>();
+        List<string> rawRollStrings = new List<string>();
+        List<int> rawRollInts = new List<int>();
+        /* first, collect the values. */
         foreach(KeyValuePair<SingleDie, int?> pair in diceOutcomes) {
             if(pair.Value.HasValue) {
-                total += pair.Value ?? 0;
-                outcomes.Add(pair.Value.ToString());
+                rawRollStrings.Add(pair.Value.ToString());
+                rawRollInts.Add(pair.Value ?? 0);
+            }
+            else {
+                Debug.LogError("We should only ever receive pairs with real int values.");
             }
         }
-        outputText.text = total.ToString();
-        // Debug.Log(total);
-        historyManager.RecordHistoryEntry(dicePool, string.Join(", ", outcomes), total, DateTime.Now);
+        int[] rollInts = rawRollInts.ToArray();
+        /* determine roll type */
+        string output = "";
+        int total = 0;
+        switch(dicePool.rollType) {
+            case RollType.Sum:
+                foreach(int i in rawRollInts) {
+                    total += i;
+                }
+                total = ApplyBonuses(total);
+                output = total.ToString();
+                break;
+            case RollType.KeepHighest:
+                Array.Sort(rollInts);
+                Array.Reverse(rollInts);
+                int[] keptHighest = KeepFromGroup(rollInts, dicePool.KeepHighest);
+                total = SumCollection(keptHighest);
+                total = ApplyBonuses(total);
+                output = total.ToString();
+                break;
+            case RollType.KeepLowest:
+                Array.Sort(rollInts);
+                int[] keptLowest = KeepFromGroup(rollInts, dicePool.KeepHighest);
+                total = SumCollection(keptLowest);
+                total = ApplyBonuses(total);
+                output = total.ToString();
+                break;
+            case RollType.AboveThresholdSingleDie:
+                foreach(int i in rollInts) {
+                    if(i >= dicePool.AboveThreshold) {
+                        total++;
+                    }
+                }
+                total = ApplyBonuses(total);
+                output = total.ToString();
+                break;
+            case RollType.BelowThresholdSingleDie:
+                foreach(int i in rollInts) {
+                    if(i <= dicePool.BelowThreshold) {
+                        total++;
+                    }
+                }
+                total = ApplyBonuses(total);
+                output = total.ToString();
+                break;
+            case RollType.AboveThresholdAllDice:
+                total = SumCollection(rollInts);
+                total = ApplyBonuses(total);
+                total = total >= dicePool.AboveThreshold ? 1 : 0;
+                output = total.ToString();
+                break;
+            case RollType.BelowThresholdAllDice:
+                total = SumCollection(rollInts);
+                total = ApplyBonuses(total);
+                total = total <= dicePool.AboveThreshold ? 1 : 0;
+                output = total.ToString();
+                break;
+            default:
+                Debug.LogError("Fell through roll type switch. Don't do that." + dicePool.rollType);
+                break;
+        }
+        /* publish the output to the UI and History. */
+        outputText.text = output;
+        historyManager.RecordHistoryEntry(
+            dicePool,
+            string.Join(", ", rawRollStrings),
+            output,
+            DateTime.Now);
+        // Debug.Log(output);
+    }
+
+    /// <summary>
+    /// Sums up the ints in an array.
+    /// </summary>
+    private int SumCollection(int[] intList) {
+        if(intList == null) return 0;
+        int output = 0;
+        foreach(int i in intList) {
+            output += i;
+        }
+        return output;
+    }
+
+    /// <summary>
+    /// Sums up the ints in a list.
+    /// </summary>
+    private int SumCollection(List<int> intList) {
+        return SumCollection(intList.ToArray());
+    }
+
+    /// <summary>
+    /// Returns a new array with only the first N elements.
+    /// </summary>
+    private int[] KeepFromGroup(int[] ints, int keep) {
+        keep = Mathf.Min(ints.Length, keep);
+        int[] output = new int[keep];
+        Array.Copy(ints, output, keep);
+        return output;
+    }
+
+    /// <summary>
+    /// Returns a new list with only the first N elements.
+    /// </summary>
+    private int[] KeepFromGroup(List<int> ints, int keep) {
+        return KeepFromGroup(ints, keep);
+    }
+
+    private int ApplyBonuses(int value) {
+        value += dicePool.bonus;
+        value -= dicePool.penalty;
+        value *= dicePool.multiplier > 0 ? dicePool.multiplier : 1;
+        value /= dicePool.divisor > 0 ? dicePool.divisor : 1;
+        return value;
     }
 }
