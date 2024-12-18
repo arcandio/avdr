@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class HistoryManager : MonoBehaviour
 {
+    public IoSystem ioSystem;
     public Transform historyUiEntryParent;
     public GameObject historyUiEntryPrefab;
     public int maxHistoryUiEntries = 99;
 
-    [SerializeField] private List<HistoryEntry> historyEntries = new List<HistoryEntry>();
-    [SerializeField] private List<int> d4Rolls = new List<int>();
-    [SerializeField] private List<int> d6Rolls = new List<int>();
-    [SerializeField] private List<int> d8Rolls = new List<int>();
-    [SerializeField] private List<int> d10Rolls = new List<int>();
-    [SerializeField] private List<int> d12Rolls = new List<int>();
-    [SerializeField] private List<int> d20Rolls = new List<int>();
-    [SerializeField] private List<int> d100Rolls = new List<int>();
+    [SerializeField] private HistorySaveData data = new HistorySaveData();
+
+
+    void Start() {
+        data = ioSystem.LoadHistoricalData();
+        PopulateLoadedHistory();
+    }
 
     /// <summary>
     /// Records the outcome of a single die roll.
@@ -25,25 +25,25 @@ public class HistoryManager : MonoBehaviour
     public void RecordStatEntry(DieSize dieSize, int outcome) {
         switch(dieSize) {
             case DieSize.d4:
-                d4Rolls.Add(outcome);
+                data.d4Rolls.Add(outcome);
                 break;
             case DieSize.d6:
-                d6Rolls.Add(outcome);
+                data.d6Rolls.Add(outcome);
                 break;
             case DieSize.d8:
-                d8Rolls.Add(outcome);
+                data.d8Rolls.Add(outcome);
                 break;
             case DieSize.d10:
-                d10Rolls.Add(outcome);
+                data.d10Rolls.Add(outcome);
                 break;
             case DieSize.d12:
-                d12Rolls.Add(outcome);
+                data.d12Rolls.Add(outcome);
                 break;
             case DieSize.d20:
-                d20Rolls.Add(outcome);
+                data.d20Rolls.Add(outcome);
                 break;
             case DieSize.d100:
-                d100Rolls.Add(outcome);
+                data.d100Rolls.Add(outcome);
                 break;
             default:
                 Debug.LogError("fell through record stat entry switch.");
@@ -62,25 +62,25 @@ public class HistoryManager : MonoBehaviour
         List<int> rolls = new List<int>();
         switch(dieSize) {
             case DieSize.d4:
-                rolls = d4Rolls;
+                rolls = data.d4Rolls;
                 break;
             case DieSize.d6:
-                rolls = d6Rolls;
+                rolls = data.d6Rolls;
                 break;
             case DieSize.d8:
-                rolls = d8Rolls;
+                rolls = data.d8Rolls;
                 break;
             case DieSize.d10:
-                rolls = d10Rolls;
+                rolls = data.d10Rolls;
                 break;
             case DieSize.d12:
-                rolls = d12Rolls;
+                rolls = data.d12Rolls;
                 break;
             case DieSize.d20:
-                rolls = d20Rolls;
+                rolls = data.d20Rolls;
                 break;
             case DieSize.d100:
-                rolls = d100Rolls;
+                rolls = data.d100Rolls;
                 break;
             default:
                 Debug.LogError("fell through get average switch.");
@@ -95,8 +95,9 @@ public class HistoryManager : MonoBehaviour
 
     public void RecordHistoryEntry(DicePool dicePool, string outcomes, int total, DateTime time) {
         HistoryEntry historyEntry = new HistoryEntry(dicePool, outcomes, total, time);
-        historyEntries.Add(historyEntry);
+        data.historyEntries.Add(historyEntry);
         UpdateUi(historyEntry);
+        ioSystem.SaveHistoricalData(data);
     }
 
     private void UpdateUi(HistoryEntry historyEntry) {
@@ -107,5 +108,15 @@ public class HistoryManager : MonoBehaviour
         }
         GameObject instance = Instantiate(historyUiEntryPrefab, historyUiEntryParent);
         instance.GetComponent<HistoryUiEntry>().SetupHistoryEntry(historyEntry);
+    }
+
+    private void PopulateLoadedHistory() {
+        foreach(Transform child in historyUiEntryParent) {
+            child.gameObject.SetActive(false);
+            Destroy(child.gameObject);
+        }
+        foreach(HistoryEntry historyEntry in data.historyEntries) {
+            UpdateUi(historyEntry);
+        }
     }
 }

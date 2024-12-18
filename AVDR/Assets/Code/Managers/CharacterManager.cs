@@ -90,7 +90,7 @@ public class CharacterManager : MonoBehaviour
     /// Sets up the dropdowns for existing & owned assets.
     /// </summary>
     void PopulateCharacterInputs() {
-        Debug.LogWarning("PopulateCharacterInputs");
+        // Debug.Log("PopulateCharacterInputs");
         diceSetDropdown.ClearOptions();
         diceSetDropdown.AddOptions(new List<string>(assetManager.Owned.GetDiceSetKeys()));
         trayDropdown.ClearOptions();
