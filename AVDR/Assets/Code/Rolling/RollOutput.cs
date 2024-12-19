@@ -7,6 +7,7 @@ public class RollOutput : MonoBehaviour
 {
     public static RollOutput instance;
     public TextMeshProUGUI outputText;
+    public TextMeshProUGUI calculationText;
     public HistoryManager historyManager;
 
     private Dictionary<SingleDie, int?> diceOutcomes = new Dictionary<SingleDie, int?>();
@@ -147,6 +148,7 @@ public class RollOutput : MonoBehaviour
         // Debug.Log("reset outcome pool");
         diceOutcomes.Clear();
         outputText.text = "";
+        calculationText.text = "";
     }
 
     /// <summary>
@@ -176,6 +178,7 @@ public class RollOutput : MonoBehaviour
         int[] rollInts = rawRollInts.ToArray();
         /* determine roll type */
         string output = "";
+        string calculation = rollInts.IntsToString() + " " + dicePool.GetRollMods();
         int total = 0;
         switch(dicePool.rollType) {
             case RollType.Sum:
@@ -189,14 +192,16 @@ public class RollOutput : MonoBehaviour
                 Array.Sort(rollInts);
                 Array.Reverse(rollInts);
                 int[] keptHighest = KeepFromGroup(rollInts, dicePool.keepHighest);
-                total = SumCollection(keptHighest);
+                total = SumGroup(keptHighest);
                 total = ApplyBonuses(total);
                 output = total.ToString();
                 break;
             case RollType.KeepLowest:
                 Array.Sort(rollInts);
-                int[] keptLowest = KeepFromGroup(rollInts, dicePool.keepHighest);
-                total = SumCollection(keptLowest);
+                rollInts.Debug("KEEP LOWEST rollInts");
+                int[] keptLowest = KeepFromGroup(rollInts, dicePool.keepLowest);
+                keptLowest.Debug("KEEP LOWEST keptLowest");
+                total = SumGroup(keptLowest);
                 total = ApplyBonuses(total);
                 output = total.ToString();
                 break;
@@ -219,15 +224,16 @@ public class RollOutput : MonoBehaviour
                 output = total.ToString();
                 break;
             case RollType.AboveThresholdAllDice:
-                total = SumCollection(rollInts);
+                total = SumGroup(rollInts);
                 total = ApplyBonuses(total);
                 total = total >= dicePool.aboveThreshold ? 1 : 0;
                 output = total.ToString();
                 break;
             case RollType.BelowThresholdAllDice:
-                total = SumCollection(rollInts);
+                total = SumGroup(rollInts);
                 total = ApplyBonuses(total);
-                total = total <= dicePool.aboveThreshold ? 1 : 0;
+                total = total <= dicePool.belowThreshold ? 1 : 0;
+                // calculation = rollInts.IntsToString();
                 output = total.ToString();
                 break;
             default:
@@ -236,6 +242,7 @@ public class RollOutput : MonoBehaviour
         }
         /* publish the output to the UI and History. */
         outputText.text = output;
+        calculationText.text = calculation;
         historyManager.RecordHistoryEntry(
             dicePool,
             string.Join(", ", rawRollStrings),
@@ -247,7 +254,8 @@ public class RollOutput : MonoBehaviour
     /// <summary>
     /// Sums up the ints in an array.
     /// </summary>
-    private int SumCollection(int[] intList) {
+    private int SumGroup(int[] intList) {
+        intList.Debug("Sum Group");
         if(intList == null) return 0;
         int output = 0;
         foreach(int i in intList) {
@@ -259,8 +267,8 @@ public class RollOutput : MonoBehaviour
     /// <summary>
     /// Sums up the ints in a list.
     /// </summary>
-    private int SumCollection(List<int> intList) {
-        return SumCollection(intList.ToArray());
+    private int SumGroup(List<int> intList) {
+        return SumGroup(intList.ToArray());
     }
 
     /// <summary>

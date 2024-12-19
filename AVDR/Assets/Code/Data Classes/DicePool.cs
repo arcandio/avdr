@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -105,7 +106,7 @@ public class DicePool {
     /// Compiles the number of dice to a string.
     /// </summary>
     /// <returns></returns>
-    string GetRollText() {
+    private string GetRollText() {
         List<string> strings = new List<string>();
         if(d4s > 0) strings.Add(d4s + "d4");
         if(d6s > 0) strings.Add(d6s + "d6");
@@ -118,9 +119,22 @@ public class DicePool {
         return string.Join(" + ", strings);
     }
 
+    public string GetRollMods() {
+        List<string> output = new List<string>();
+        if(bonus > 0) output.Add("+" + bonus);
+        if(penalty > 0) output.Add("-" + penalty);
+        if(multiplier > 1) output.Add("×" + multiplier);
+        if(divisor > 1) output.Add("÷" + divisor);
+        if(keepHighest > 0) output.Add("kh" + keepHighest);
+        if(keepLowest > 0) output.Add("kl" + keepLowest);
+        if(aboveThreshold > 0) output.Add("<=" + aboveThreshold);
+        if(belowThreshold > 0) output.Add("<=" + belowThreshold);
+        return string.Join(' ', output);
+    }
+
 
     public string GetName() {
-        string rollText = GetRollText();
+        string rollText = GetRollText() + " " + GetRollMods();
         if(nameOverride != "") {
             // UnityEngine.Debug.Log("name Override");
             return nameOverride;

@@ -126,7 +126,8 @@ public class CharacterManager : MonoBehaviour
                 return;
             }
         }
-        Debug.LogError("dropdown did not contain an option with text: " + searchString);
+        dropDown.value = 0;
+        // Debug.LogError("dropdown did not contain an option with text: " + searchString);
     }
 
     /// <summary>
