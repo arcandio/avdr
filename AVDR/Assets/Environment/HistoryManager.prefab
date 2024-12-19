@@ -44,10 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164ecdcff77f6724887ac2a37b512b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  d4Rolls: 
-  d6Rolls: 
-  d8Rolls: 
-  d10Rolls: 
-  d12Rolls: 
-  d20Rolls: 
-  d100Rolls: 
+  ioSystem: {fileID: 0}
+  historyUiEntryParent: {fileID: 0}
+  historyUiEntryPrefab: {fileID: 1185040804464775510, guid: a89a7167c1c506944803c574a5a7c1e7, type: 3}
+  maxHistoryUiEntries: 99

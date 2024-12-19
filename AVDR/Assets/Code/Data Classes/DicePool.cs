@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,6 +20,8 @@ using UnityEngine.UIElements;
 public class DicePool {
     public string nameOverride = "";
 
+    public RollType rollType = RollType.Sum;
+
     /* Dice numbers */
     public int d4s = 0;
     public int d6s = 0;
@@ -33,41 +36,18 @@ public class DicePool {
     public int penalty = 0;
     public int multiplier = 1;
     public int divisor = 1;
-
-    [SerializeField] private int keepHighest = 0;
-    /// <summary>
-    /// KeepHighest and KeepLowest are mutually exclusive.
-    /// Setting either resets the other.
-    /// </summary>
-    public int KeepHighest {
-        get => keepHighest;
-        set {
-            if(value > 0) {
-                keepHighest = value;
-                keepLowest = 0;
-            }
-        }
-    }
-    [SerializeField] private int keepLowest = 0;
-    /// <summary>
-    /// KeepHighest and KeepLowest are mutually exclusive.
-    /// Setting either resets the other.
-    /// </summary>
-    public int KeepLowest {
-        get => keepLowest;
-        set {
-            if(value > 0) {
-                keepLowest = value;
-                keepHighest = 0;
-            }
-        }
-    }
+    public int keepHighest = 0;
+    public int keepLowest = 0;
+    /* Note: all thresholds are target-inclusive, because that's how
+        users will expect it to work.*/
+    public int aboveThreshold = 0;
+    public int belowThreshold = 0;
 
     /// <summary>
     /// Construct a blank dice roll.
     /// </summary>
     public DicePool() {
-
+        
     }
 
     /// <summary>
@@ -126,7 +106,7 @@ public class DicePool {
     /// Compiles the number of dice to a string.
     /// </summary>
     /// <returns></returns>
-    string GetRollText() {
+    private string GetRollText() {
         List<string> strings = new List<string>();
         if(d4s > 0) strings.Add(d4s + "d4");
         if(d6s > 0) strings.Add(d6s + "d6");
@@ -139,9 +119,22 @@ public class DicePool {
         return string.Join(" + ", strings);
     }
 
+    public string GetRollMods() {
+        List<string> output = new List<string>();
+        if(bonus > 0) output.Add("+" + bonus);
+        if(penalty > 0) output.Add("-" + penalty);
+        if(multiplier > 1) output.Add("×" + multiplier);
+        if(divisor > 1) output.Add("÷" + divisor);
+        if(keepHighest > 0) output.Add("kh" + keepHighest);
+        if(keepLowest > 0) output.Add("kl" + keepLowest);
+        if(aboveThreshold > 0) output.Add("<=" + aboveThreshold);
+        if(belowThreshold > 0) output.Add("<=" + belowThreshold);
+        return string.Join(' ', output);
+    }
+
 
     public string GetName() {
-        string rollText = GetRollText();
+        string rollText = GetRollText() + " " + GetRollMods();
         if(nameOverride != "") {
             // UnityEngine.Debug.Log("name Override");
             return nameOverride;

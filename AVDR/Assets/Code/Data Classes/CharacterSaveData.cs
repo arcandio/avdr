@@ -14,6 +14,6 @@
 /// I'd be tied to forever and would eventually break down anyway.
 /// /diatribe
 /// </remarks>
-public class SaveData {
+public struct CharacterSaveData {
     public CharacterData[] characterDatas;
 }

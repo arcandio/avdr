@@ -15,10 +15,10 @@ public struct HistoryEntry
     /// <summary>
     /// Create a new history entry using data.
     /// </summary>
-    public HistoryEntry(DicePool dicePoolTemp, string outcomesTemp, int totalTemp, DateTime dateTimeTemp) {
+    public HistoryEntry(DicePool dicePoolTemp, string outcomesTemp, string totalTemp, DateTime dateTimeTemp) {
         dicePool = dicePoolTemp.ToString();
         diceRolls = outcomesTemp;
-        total = totalTemp.ToString();
+        total = totalTemp;
         date = dateTimeTemp.ToString();
     }
     public override string ToString()

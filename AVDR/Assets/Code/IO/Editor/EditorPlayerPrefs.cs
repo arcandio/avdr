@@ -9,9 +9,16 @@ public class EditorPlayerPrefs : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
-    [MenuItem("AVDR/Dump Prefs to Clipboard")]
-    static void DumpPrefs() {
-        string temp = PlayerPrefs.GetString("characterData");
+    [MenuItem("AVDR/Dump character data to Clipboard")]
+    static void DumpCharacters() {
+        string temp = PlayerPrefs.GetString(IoSystem.characterDataKey);
+        EditorGUIUtility.systemCopyBuffer = temp;
+        Debug.Log("character data copied to clipboard.");
+    }
+
+    [MenuItem("AVDR/Dump history data to Clipboard")]
+    static void DumpHistory() {
+        string temp = PlayerPrefs.GetString(IoSystem.historyKey);
         EditorGUIUtility.systemCopyBuffer = temp;
         Debug.Log("character data copied to clipboard.");
     }
