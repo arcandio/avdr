@@ -277,6 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dieSize: 4
   d4Type: 0
+  pairedDie: {fileID: 0}
   rb: {fileID: 1409362363361195491}
   audioSource: {fileID: 7616456619422375563}
   faces:
@@ -616,7 +617,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6613624320381410296, guid: 7922818e18c601b409a5a503a33c3473, type: 3}
+  - {fileID: 2100000, guid: e8d97c8a35ead9d44a3cb2dedf4ed946, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
