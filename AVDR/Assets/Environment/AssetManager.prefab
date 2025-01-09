@@ -48,7 +48,6 @@ MonoBehaviour:
     diceSets:
     - key: Humble Commoner
       prefabs:
-      - {fileID: 1496617101837048839, guid: c66262cb3006c474db47708cbc67e4a0, type: 3}
       - {fileID: 5312348197640893989, guid: c51c714d535e23c448437402a4735b58, type: 3}
       - {fileID: 7112815720732814277, guid: e326524b0055e6044b91cff677ce22b4, type: 3}
       - {fileID: 4249416951732806733, guid: 9760c22b07274b14292fc4131583bcf2, type: 3}
@@ -57,50 +56,51 @@ MonoBehaviour:
       - {fileID: 4109723479904856207, guid: 5aa9d0519f1c8bf4daf1589108c8d788, type: 3}
       - {fileID: 2234057422914795532, guid: 91a1601ab8ff0a14caf4c156b90c33e4, type: 3}
       - {fileID: 2505445690124151882, guid: 050b43bb62bb9154cb1fca3a0c96593d, type: 3}
+      - {fileID: 1496617101837048839, guid: c66262cb3006c474db47708cbc67e4a0, type: 3}
     - key: Weary Soldier
       prefabs:
-      - {fileID: 1496617101837048839, guid: 3c03ff5c6fab17b47a2a1ed2e216a6b0, type: 3}
-      - {fileID: 5312348197640893989, guid: 74a6febc7374e1340a1e92caaca7c21b, type: 3}
-      - {fileID: 7112815720732814277, guid: 5dd19589b48ac9041bdff45a03bcbdb1, type: 3}
-      - {fileID: 4249416951732806733, guid: 4f69094e469abf54a9bb1214ed4fd16e, type: 3}
-      - {fileID: 8087074312752840239, guid: 0f6c915f3f675f442815cba5bb79563e, type: 3}
-      - {fileID: 2134171488300191699, guid: a00b2290ed49c0749a6bea34b2654535, type: 3}
-      - {fileID: 4109723479904856207, guid: 5a2277588d15194499cf286f34f5d66e, type: 3}
-      - {fileID: 2234057422914795532, guid: 720049553f0e13c42bc0a3d026cb729b, type: 3}
-      - {fileID: 2505445690124151882, guid: 24a56f4f0ef6db94ab0ed3af32d039af, type: 3}
+      - {fileID: 5312348197640893989, guid: 897e6e2c6c3584f41b4b5330636f5071, type: 3}
+      - {fileID: 7112815720732814277, guid: d7cd86bdb7d055747854e6d5635727d2, type: 3}
+      - {fileID: 4249416951732806733, guid: 592367f252b936241bcf0eccb767f1c6, type: 3}
+      - {fileID: 8087074312752840239, guid: 16b4b5b6879520f47bfdafaeec6d21a3, type: 3}
+      - {fileID: 2134171488300191699, guid: 3952a0383823e5b4a8a7d4a17d429f4e, type: 3}
+      - {fileID: 4109723479904856207, guid: 9d52fb84c2e231c43a448ec536b30e0c, type: 3}
+      - {fileID: 2234057422914795532, guid: b6c424ca8780acb4494e49ae07e8a638, type: 3}
+      - {fileID: 2505445690124151882, guid: 5027bbfc10daab4439c8faf825f98656, type: 3}
+      - {fileID: 1496617101837048839, guid: 36dd762940886bb4983deecbe65de7a6, type: 3}
     - key: Elderly Wizard
       prefabs:
-      - {fileID: 1496617101837048839, guid: 0b465feea3d8a3e48a9f1fcee91713c5, type: 3}
-      - {fileID: 5312348197640893989, guid: f75b6f46a0c0596469267c4bd56b94f9, type: 3}
-      - {fileID: 7112815720732814277, guid: f03afee4ec203504aaf6c63c8848002b, type: 3}
-      - {fileID: 4249416951732806733, guid: 8f38891f5c30f0f479a1b82a92a55a72, type: 3}
-      - {fileID: 8087074312752840239, guid: ab0f5b701e735a4498520a39e9e0fa48, type: 3}
-      - {fileID: 2134171488300191699, guid: ee43caf0008d74041891a9fd6071f2ae, type: 3}
-      - {fileID: 4109723479904856207, guid: 34652173820e3ca43993f6b5d21ce5ce, type: 3}
-      - {fileID: 2234057422914795532, guid: 42479b7b506fb34448d621c52735d3da, type: 3}
-      - {fileID: 2505445690124151882, guid: 7464553862812ab439a9d2bb91c7c939, type: 3}
+      - {fileID: 5312348197640893989, guid: ef4be362710227540b1572e583a195bf, type: 3}
+      - {fileID: 7112815720732814277, guid: b26a6ec2941feda4b8d3e89942d233a5, type: 3}
+      - {fileID: 4249416951732806733, guid: 084d84d2b15dcb94db3dfac3f88c4ed7, type: 3}
+      - {fileID: 8087074312752840239, guid: 21c584841588bcb488c79fa1387c3ab9, type: 3}
+      - {fileID: 2134171488300191699, guid: b0d848a15e59f7d428a471d8dba1c6a3, type: 3}
+      - {fileID: 4109723479904856207, guid: f74c9da243237234cbb3d6b2659d3bcc, type: 3}
+      - {fileID: 2234057422914795532, guid: 604a19115795c654c9a7697d7e5314bd, type: 3}
+      - {fileID: 2505445690124151882, guid: 6da9d4e5b88bbd84cbba5a81faca889f, type: 3}
+      - {fileID: 1496617101837048839, guid: 3b3d3363ba92c3e44bc5a56b2c9fecce, type: 3}
     - key: Pious Cleric
       prefabs:
-      - {fileID: 1496617101837048839, guid: c66262cb3006c474db47708cbc67e4a0, type: 3}
-      - {fileID: 5312348197640893989, guid: c51c714d535e23c448437402a4735b58, type: 3}
-      - {fileID: 7112815720732814277, guid: e326524b0055e6044b91cff677ce22b4, type: 3}
-      - {fileID: 4249416951732806733, guid: 9760c22b07274b14292fc4131583bcf2, type: 3}
-      - {fileID: 8087074312752840239, guid: 2e3a35c4cff5615499bd836e8e40a53d, type: 3}
-      - {fileID: 2134171488300191699, guid: 3bd06b006eda7c6408d98717469e79b5, type: 3}
-      - {fileID: 4109723479904856207, guid: 5aa9d0519f1c8bf4daf1589108c8d788, type: 3}
-      - {fileID: 2234057422914795532, guid: 91a1601ab8ff0a14caf4c156b90c33e4, type: 3}
-      - {fileID: 2505445690124151882, guid: 050b43bb62bb9154cb1fca3a0c96593d, type: 3}
-    - key: Test
+      - {fileID: 5312348197640893989, guid: dab5b01872e3bf1469afa0e1148d669c, type: 3}
+      - {fileID: 7112815720732814277, guid: 8a00e8a74c81398468c662f462e46070, type: 3}
+      - {fileID: 4249416951732806733, guid: eb314af33e0d50443bd5bd43c5cd0adc, type: 3}
+      - {fileID: 8087074312752840239, guid: 3ccf6023b4e3a7b4184e20301b62abe1, type: 3}
+      - {fileID: 2134171488300191699, guid: 1c2c87f010db41140ac5c3e67cd6fd98, type: 3}
+      - {fileID: 4109723479904856207, guid: 711146845e2426640af8a68e00c88cc7, type: 3}
+      - {fileID: 2234057422914795532, guid: 95709ec86eaa2c94398fa89df9ff3523, type: 3}
+      - {fileID: 2505445690124151882, guid: a78017ee93d1fd14a9b95e9e8b87c319, type: 3}
+      - {fileID: 1496617101837048839, guid: 0fae53257fc66e74185b32954a45bc33, type: 3}
+    - key: Plastic Childhood
       prefabs:
-      - {fileID: 5312348197640893989, guid: 1f1876bb70dc99142be9322a48008dfd, type: 3}
-      - {fileID: 7112815720732814277, guid: afb7dbcccf023784a9a0736a98770430, type: 3}
-      - {fileID: 4249416951732806733, guid: f0d31b3b9126294458b31cddb62beec1, type: 3}
-      - {fileID: 8087074312752840239, guid: 7f031e0b3d2156749b9626e55bb9be07, type: 3}
-      - {fileID: 2134171488300191699, guid: 9d195af6953007d4c97d469ecc780821, type: 3}
-      - {fileID: 4109723479904856207, guid: 3e7d8612399fc1947a715eaf238076c8, type: 3}
-      - {fileID: 2234057422914795532, guid: 95308265159ce394597504e5b48674e6, type: 3}
-      - {fileID: 2505445690124151882, guid: 503cda3d273cc7142842849c0fd139bd, type: 3}
-      - {fileID: 1496617101837048839, guid: e96011b431ebb5a4ab3abceb0dd8afb7, type: 3}
+      - {fileID: 5312348197640893989, guid: d21c5c34a37a9714eb11ae27348bf653, type: 3}
+      - {fileID: 7112815720732814277, guid: 14f205f51a314c64c8b27f9767aaf6d6, type: 3}
+      - {fileID: 4249416951732806733, guid: d5863d6e618d22546b7408457288b198, type: 3}
+      - {fileID: 8087074312752840239, guid: f8b643b922263b64085f2a94a8f73203, type: 3}
+      - {fileID: 2134171488300191699, guid: 577d8cd41aee9b14591302f789f1281e, type: 3}
+      - {fileID: 4109723479904856207, guid: 9d57f8acbcb26cd4e9209560db62e0f9, type: 3}
+      - {fileID: 2234057422914795532, guid: 2f81bb74d717f134f9951c1140c81c11, type: 3}
+      - {fileID: 2505445690124151882, guid: 912847a515f545648afd88f77c1ec8c3, type: 3}
+      - {fileID: 1496617101837048839, guid: ca2b652278e0fa64f940ce069fb70156, type: 3}
     trays:
     - key: Gray Felt
       prefabs: []
@@ -142,7 +142,7 @@ MonoBehaviour:
       prefabs: []
     - key: Advanced Circuits
       prefabs: []
-    - key: Proud Rainbow
+    - key: Vibrant Rainbow
       prefabs: []
     trays:
     - key: Arcane Rune
