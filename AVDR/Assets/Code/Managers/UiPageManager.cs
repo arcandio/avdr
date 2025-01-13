@@ -6,6 +6,7 @@ using UnityEngine;
 public class UiPageManager : MonoBehaviour
 {
     public static UiPageManager instance;
+    public CharacterManager characterManager;
 
     public AudioSource audioSource;
 
@@ -111,6 +112,9 @@ public class UiPageManager : MonoBehaviour
         }
         else {
             thrower.enabled = true;
+        }
+        if(pageName == PageName.CharacterEditPage) {
+            characterManager.PopulateCharacterInputs();
         }
         UiPage target = FindPage(pageName);
         foreach(UiPage page in pages) {

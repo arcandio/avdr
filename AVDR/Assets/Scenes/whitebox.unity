@@ -5401,7 +5401,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1441364782}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.89818645
+  m_Size: 0.79663986
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6436,7 +6436,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 916405176}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.52386314
+  m_Size: 0.46463653
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -27510,7 +27510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012272065}
+  m_AnchoredPosition: {x: 0, y: -0.000016570091}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1912123366
@@ -28682,7 +28682,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.4
+  m_fontSize: 20.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -30825,6 +30825,10 @@ PrefabInstance:
       propertyPath: presetListPage
       value: 
       objectReference: {fileID: 1596158023}
+    - target: {fileID: 4820466568848191509, guid: ff51f01e0d93d254dafd995b59aa51f5, type: 3}
+      propertyPath: characterManager
+      value: 
+      objectReference: {fileID: 3739863306044566221}
     - target: {fileID: 4820466568848191509, guid: ff51f01e0d93d254dafd995b59aa51f5, type: 3}
       propertyPath: characterEditPage
       value: 

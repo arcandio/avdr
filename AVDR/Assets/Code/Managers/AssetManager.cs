@@ -37,6 +37,24 @@ public class AssetManager : MonoBehaviour
     }
 
     /// <summary>
+    /// If we're in the editor or a dev build, give the user all the dice.
+    /// </summary>
+    void Start() {
+        if(Debug.isDebugBuild) {
+            CheatCode();
+        }
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        CheatCode();
+        #endif
+    }
+
+    public void CheatCode() {
+        purchased = paid;
+        Debug.LogWarning("Gave the user All Paid Dice.");
+        // Debug.LogError("dice " + paid.diceSets.Length + " -> " + Owned.diceSets.Length);
+    }
+
+    /// <summary>
     /// Copies an asset from a source AssetSet to a destination AssetSet.
     /// It does NOT remove it from the source.
     /// </summary>
