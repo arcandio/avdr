@@ -89,6 +89,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: ab9aed9cab5b82d45a90bc169adeeb2d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _roughness_map:
+        m_Texture: {fileID: 2800000, guid: ab9aed9cab5b82d45a90bc169adeeb2d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _surface_color_mask:
         m_Texture: {fileID: 2800000, guid: ab9aed9cab5b82d45a90bc169adeeb2d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -147,7 +151,9 @@ Material:
     - _ZWrite: 1
     - _pip_ao: 0.58
     - _pip_depth: 0.51
+    - _roughness_ceiling: 1
     - _roughness_contrast: 0.14
+    - _roughness_floor: 0
     - _roughness_max: 0.25
     - _roughness_min: 0
     - _surface_mask_hue: 0

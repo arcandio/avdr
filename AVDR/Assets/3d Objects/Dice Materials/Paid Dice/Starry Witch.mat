@@ -21,10 +21,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Starry Witch
-  m_Shader: {fileID: -6465566751694194690, guid: f148d0b50d549c74db8493c8716eb72e, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7437a8bfbda328942837e2d8c86da35f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _GLITTER_MASKING_METHOD_NO_MASKING
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -77,8 +78,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleReflectedCubemap_fcaf55a8691d4ebd8140fb81ace1b032_Cube_1_Cubemap:
+        m_Texture: {fileID: 8900000, guid: 004319895c597ba4ba35aed529892df4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _glitter_mask:
+        m_Texture: {fileID: 2800000, guid: b61358d8711862540bd092d6cedf82b4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _glitter_noise:
+        m_Texture: {fileID: 2800000, guid: 62896a5d7e415084ea04d90f1edaf1a8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _pip_mask:
@@ -89,8 +102,12 @@ Material:
         m_Texture: {fileID: 2800000, guid: 9a6fd8a9e3ade244d841c2afbd48b250, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _roughness_map:
+        m_Texture: {fileID: 2800000, guid: 7e16aeb444fe2c647883d664fa84670f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _surface_color_mask:
-        m_Texture: {fileID: 2800000, guid: 9a6fd8a9e3ade244d841c2afbd48b250, type: 3}
+        m_Texture: {fileID: 2800000, guid: 883d55b412a1f1b4fa657213db10698e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _surface_metallic:
@@ -126,6 +143,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _GLITTER_MASKING_METHOD: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -145,9 +163,15 @@ Material:
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _pip_ao: 0.5
-    - _pip_depth: 0.5
+    - _gliter_use_directional_light: 1
+    - _glitter_limit: 0.35
+    - _glitter_tiling: 5
+    - _glitter_wrap: 1
+    - _pip_ao: 0.188
+    - _pip_depth: 0.087
+    - _roughness_ceiling: 1
     - _roughness_contrast: 0.87
+    - _roughness_floor: 0.558
     - _roughness_max: 0.47
     - _roughness_min: 0
     - _surface_mask_hue: 0.07
@@ -157,9 +181,10 @@ Material:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _glitter_color: {r: 0.745283, g: 0.71424526, b: 0.2917853, a: 1}
     - _metallic_modifier: {r: 0, g: 0, b: 0, a: 0}
-    - _pip_color: {r: 0, g: 0, b: 0, a: 1}
-    - _surface_color_a: {r: 0.027634395, g: 0.032977544, b: 0.254717, a: 1}
-    - _surface_color_b: {r: 0.16487184, g: 0.42688447, b: 0.5377358, a: 1}
+    - _pip_color: {r: 0, g: 0.8947502, b: 5.3945823, a: 1}
+    - _surface_color_a: {r: 0.012075457, g: 0, b: 0.11320752, a: 1}
+    - _surface_color_b: {r: 0.16978337, g: 0, b: 0.2830189, a: 0.6156863}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

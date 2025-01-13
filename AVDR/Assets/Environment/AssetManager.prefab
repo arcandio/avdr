@@ -101,6 +101,17 @@ MonoBehaviour:
       - {fileID: 2234057422914795532, guid: 2f81bb74d717f134f9951c1140c81c11, type: 3}
       - {fileID: 2505445690124151882, guid: 912847a515f545648afd88f77c1ec8c3, type: 3}
       - {fileID: 1496617101837048839, guid: ca2b652278e0fa64f940ce069fb70156, type: 3}
+    - key: Elven Steel
+      prefabs:
+      - {fileID: 5312348197640893989, guid: 9ead57a95549e374f818a7394ddb6c51, type: 3}
+      - {fileID: 7112815720732814277, guid: 4f846706c3e6c6a409b85840a0cb127e, type: 3}
+      - {fileID: 4249416951732806733, guid: 7387a05738d5af7458e7f61f2d404a49, type: 3}
+      - {fileID: 8087074312752840239, guid: d0db0db3842fb5a41a65c4d141a2256b, type: 3}
+      - {fileID: 2134171488300191699, guid: ec3b3ce50338acc478bcb7f615363d2d, type: 3}
+      - {fileID: 4109723479904856207, guid: d7caf63c3b004e74ca437a946162c358, type: 3}
+      - {fileID: 2234057422914795532, guid: 24546cc491912474f908a9a6ae6c9fbc, type: 3}
+      - {fileID: 2505445690124151882, guid: 6d87a8d1a5c6ccb47a3cff6bb00d6700, type: 3}
+      - {fileID: 1496617101837048839, guid: d5f280678e5706f43878a2f9481c5ea9, type: 3}
     trays:
     - key: Gray Felt
       prefabs: []
@@ -123,27 +134,104 @@ MonoBehaviour:
   paid:
     diceSets:
     - key: Sinister Vampire
-      prefabs: []
+      prefabs:
+      - {fileID: 5312348197640893989, guid: adcb6ea679a0c694bb944266314f4c5c, type: 3}
+      - {fileID: 7112815720732814277, guid: 7c2c90fdd27276f48bc1f2af429ecc01, type: 3}
+      - {fileID: 4249416951732806733, guid: 86916ac521ae4724fb00ab2f13471612, type: 3}
+      - {fileID: 8087074312752840239, guid: d97ce52192416d848a0f01b1f847af04, type: 3}
+      - {fileID: 2134171488300191699, guid: f3d84bb4d444a154897638fba84724e3, type: 3}
+      - {fileID: 4109723479904856207, guid: 1460e9be34c6d584fb4a208efba4532e, type: 3}
+      - {fileID: 2234057422914795532, guid: 8c8989766b5d4ff4b917518f22cbb736, type: 3}
+      - {fileID: 2505445690124151882, guid: 1078186e06904e942b40e3083a5b13b6, type: 3}
+      - {fileID: 1496617101837048839, guid: 877776ac8aee4684e9c2629d3546662c, type: 3}
     - key: Turbulent Ocean
-      prefabs: []
+      prefabs:
+      - {fileID: 5312348197640893989, guid: 4eabbdfabc7899a4e9b2597aac14d578, type: 3}
+      - {fileID: 7112815720732814277, guid: 62df5f3d80c084649860cfe3f09f24b7, type: 3}
+      - {fileID: 4249416951732806733, guid: 0630031a9f006e94e8737a57126d3675, type: 3}
+      - {fileID: 8087074312752840239, guid: f0575e34bad57654aa13934fcf0e76e9, type: 3}
+      - {fileID: 2134171488300191699, guid: d10472d8899c1cf439b924d82e9825b8, type: 3}
+      - {fileID: 4109723479904856207, guid: 1e5aa8c12e58993458428adc447ac813, type: 3}
+      - {fileID: 2234057422914795532, guid: a8cfd26c20fcf49488ba25b9d6f7c3f5, type: 3}
+      - {fileID: 2505445690124151882, guid: a89bb72bb348fe54c923d834215a5b36, type: 3}
+      - {fileID: 1496617101837048839, guid: ff2b70dac7b6b6a439d0e537a35d37dd, type: 3}
     - key: Nefarious Warlock
-      prefabs: []
+      prefabs:
+      - {fileID: 5312348197640893989, guid: b1514d27a9f207c45b0db355bf35b15a, type: 3}
+      - {fileID: 7112815720732814277, guid: d2e48a04664cd0f4fb3582dac26a32fd, type: 3}
+      - {fileID: 4249416951732806733, guid: 421ca8e148c77004a81b6725b6027b89, type: 3}
+      - {fileID: 8087074312752840239, guid: d08dc01bc6c71954bb09ebd050e033ad, type: 3}
+      - {fileID: 2134171488300191699, guid: 424163c4c738f6a4ebd363105ddd3a50, type: 3}
+      - {fileID: 4109723479904856207, guid: 8f90f2c84e3a2554b8962ec9e2a374f6, type: 3}
+      - {fileID: 2234057422914795532, guid: 885360fef1c901446ab454ac994ac0fc, type: 3}
+      - {fileID: 2505445690124151882, guid: 2298d7d2fdd6b2f49b843957d515bfd8, type: 3}
+      - {fileID: 1496617101837048839, guid: 67e4c49ac7fce2e468f29080de0ddbc2, type: 3}
     - key: Starry Witch
-      prefabs: []
-    - key: Golden Throne
-      prefabs: []
-    - key: Hideous Bone
-      prefabs: []
-    - key: Paladin Silver
-      prefabs: []
+      prefabs:
+      - {fileID: 5312348197640893989, guid: dd7aa52b8fdba57499827cdcf0d9e9b1, type: 3}
+      - {fileID: 7112815720732814277, guid: f03ce413967e637428a82ab1c3958240, type: 3}
+      - {fileID: 4249416951732806733, guid: f79cad352899e104494ac15bf6f5f456, type: 3}
+      - {fileID: 8087074312752840239, guid: a2b7bd038e8d9a04e9d493bcf5b6d481, type: 3}
+      - {fileID: 2134171488300191699, guid: b3b0b64658bcde84d8afcc7f8a4ec8fb, type: 3}
+      - {fileID: 4109723479904856207, guid: c6f1c596f2a68dd47bc776ad11a3146f, type: 3}
+      - {fileID: 2234057422914795532, guid: 5923e0de6f9a5e54199063f0290ac407, type: 3}
+      - {fileID: 2505445690124151882, guid: 9235de65c6da39440996af721d61fb70, type: 3}
+      - {fileID: 1496617101837048839, guid: c940c257c4f86df4990c4099a414f6d0, type: 3}
     - key: Fleshy Mass
-      prefabs: []
-    - key: Brass Gears
-      prefabs: []
+      prefabs:
+      - {fileID: 5312348197640893989, guid: 087c0102b0a6d2043b7c3d73680a688d, type: 3}
+      - {fileID: 7112815720732814277, guid: ab61235b83b4b464d93df80dbcce8165, type: 3}
+      - {fileID: 4249416951732806733, guid: a73d53dc3cdb3004e8f244754163f092, type: 3}
+      - {fileID: 8087074312752840239, guid: 19875fd3b9273bc4b824b0c15c73ef86, type: 3}
+      - {fileID: 2134171488300191699, guid: 9febdc83cfede1b4a84a1719b8e85e87, type: 3}
+      - {fileID: 4109723479904856207, guid: bfc128a76d0e5d641a8da5593d4a0a78, type: 3}
+      - {fileID: 2234057422914795532, guid: 89eabd5b4e2858944b8b21768fa6c03e, type: 3}
+      - {fileID: 2505445690124151882, guid: b1a2da13c9692524f943d05c6341ae33, type: 3}
+      - {fileID: 1496617101837048839, guid: 7826e1ee25d878d40a1c43e91ae2f24c, type: 3}
     - key: Advanced Circuits
-      prefabs: []
+      prefabs:
+      - {fileID: 5312348197640893989, guid: 82ae7bf6aafd7c140b8b8b85d5884379, type: 3}
+      - {fileID: 7112815720732814277, guid: 27268735c800e8a4c9fdef4e9569f10c, type: 3}
+      - {fileID: 4249416951732806733, guid: 62319e35b42193349a7f24ca669dbba4, type: 3}
+      - {fileID: 8087074312752840239, guid: a54d5a691c5c64a4db925afd9c299980, type: 3}
+      - {fileID: 2134171488300191699, guid: 03795cafc9dc9a74ab4a8dd223c2877c, type: 3}
+      - {fileID: 4109723479904856207, guid: cf855316f79f0854ba69566c29ffb028, type: 3}
+      - {fileID: 2234057422914795532, guid: 03b0bd6622ef90742ad92a2cc2e4298c, type: 3}
+      - {fileID: 2505445690124151882, guid: 4ac179d80285aa44d9c0c8b5617e3065, type: 3}
+      - {fileID: 1496617101837048839, guid: 300357f8809b208448f4cfc05d9d4070, type: 3}
     - key: Vibrant Rainbow
-      prefabs: []
+      prefabs:
+      - {fileID: 5312348197640893989, guid: 3f326dda6494a024e9b37ce6ed196e7b, type: 3}
+      - {fileID: 7112815720732814277, guid: f9c94ebc646a5b44daee779903f71188, type: 3}
+      - {fileID: 4249416951732806733, guid: 71064321b76b4a14bbf83692ec9ab3f1, type: 3}
+      - {fileID: 8087074312752840239, guid: 206351eb1d16b2640bc71692f200ab27, type: 3}
+      - {fileID: 2134171488300191699, guid: 6e121a2c1f9ab334d9a51c6aaf0f35d1, type: 3}
+      - {fileID: 4109723479904856207, guid: 8fbec3bde63e5ed469883325aa922671, type: 3}
+      - {fileID: 2234057422914795532, guid: 231ce87d50b152346a73e263216e220e, type: 3}
+      - {fileID: 2505445690124151882, guid: 2f18dce6d498e5141b08cd67d44e443e, type: 3}
+      - {fileID: 1496617101837048839, guid: e899e8b2b38f70149a7e608fcb3b966b, type: 3}
+    - key: Freshly Forged
+      prefabs:
+      - {fileID: 5312348197640893989, guid: 010b01936b210d2408126ec32a7825ee, type: 3}
+      - {fileID: 7112815720732814277, guid: 38d8ce7a549421a4ebd41d84c36549fc, type: 3}
+      - {fileID: 4249416951732806733, guid: 614b025756a3c814a8418049c77b73fb, type: 3}
+      - {fileID: 8087074312752840239, guid: 9375fc1450cf0d34d9027555eb422c8b, type: 3}
+      - {fileID: 2134171488300191699, guid: 2cd1de82387d40749832b65452d61ef8, type: 3}
+      - {fileID: 4109723479904856207, guid: c65bb05b0d6b50940bc99e58856661d3, type: 3}
+      - {fileID: 2234057422914795532, guid: 025f9a507551de14db6731402de118d4, type: 3}
+      - {fileID: 2505445690124151882, guid: 878d7b5d141d5044f9372e7126ef534a, type: 3}
+      - {fileID: 1496617101837048839, guid: f5cc8a1203d33364f80036efe66b735f, type: 3}
+    - key: Cooling Magma
+      prefabs:
+      - {fileID: 5312348197640893989, guid: da0fbabba60d45544ae494af9a15f84d, type: 3}
+      - {fileID: 7112815720732814277, guid: 32b50933f889bd8458aff842ba511ff5, type: 3}
+      - {fileID: 4249416951732806733, guid: 3635ac67d5fac6d4bafcf509092ca9b5, type: 3}
+      - {fileID: 8087074312752840239, guid: 5312de380c37aab45a1b6124bb9eada3, type: 3}
+      - {fileID: 2134171488300191699, guid: d38e40313166d5440aaf3c3e3ff066cc, type: 3}
+      - {fileID: 4109723479904856207, guid: ae0417f030dcfab49a146f90fa371a14, type: 3}
+      - {fileID: 2234057422914795532, guid: 2b8f21738a4db2f4a912906ace2be7fa, type: 3}
+      - {fileID: 2505445690124151882, guid: 7c2c110576e0cb94eb8fd4ca152a945e, type: 3}
+      - {fileID: 1496617101837048839, guid: bf36075624f502044a5343353cd7f165, type: 3}
     trays:
     - key: Arcane Rune
       prefabs: []

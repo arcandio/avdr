@@ -21,10 +21,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sinister Vampire
-  m_Shader: {fileID: -6465566751694194690, guid: f148d0b50d549c74db8493c8716eb72e, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 5bb9b9d024bcbbc4587c4af5e79d7de0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _GLITTER_MASKING_METHOD_COLOR_MASK
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -77,8 +78,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleReflectedCubemap_fcaf55a8691d4ebd8140fb81ace1b032_Cube_1_Cubemap:
+        m_Texture: {fileID: 8900000, guid: 004319895c597ba4ba35aed529892df4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _glitter_mask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _glitter_noise:
+        m_Texture: {fileID: 2800000, guid: 62896a5d7e415084ea04d90f1edaf1a8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _pip_mask:
@@ -86,11 +99,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _roughness:
-        m_Texture: {fileID: 2800000, guid: 9a6fd8a9e3ade244d841c2afbd48b250, type: 3}
+        m_Texture: {fileID: 2800000, guid: ab93e5349c3d94742ab4414cc0196c8e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _roughness_map:
+        m_Texture: {fileID: 2800000, guid: ab93e5349c3d94742ab4414cc0196c8e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _surface_color_mask:
-        m_Texture: {fileID: 2800000, guid: 9a6fd8a9e3ade244d841c2afbd48b250, type: 3}
+        m_Texture: {fileID: 2800000, guid: ab93e5349c3d94742ab4414cc0196c8e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _surface_metallic:
@@ -126,6 +143,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _GLITTER_MASKING_METHOD: 3
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -145,10 +163,14 @@ Material:
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _gliter_use_directional_light: 0
+    - _glitter_limit: 0.35
+    - _glitter_tiling: 5
+    - _glitter_wrap: 1
     - _pip_ao: 0.5
     - _pip_depth: 0.5
-    - _roughness_contrast: 0.87
-    - _roughness_max: 0.47
+    - _roughness_contrast: 0.8
+    - _roughness_max: 1
     - _roughness_min: 0
     - _surface_mask_hue: 0.07
     - _surface_mask_saturation: 0.2
@@ -157,9 +179,10 @@ Material:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _glitter_color: {r: 5.9921575, g: 0, b: 0, a: 1}
     - _metallic_modifier: {r: 0, g: 0, b: 0, a: 0}
-    - _pip_color: {r: 0, g: 0, b: 0, a: 1}
-    - _surface_color_a: {r: 0.027634395, g: 0.032977544, b: 0.254717, a: 1}
-    - _surface_color_b: {r: 0.16487184, g: 0.42688447, b: 0.5377358, a: 1}
+    - _pip_color: {r: 42.722507, g: 5.42699, b: 5.0380306, a: 1}
+    - _surface_color_a: {r: 1, g: 0, b: 0, a: 1}
+    - _surface_color_b: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
