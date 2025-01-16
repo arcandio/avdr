@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -164,7 +165,7 @@ public class SingleDie : MonoBehaviour
         transform.position = respawner.transform.position;
         /* the following randomizes spawn locaton a little so rigibodies don't
         respawn on top of each other. */
-        transform.position += Random.insideUnitSphere * .01f;
+        transform.position += Random.insideUnitSphere * respawner.transform.localScale.x;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.isKinematic = false;

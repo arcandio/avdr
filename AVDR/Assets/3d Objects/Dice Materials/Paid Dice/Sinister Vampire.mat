@@ -167,9 +167,11 @@ Material:
     - _glitter_limit: 0.35
     - _glitter_tiling: 5
     - _glitter_wrap: 1
-    - _pip_ao: 0.5
-    - _pip_depth: 0.5
+    - _pip_ao: 0.086
+    - _pip_depth: 0.477
+    - _roughness_ceiling: 1
     - _roughness_contrast: 0.8
+    - _roughness_floor: 0
     - _roughness_max: 1
     - _roughness_min: 0
     - _surface_mask_hue: 0.07

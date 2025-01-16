@@ -4,9 +4,9 @@
 PhysicsManager:
   m_ObjectHideFlags: 0
   serializedVersion: 18
-  m_Gravity: {x: 0, y: -9.81, z: 0}
+  m_Gravity: {x: 0, y: -500, z: 0}
   m_DefaultMaterial: {fileID: 0}
-  m_BounceThreshold: 1.1
+  m_BounceThreshold: 12
   m_DefaultMaxDepenetrationVelocity: 10
   m_SleepThreshold: 0.01
   m_DefaultContactOffset: 0.01

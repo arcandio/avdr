@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmp: {fileID: 0}
+  particleEffectManager: {fileID: 0}
   rollClips:
   - {fileID: 8300000, guid: 0cbd843e1bb2d9747b1cfda37f2fff24, type: 3}
   - {fileID: 8300000, guid: 514a9c692ced03042b2e1ee94ef4588b, type: 3}
@@ -54,7 +55,7 @@ MonoBehaviour:
   accelerationThreshold: 1.75
   rerollTime: 0.1
   randomVectorSize: 2
-  throwForceMultiplier: 5
+  throwForceMultiplier: 100
   audioSource: {fileID: 5124486000475449540}
   torqueMultiplier: 150
 --- !u!82 &5124486000475449540
