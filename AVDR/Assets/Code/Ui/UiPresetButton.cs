@@ -2,6 +2,9 @@ using System;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Button controller for the presets on the tray page.
+/// </summary>
 public class UiPresetButton : UiNavigation
 {
     public TextMeshProUGUI buttonText;

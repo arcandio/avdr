@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// Manages what page the app is on and navigation
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class UiPageManager : MonoBehaviour
 {

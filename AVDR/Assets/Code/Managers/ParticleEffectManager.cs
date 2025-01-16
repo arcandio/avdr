@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Stub: stores particle effect set and eventually spawns and destroys particle effects
+/// </summary>
 public class ParticleEffectManager : MonoBehaviour
 {
     public CharacterManager characterManager;

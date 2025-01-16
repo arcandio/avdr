@@ -119,6 +119,10 @@ public class DicePool {
         return string.Join(" + ", strings);
     }
 
+    /// <summary>
+    /// Compiles the roll modifiers to a string to append to the dice.
+    /// </summary>
+    /// <returns></returns>
     public string GetRollMods() {
         List<string> output = new List<string>();
         if(bonus > 0) output.Add("+" + bonus);

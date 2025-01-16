@@ -3,7 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// A pair for emulating dictionary functionality simply in UnityEngine GUI.
-/// This will let us set up prefabs in `AssetManager`.
+/// This will be subclassed a for each asset type.
 /// </summary>
 [Serializable]
 public class AssetKeyValuePair

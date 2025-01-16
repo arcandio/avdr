@@ -1,6 +1,9 @@
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
+/// <summary>
+/// A manager for handling trays, lighting, and particle effect swapping.
+/// This does NOT handle particle effect instantiation, for that, see ParticleEffectManager.cs
+/// </summary>
 public class EnvironmentManager : MonoBehaviour
 {
     // public CharacterManager characterManager;
@@ -12,6 +15,10 @@ public class EnvironmentManager : MonoBehaviour
     public Transform lightingRigParent;
     public Transform trayParent;
 
+    /// <summary>
+    /// Sets up the rendering scene based on a character.
+    /// </summary>
+    /// <param name="characterData">The selected character from character manager</param>
     public void RebuildEnv(CharacterData characterData) {
         if(characterData == null) {
             Debug.LogError("Null character passed to RebuildEnv");
@@ -25,11 +32,18 @@ public class EnvironmentManager : MonoBehaviour
         UpdateEffects(characterData);
     }
 
+    /// <summary>
+    /// Changes out the tray object
+    /// </summary>
+    /// <param name="characterData"></param>
     void UpdateTray(CharacterData characterData) {
         ResetTrays();
         ActivateTray(characterData.traySet);
     }
 
+    /// <summary>
+    /// Hides all trays
+    /// </summary>
     void ResetTrays() {
         foreach(Transform tray in trayParent) {
             tray.gameObject.SetActive(false);
@@ -37,6 +51,10 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// activates an owned tray by name
+    /// </summary>
+    /// <param name="trayName"></param>
     void ActivateTray(string trayName) {
         AKVPTray pair = assetManager.Owned.GetAssetPair(AssetType.Tray, trayName) as AKVPTray;
         if(pair == null) {
@@ -49,17 +67,28 @@ public class EnvironmentManager : MonoBehaviour
         pair.tray.SetActive(true);
     }
 
+    /// <summary>
+    /// Sets up the scene lighting
+    /// </summary>
+    /// <param name="characterData"></param>
     void UpdateLighting(CharacterData characterData) {
         ResetLightingRigs();
         ActivateLightingRig(characterData.lightingSet);
     }
 
+    /// <summary>
+    /// Turns off all lighting rigs
+    /// </summary>
     void ResetLightingRigs() {
         foreach(Transform lightingRig in lightingRigParent) {
             lightingRig.gameObject.SetActive(false);
         }
     }
 
+    /// <summary>
+    /// Activates an owned lighting rig
+    /// </summary>
+    /// <param name="lightingRigName"></param>
     void ActivateLightingRig(string lightingRigName) {
         AKVPLight pair = assetManager.Owned.GetAssetPair(AssetType.Lighting, lightingRigName) as AKVPLight;
         if(pair == null) {
@@ -70,6 +99,10 @@ public class EnvironmentManager : MonoBehaviour
         pair.lightingRig.SetActive(true);
     }
 
+    /// <summary>
+    /// Sends the set of particle effects on the character to the ParticleEffectManager
+    /// </summary>
+    /// <param name="characterData"></param>
     void UpdateEffects(CharacterData characterData) {
         if(string.IsNullOrEmpty(characterData.effectsSet)) {
             Debug.Log("Empty effects name, clearing");

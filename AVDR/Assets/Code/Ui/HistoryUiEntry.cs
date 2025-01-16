@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Displays a history entry.
+/// </summary>
 public class HistoryUiEntry : MonoBehaviour
 {
     public TextMeshProUGUI dicePool;

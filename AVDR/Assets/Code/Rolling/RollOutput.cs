@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Collects the output of the rolled dice and tallies the final roll.
+/// </summary>
 public class RollOutput : MonoBehaviour
 {
     public static RollOutput instance;

@@ -1,6 +1,9 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// A debug tool for showing the size and placement of the respawn point.
+/// </summary>
 public class RespawnerGizmo : MonoBehaviour
 {
     public Color color = Color.green;

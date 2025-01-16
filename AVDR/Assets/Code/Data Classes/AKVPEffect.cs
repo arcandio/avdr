@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// A pair for effects. Holds named variables for each intended effect.
+/// </summary>
 [Serializable]
 public class AKVPEffect : AssetKeyValuePair
 {

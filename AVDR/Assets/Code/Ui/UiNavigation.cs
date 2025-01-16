@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Navigation element control
+/// </summary>
 public class UiNavigation : MonoBehaviour
 {
     public PageName targetPage = PageName.TrayPage;

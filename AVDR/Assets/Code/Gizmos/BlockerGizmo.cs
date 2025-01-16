@@ -1,7 +1,10 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BoxGizmo : MonoBehaviour
+/// <summary>
+/// A debug tool for showing invisible collision walls in the editor.
+/// </summary>
+public class BlockerGizmo : MonoBehaviour
 {
     public Color color = new Color(1, 1, 0, .5f);
     void OnDrawGizmos() {

@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Prevents dice from leaving a certain volume.
+/// Used as a last-resort backup to keep dice on the table.
+/// </summary>
 public class DistanceLimit : MonoBehaviour
 {
     void OnTriggerExit(Collider collider) {

@@ -1,6 +1,10 @@
 using Unity.Mathematics;
 using UnityEngine;
 
+/// <summary>
+/// Dynamically changes the lighting based on device attitude
+/// making the dice look sparklier and more alive.
+/// </summary>
 public class LightingTilt : MonoBehaviour
 {
     public float speed = 50;

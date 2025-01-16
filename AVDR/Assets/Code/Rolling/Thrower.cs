@@ -2,6 +2,9 @@ using System.Linq.Expressions;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Handles the rolling of dice and sends commands to SingleDie
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class Thrower : MonoBehaviour
 {

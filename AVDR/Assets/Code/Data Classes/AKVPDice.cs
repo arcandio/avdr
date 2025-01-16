@@ -1,6 +1,10 @@
 using System;
 using UnityEngine;
 
+
+/// <summary>
+/// A pair for dice. Holds a single array for numerous dice.
+/// </summary>
 [Serializable]
 public class AKVPDice : AssetKeyValuePair
 {

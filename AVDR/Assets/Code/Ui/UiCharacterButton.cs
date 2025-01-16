@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Button for a charactger in the character list
+/// </summary>
 public class UiCharacterButton : UiNavigation
 {
     public TextMeshProUGUI buttonText;

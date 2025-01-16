@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages historical statistical data
+/// </summary>
 public class HistoryManager : MonoBehaviour
 {
     public IoSystem ioSystem;

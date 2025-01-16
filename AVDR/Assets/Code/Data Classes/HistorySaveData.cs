@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// A wrapper for historical statistical data.
+/// </summary>
 public class HistorySaveData
 {
     public List<HistoryEntry> historyEntries = new List<HistoryEntry>();
