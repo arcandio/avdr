@@ -143,7 +143,7 @@ public class DiceManager : MonoBehaviour
         }
 
         /* Now to place the dice in their proper slots. */
-        AssetKeyValuePair pair = assetManager.Owned.GetAssetPair(AssetType.DiceSet, diceSet);
+        AKVPDice pair = assetManager.Owned.GetAssetPair(AssetType.DiceSet, diceSet) as AKVPDice;
         // Debug.Log(pair);
         foreach(GameObject prefab in pair.prefabs) {
             SingleDie singleDie = prefab.GetComponent<SingleDie>();

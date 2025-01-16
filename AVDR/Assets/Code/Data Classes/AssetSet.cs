@@ -12,10 +12,10 @@ using UnityEngine;
 [Serializable]
 public class AssetSet
 {
-    public AssetKeyValuePair[] diceSets = new AssetKeyValuePair[0];
-    public AssetKeyValuePair[] trays = new AssetKeyValuePair[0];
-    public AssetKeyValuePair[] lightings = new AssetKeyValuePair[0];
-    public AssetKeyValuePair[] effects = new AssetKeyValuePair[0];
+    public AKVPDice[] diceSets = new AKVPDice[0];
+    public AKVPTray[] trays = new AKVPTray[0];
+    public AKVPLight[] lightings = new AKVPLight[0];
+    public AKVPEffect[] effects = new AKVPEffect[0];
 
     /// <summary>
     /// Add two AssetSets together. Whee! Operator overloading!
@@ -30,21 +30,21 @@ public class AssetSet
         else if(a == null && b != null) return b;
         else if(b == null && a != null) return a;
         
-        List<AssetKeyValuePair> tempPairList = new List<AssetKeyValuePair>(a.diceSets);
-        tempPairList.AddRange(b.diceSets);
-        temp.diceSets = tempPairList.ToArray();
+        List<AKVPDice> tempPairListDice = new List<AKVPDice>(a.diceSets);
+        tempPairListDice.AddRange(b.diceSets);
+        temp.diceSets = tempPairListDice.ToArray();
 
-        tempPairList = new List<AssetKeyValuePair>(a.trays);
-        tempPairList.AddRange(b.trays);
-        temp.trays = tempPairList.ToArray();
+        List<AKVPTray> tempPairListTrays = new List<AKVPTray>(a.trays);
+        tempPairListTrays.AddRange(b.trays);
+        temp.trays = tempPairListTrays.ToArray();
 
-        tempPairList = new List<AssetKeyValuePair>(a.lightings);
-        tempPairList.AddRange(b.lightings);
-        temp.lightings = tempPairList.ToArray();
+        List<AKVPLight> tempPairListLights = new List<AKVPLight>(a.lightings);
+        tempPairListLights.AddRange(b.lightings);
+        temp.lightings = tempPairListLights.ToArray();
 
-        tempPairList = new List<AssetKeyValuePair>(a.effects);
-        tempPairList.AddRange(b.effects);
-        temp.effects = tempPairList.ToArray();
+        List<AKVPEffect> tempPairListEffects = new List<AKVPEffect>(a.effects);
+        tempPairListEffects.AddRange(b.effects);
+        temp.effects = tempPairListEffects.ToArray();
 
         return temp;
     }
@@ -63,6 +63,14 @@ public class AssetSet
 
     public string[] GetEffectKeys() {
         return GetKeys(effects);
+    }
+
+    public GameObject[] GetLightingRigs() {
+        List<GameObject> gameObjects = new List<GameObject>();
+        foreach(AKVPLight pair in lightings) {
+            gameObjects.Add(pair.lightingRig);
+        }
+        return gameObjects.ToArray();
     }
 
     /// <summary>
@@ -87,13 +95,13 @@ public class AssetSet
     public AssetKeyValuePair GetAssetPair(AssetType assetType, string assetName) {
         switch(assetType) {
             case AssetType.DiceSet:
-                return GetAssetPair(diceSets, assetName);
+                return GetAssetPair(diceSets, assetName) as AKVPDice;
             case AssetType.Tray:
-                return GetAssetPair(trays, assetName);
+                return GetAssetPair(trays, assetName) as AKVPTray;
             case AssetType.Lighting:
-                return GetAssetPair(lightings, assetName);
+                return GetAssetPair(lightings, assetName) as AKVPLight;
             case AssetType.Effects:
-                return GetAssetPair(effects, assetName);
+                return GetAssetPair(effects, assetName) as AKVPEffect;
             default:
                 Debug.LogError("Did not find " + assetName + " in " + assetType);
                 return null;
@@ -122,27 +130,26 @@ public class AssetSet
     /// <param name="assetType">The type of asset, and thus the list to add the asset to.</param>
     /// <param name="assetKeyValuePair">The asset pair to add.</param>
     public void AddAsset(AssetType assetType, AssetKeyValuePair assetKeyValuePair) {
-        List<AssetKeyValuePair> list;
         switch(assetType) {
             case AssetType.DiceSet:
-                list = new List<AssetKeyValuePair>(diceSets);
-                list.Add(assetKeyValuePair);
-                diceSets = list.ToArray();
+                List<AKVPDice> diceTemp = new List<AKVPDice>(diceSets);
+                diceTemp.Add(assetKeyValuePair as AKVPDice);
+                diceSets = diceTemp.ToArray();
                 break;
             case AssetType.Tray:
-                list = new List<AssetKeyValuePair>(trays);
-                list.Add(assetKeyValuePair);
-                trays = list.ToArray();
+                List<AKVPTray> traysTemp = new List<AKVPTray>(trays);
+                traysTemp.Add(assetKeyValuePair as AKVPTray);
+                trays = traysTemp.ToArray();
                 break;
             case AssetType.Lighting:
-                list = new List<AssetKeyValuePair>(lightings);
-                list.Add(assetKeyValuePair);
-                lightings = list.ToArray();
+                List<AKVPLight> lightsTemp = new List<AKVPLight>(lightings);
+                lightsTemp.Add(assetKeyValuePair as AKVPLight);
+                lightings = lightsTemp.ToArray();
                 break;
             case AssetType.Effects:
-                list = new List<AssetKeyValuePair>(effects);
-                list.Add(assetKeyValuePair);
-                effects = list.ToArray();
+                List<AKVPEffect> effectsTemp = new List<AKVPEffect>(effects);
+                effectsTemp.Add(assetKeyValuePair as AKVPEffect);
+                effects = effectsTemp.ToArray();
                 break;
             default:
                 Debug.Log("Cannot add an asset to AssetType.None.");

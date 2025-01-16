@@ -47,6 +47,7 @@ MonoBehaviour:
   free:
     diceSets:
     - key: Humble Commoner
+      priceInCents: 0
       prefabs:
       - {fileID: 5312348197640893989, guid: c51c714d535e23c448437402a4735b58, type: 3}
       - {fileID: 7112815720732814277, guid: e326524b0055e6044b91cff677ce22b4, type: 3}
@@ -58,6 +59,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 050b43bb62bb9154cb1fca3a0c96593d, type: 3}
       - {fileID: 1496617101837048839, guid: c66262cb3006c474db47708cbc67e4a0, type: 3}
     - key: Weary Soldier
+      priceInCents: 0
       prefabs:
       - {fileID: 5312348197640893989, guid: 897e6e2c6c3584f41b4b5330636f5071, type: 3}
       - {fileID: 7112815720732814277, guid: d7cd86bdb7d055747854e6d5635727d2, type: 3}
@@ -69,6 +71,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 5027bbfc10daab4439c8faf825f98656, type: 3}
       - {fileID: 1496617101837048839, guid: 36dd762940886bb4983deecbe65de7a6, type: 3}
     - key: Elderly Wizard
+      priceInCents: 0
       prefabs:
       - {fileID: 5312348197640893989, guid: ef4be362710227540b1572e583a195bf, type: 3}
       - {fileID: 7112815720732814277, guid: b26a6ec2941feda4b8d3e89942d233a5, type: 3}
@@ -80,6 +83,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 6da9d4e5b88bbd84cbba5a81faca889f, type: 3}
       - {fileID: 1496617101837048839, guid: 3b3d3363ba92c3e44bc5a56b2c9fecce, type: 3}
     - key: Pious Cleric
+      priceInCents: 0
       prefabs:
       - {fileID: 5312348197640893989, guid: dab5b01872e3bf1469afa0e1148d669c, type: 3}
       - {fileID: 7112815720732814277, guid: 8a00e8a74c81398468c662f462e46070, type: 3}
@@ -91,6 +95,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: a78017ee93d1fd14a9b95e9e8b87c319, type: 3}
       - {fileID: 1496617101837048839, guid: 0fae53257fc66e74185b32954a45bc33, type: 3}
     - key: Plastic Childhood
+      priceInCents: 0
       prefabs:
       - {fileID: 5312348197640893989, guid: d21c5c34a37a9714eb11ae27348bf653, type: 3}
       - {fileID: 7112815720732814277, guid: 14f205f51a314c64c8b27f9767aaf6d6, type: 3}
@@ -102,6 +107,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 912847a515f545648afd88f77c1ec8c3, type: 3}
       - {fileID: 1496617101837048839, guid: ca2b652278e0fa64f940ce069fb70156, type: 3}
     - key: Elven Steel
+      priceInCents: 0
       prefabs:
       - {fileID: 5312348197640893989, guid: 9ead57a95549e374f818a7394ddb6c51, type: 3}
       - {fileID: 7112815720732814277, guid: 4f846706c3e6c6a409b85840a0cb127e, type: 3}
@@ -114,26 +120,44 @@ MonoBehaviour:
       - {fileID: 1496617101837048839, guid: d5f280678e5706f43878a2f9481c5ea9, type: 3}
     trays:
     - key: Gray Felt
-      prefabs: []
+      priceInCents: 0
+      tray: {fileID: 0}
     - key: Polished Wood
-      prefabs: []
+      priceInCents: 0
+      tray: {fileID: 0}
     - key: Ancient Stone
-      prefabs: []
+      priceInCents: 0
+      tray: {fileID: 0}
+    - key: Rocky Dirt
+      priceInCents: 0
+      tray: {fileID: 0}
     lightings:
     - key: Daylight
-      prefabs: []
+      priceInCents: 0
+      lightingRig: {fileID: 0}
     - key: Night Time
-      prefabs: []
-    - key: Sunset
-      prefabs: []
+      priceInCents: 0
+      lightingRig: {fileID: 0}
+    - key: Setting Sun
+      priceInCents: 0
+      lightingRig: {fileID: 0}
     effects:
     - key: None
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
     - key: Magical Sparkles
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 1490736600996249036, guid: 9f39f3b30c4f38040b8b4ede54a8ad3a, type: 3}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
   paid:
     diceSets:
     - key: Sinister Vampire
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: adcb6ea679a0c694bb944266314f4c5c, type: 3}
       - {fileID: 7112815720732814277, guid: 7c2c90fdd27276f48bc1f2af429ecc01, type: 3}
@@ -145,6 +169,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 1078186e06904e942b40e3083a5b13b6, type: 3}
       - {fileID: 1496617101837048839, guid: 877776ac8aee4684e9c2629d3546662c, type: 3}
     - key: Turbulent Ocean
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: 4eabbdfabc7899a4e9b2597aac14d578, type: 3}
       - {fileID: 7112815720732814277, guid: 62df5f3d80c084649860cfe3f09f24b7, type: 3}
@@ -156,6 +181,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: a89bb72bb348fe54c923d834215a5b36, type: 3}
       - {fileID: 1496617101837048839, guid: ff2b70dac7b6b6a439d0e537a35d37dd, type: 3}
     - key: Nefarious Warlock
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: b1514d27a9f207c45b0db355bf35b15a, type: 3}
       - {fileID: 7112815720732814277, guid: d2e48a04664cd0f4fb3582dac26a32fd, type: 3}
@@ -167,6 +193,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 2298d7d2fdd6b2f49b843957d515bfd8, type: 3}
       - {fileID: 1496617101837048839, guid: 67e4c49ac7fce2e468f29080de0ddbc2, type: 3}
     - key: Starry Witch
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: dd7aa52b8fdba57499827cdcf0d9e9b1, type: 3}
       - {fileID: 7112815720732814277, guid: f03ce413967e637428a82ab1c3958240, type: 3}
@@ -178,6 +205,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 9235de65c6da39440996af721d61fb70, type: 3}
       - {fileID: 1496617101837048839, guid: c940c257c4f86df4990c4099a414f6d0, type: 3}
     - key: Fleshy Mass
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: 087c0102b0a6d2043b7c3d73680a688d, type: 3}
       - {fileID: 7112815720732814277, guid: ab61235b83b4b464d93df80dbcce8165, type: 3}
@@ -189,6 +217,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: b1a2da13c9692524f943d05c6341ae33, type: 3}
       - {fileID: 1496617101837048839, guid: 7826e1ee25d878d40a1c43e91ae2f24c, type: 3}
     - key: Advanced Circuits
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: 82ae7bf6aafd7c140b8b8b85d5884379, type: 3}
       - {fileID: 7112815720732814277, guid: 27268735c800e8a4c9fdef4e9569f10c, type: 3}
@@ -200,6 +229,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 4ac179d80285aa44d9c0c8b5617e3065, type: 3}
       - {fileID: 1496617101837048839, guid: 300357f8809b208448f4cfc05d9d4070, type: 3}
     - key: Vibrant Rainbow
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: 3f326dda6494a024e9b37ce6ed196e7b, type: 3}
       - {fileID: 7112815720732814277, guid: f9c94ebc646a5b44daee779903f71188, type: 3}
@@ -211,6 +241,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 2f18dce6d498e5141b08cd67d44e443e, type: 3}
       - {fileID: 1496617101837048839, guid: e899e8b2b38f70149a7e608fcb3b966b, type: 3}
     - key: Freshly Forged
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: 010b01936b210d2408126ec32a7825ee, type: 3}
       - {fileID: 7112815720732814277, guid: 38d8ce7a549421a4ebd41d84c36549fc, type: 3}
@@ -222,6 +253,7 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 878d7b5d141d5044f9372e7126ef534a, type: 3}
       - {fileID: 1496617101837048839, guid: f5cc8a1203d33364f80036efe66b735f, type: 3}
     - key: Cooling Magma
+      priceInCents: 99
       prefabs:
       - {fileID: 5312348197640893989, guid: da0fbabba60d45544ae494af9a15f84d, type: 3}
       - {fileID: 7112815720732814277, guid: 32b50933f889bd8458aff842ba511ff5, type: 3}
@@ -233,54 +265,92 @@ MonoBehaviour:
       - {fileID: 2505445690124151882, guid: 7c2c110576e0cb94eb8fd4ca152a945e, type: 3}
       - {fileID: 1496617101837048839, guid: bf36075624f502044a5343353cd7f165, type: 3}
     trays:
-    - key: Arcane Rune
-      prefabs: []
-    - key: Bloody Sacrifice
-      prefabs: []
-    - key: Fell Altar
-      prefabs: []
-    - key: Lovecraftian Ectoplasm
-      prefabs: []
-    - key: Someone's Guts
-      prefabs: []
     - key: Desert Sands
-      prefabs: []
-    - key: Gothic Lace
-      prefabs: []
-    - key: Bone Cage
-      prefabs: []
-    - key: Fuzzy Belly
-      prefabs: []
+      priceInCents: 99
+      tray: {fileID: 0}
+    - key: Emerald Geode
+      priceInCents: 99
+      tray: {fileID: 0}
+    - key: Sapphire Geode
+      priceInCents: 99
+      tray: {fileID: 0}
+    - key: Amethyst Geode
+      priceInCents: 99
+      tray: {fileID: 0}
+    - key: Ruby Geode
+      priceInCents: 99
+      tray: {fileID: 0}
+    - key: Mossy Rocks
+      priceInCents: 99
+      tray: {fileID: 0}
     lightings:
     - key: Mystical Library
-      prefabs: []
+      priceInCents: 0
+      lightingRig: {fileID: 0}
     - key: Enchanted Forest
-      prefabs: []
+      priceInCents: 0
+      lightingRig: {fileID: 0}
     - key: Roadside Campfire
-      prefabs: []
+      priceInCents: 0
+      lightingRig: {fileID: 0}
     - key: Flaming Hell
-      prefabs: []
+      priceInCents: 0
+      lightingRig: {fileID: 0}
     - key: Sickly Glow
-      prefabs: []
+      priceInCents: 0
+      lightingRig: {fileID: 0}
     - key: Candle Light
-      prefabs: []
+      priceInCents: 0
+      lightingRig: {fileID: 0}
     effects:
     - key: Bloody Mess
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
     - key: Holy Light
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
     - key: Evil Corruption
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
     - key: Blinding Flash
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
     - key: Bam Kapow
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
     - key: Occult Glyphs
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
     - key: Chilly Blizzard
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
     - key: Cosmic Dust
-      prefabs: []
+      priceInCents: 0
+      onHitPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 0}
+      alwaysOnPrefab: {fileID: 0}
+      environmentPrefab: {fileID: 0}
   purchased:
     diceSets: []
     trays: []
