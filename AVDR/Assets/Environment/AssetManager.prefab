@@ -283,6 +283,9 @@ MonoBehaviour:
     - key: Mossy Rocks
       priceInCents: 99
       tray: {fileID: 0}
+    - key: Arcane Rune
+      priceInCents: 99
+      tray: {fileID: 0}
     lightings: []
     effects:
     - key: Bloody Mess
