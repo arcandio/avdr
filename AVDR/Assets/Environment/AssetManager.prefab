@@ -151,9 +151,9 @@ MonoBehaviour:
     - key: Magical Sparkles
       priceInCents: 0
       onHitPrefab: {fileID: 1490736600996249036, guid: 9f39f3b30c4f38040b8b4ede54a8ad3a, type: 3}
-      onFinishPrefab: {fileID: 0}
-      alwaysOnPrefab: {fileID: 0}
-      environmentPrefab: {fileID: 0}
+      onFinishPrefab: {fileID: 1490736600996249036, guid: 9f39f3b30c4f38040b8b4ede54a8ad3a, type: 3}
+      alwaysOnPrefab: {fileID: 1490736600996249036, guid: 9f39f3b30c4f38040b8b4ede54a8ad3a, type: 3}
+      environmentPrefab: {fileID: 1490736600996249036, guid: 9f39f3b30c4f38040b8b4ede54a8ad3a, type: 3}
   paid:
     diceSets:
     - key: Sinister Vampire
@@ -283,25 +283,7 @@ MonoBehaviour:
     - key: Mossy Rocks
       priceInCents: 99
       tray: {fileID: 0}
-    lightings:
-    - key: Mystical Library
-      priceInCents: 0
-      lightingRig: {fileID: 0}
-    - key: Enchanted Forest
-      priceInCents: 0
-      lightingRig: {fileID: 0}
-    - key: Roadside Campfire
-      priceInCents: 0
-      lightingRig: {fileID: 0}
-    - key: Flaming Hell
-      priceInCents: 0
-      lightingRig: {fileID: 0}
-    - key: Sickly Glow
-      priceInCents: 0
-      lightingRig: {fileID: 0}
-    - key: Candle Light
-      priceInCents: 0
-      lightingRig: {fileID: 0}
+    lightings: []
     effects:
     - key: Bloody Mess
       priceInCents: 0

@@ -239,7 +239,6 @@ public class CharacterManager : MonoBehaviour
         selectedChar.traySet = option.text;
         environmentManager.RebuildEnv(selectedChar);
         Save();
-        Debug.Log("Set tray");
     }
 
     /// <summary>
@@ -250,7 +249,6 @@ public class CharacterManager : MonoBehaviour
         selectedChar.lightingSet = option.text;
         environmentManager.RebuildEnv(selectedChar);
         Save();
-        Debug.Log("Set lighting");
     }
 
     /// <summary>
@@ -259,6 +257,7 @@ public class CharacterManager : MonoBehaviour
     public void SetEffects(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = effectsDropdown.options[tempIndex];
         selectedChar.effectsSet = option.text;
+        environmentManager.RebuildEnv(selectedChar);
         Save();
     }
 

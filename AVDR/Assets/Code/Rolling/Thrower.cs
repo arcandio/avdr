@@ -7,6 +7,7 @@ public class Thrower : MonoBehaviour
 {
     public static Thrower instance;
     public TextMeshProUGUI tmp;
+    public ParticleEffectManager particleEffectManager;
     public AudioClip[] rollClips;
     public float accelerationThreshold = 2;
     public float rerollTime = 1;

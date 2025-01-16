@@ -5,6 +5,7 @@ public class EnvironmentManager : MonoBehaviour
 {
     // public CharacterManager characterManager;
     public AssetManager assetManager;
+    public ParticleEffectManager particleEffectManager;
     public Transform trayHoldingArea;
     public GameObject defaultLighting;
     public GameObject defaultTray;
@@ -14,6 +15,10 @@ public class EnvironmentManager : MonoBehaviour
     public void RebuildEnv(CharacterData characterData) {
         if(characterData == null) {
             Debug.LogError("Null character passed to RebuildEnv");
+            defaultTray.transform.position = Vector3.zero;
+            defaultTray.SetActive(true);
+            defaultLighting.SetActive(true);
+            particleEffectManager.ClearParticleEffectPrefabs();
         }
         UpdateTray(characterData);
         UpdateLighting(characterData);
@@ -21,7 +26,6 @@ public class EnvironmentManager : MonoBehaviour
     }
 
     void UpdateTray(CharacterData characterData) {
-        Debug.Log("UpdateTray " + characterData.traySet);
         ResetTrays();
         ActivateTray(characterData.traySet);
     }
@@ -67,6 +71,22 @@ public class EnvironmentManager : MonoBehaviour
     }
 
     void UpdateEffects(CharacterData characterData) {
-        Debug.Log("UpdateEffects " + characterData.effectsSet);
+        if(string.IsNullOrEmpty(characterData.effectsSet)) {
+            Debug.Log("Empty effects name, clearing");
+            particleEffectManager.ClearParticleEffectPrefabs();
+            return;
+        }
+        else if(characterData.effectsSet.ToLower() == "none") {
+            Debug.Log("Effects: None, clearing");
+            particleEffectManager.ClearParticleEffectPrefabs();
+            return;
+        }
+        AKVPEffect pair = assetManager.Owned.GetAssetPair(AssetType.Effects, characterData.effectsSet) as AKVPEffect;
+        if(pair == null) {
+            Debug.LogError("User does now own " + characterData.effectsSet);
+            particleEffectManager.ClearParticleEffectPrefabs();
+            return;
+        }
+        particleEffectManager.SetParticleEffectPrefabs(pair);
     }
 }

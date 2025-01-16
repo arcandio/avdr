@@ -5501,6 +5501,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389709684}
   m_CullTransparentMesh: 1
+--- !u!1 &397261690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 397261691}
+  - component: {fileID: 397261692}
+  m_Layer: 0
+  m_Name: ParticleEffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &397261691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397261690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1764178819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &397261692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397261690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42184c1ee11407c4595a2b9e0f4cf292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterManager: {fileID: 3739863306044566221}
+  effects:
+    key: 
+    priceInCents: 0
+    onHitPrefab: {fileID: 0}
+    onFinishPrefab: {fileID: 0}
+    alwaysOnPrefab: {fileID: 0}
+    environmentPrefab: {fileID: 0}
 --- !u!1 &397312994 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8417443738272063957, guid: 8eebbf8a5557a1a44a766c0b6732311a, type: 3}
@@ -26571,7 +26623,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 450993385}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999388
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -27334,6 +27386,7 @@ Transform:
   - {fileID: 2847608282662429565}
   - {fileID: 7283719017472792397}
   - {fileID: 1879964927}
+  - {fileID: 397261691}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1773253305
@@ -28688,7 +28741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000046644287}
+  m_AnchoredPosition: {x: 0, y: 0.00000026602763}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1912123366
@@ -31393,10 +31446,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1764178819}
     m_Modifications:
     - target: {fileID: 1222973531338506992, guid: 7fbc7a48dadf91140bd8f6ef5fba969c, type: 3}
-      propertyPath: paid.lightings.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222973531338506992, guid: 7fbc7a48dadf91140bd8f6ef5fba969c, type: 3}
       propertyPath: free.trays.Array.data[0].tray
       value: 
       objectReference: {fileID: 69425530}
@@ -32385,6 +32434,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 407702390}
     - target: {fileID: 7912851310238064721, guid: cd7c4df6d1b71224d8425d1c097ffce0, type: 3}
+      propertyPath: defaultTray
+      value: 
+      objectReference: {fileID: 69425530}
+    - target: {fileID: 7912851310238064721, guid: cd7c4df6d1b71224d8425d1c097ffce0, type: 3}
       propertyPath: assetManager
       value: 
       objectReference: {fileID: 2847608282662429566}
@@ -32400,6 +32453,10 @@ PrefabInstance:
       propertyPath: lightingRigParent
       value: 
       objectReference: {fileID: 1793018612}
+    - target: {fileID: 7912851310238064721, guid: cd7c4df6d1b71224d8425d1c097ffce0, type: 3}
+      propertyPath: particleEffectManager
+      value: 
+      objectReference: {fileID: 397261692}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32493,6 +32550,10 @@ PrefabInstance:
       propertyPath: tmp
       value: 
       objectReference: {fileID: 1201156814}
+    - target: {fileID: 7804023637237468789, guid: 0c71b7abe873653408378e61adc9fb1a, type: 3}
+      propertyPath: particleEffectManager
+      value: 
+      objectReference: {fileID: 397261692}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
