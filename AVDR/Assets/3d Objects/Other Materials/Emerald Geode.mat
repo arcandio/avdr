@@ -89,6 +89,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: b8f3c445f2398404285984cc53f95174, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _cubemap:
+        m_Texture: {fileID: 8900000, guid: 54f7766aee7f66d4498bdb653dba6885, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _diffuse:
         m_Texture: {fileID: 2800000, guid: c1c9fa4b575f93f42a9bf5f6c960f1b3, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -174,13 +178,17 @@ Material:
     - _ambient_occlusion_multiplier: 1
     - _flip_ao_mask: 1
     - _metallic_modifier: 1
-    - _roughness_multiplier: 1
+    - _reflection_blur: 0
+    - _roughness_multiplier: 0.838
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _diffuse_color: {r: 0, g: 0.5377358, b: 0.48011956, a: 1}
+    - _diffuse_color: {r: 0, g: 0.74901944, b: 0.66876495, a: 1}
     - _emission_color: {r: 0, g: 0, b: 0, a: 0}
+    - _offset: {r: 0, g: 0, b: 0, a: 0}
+    - _reflection_range: {r: 0, g: 1, b: 0, a: 0}
+    - _tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
