@@ -171,10 +171,10 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _ambient_occlusion_multiplier: 5
+    - _ambient_occlusion_multiplier: 1
     - _flip_ao_mask: 0
     - _metallic_modifier: 0
-    - _roughness_multiplier: 1
+    - _roughness_multiplier: 0.448
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

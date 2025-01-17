@@ -138,7 +138,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _ambient_occlusion_multiplier: 1
+    - _ambient_occlusion_multiplier: 0.1
     - _flip_ao_mask: 1
     - _metallic_modifier: 1
     - _roughness_multiplier: 0.629
