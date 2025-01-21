@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Polished Wood
+  m_Name: Fell Altar
   m_Shader: {fileID: -6465566751694194690, guid: 794d1ee0e29540f428a8175cc907f1d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -82,19 +82,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ambient_occlusion:
-        m_Texture: {fileID: 2800000, guid: 7078290dccbc9374a992a86ab6eef341, type: 3}
+        m_Texture: {fileID: 2800000, guid: b8f3c445f2398404285984cc53f95174, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ambient_occlusion_map:
-        m_Texture: {fileID: 2800000, guid: 7078290dccbc9374a992a86ab6eef341, type: 3}
+        m_Texture: {fileID: 2800000, guid: b9aead8e2a7862a429a6c2117dd8c0f7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _diffuse:
-        m_Texture: {fileID: 2800000, guid: f550dd93873d7834b9120497e8e377a6, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1c9fa4b575f93f42a9bf5f6c960f1b3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _diffuse_map:
-        m_Texture: {fileID: 2800000, guid: f550dd93873d7834b9120497e8e377a6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 32a3a0e8b9fe5594696c44652be41ea8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _emissive_mask:
@@ -106,23 +106,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _metallic_map:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f21e33c22d68954439b9fd3534bdfb78, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normal:
-        m_Texture: {fileID: 2800000, guid: ceca93cf679638c4ead5fd23d9f9a18b, type: 3}
+        m_Texture: {fileID: 2800000, guid: ebf6cfa4af9cfc04ea43b090da648df4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normal_map:
-        m_Texture: {fileID: 2800000, guid: ceca93cf679638c4ead5fd23d9f9a18b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8f8d666a5c7651948862338049a62311, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _roughness:
-        m_Texture: {fileID: 2800000, guid: 06532d125da2a8e4cbd1ec660489c175, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _roughness_map:
-        m_Texture: {fileID: 2800000, guid: 06532d125da2a8e4cbd1ec660489c175, type: 3}
+        m_Texture: {fileID: 2800000, guid: c7a7ec0e520100f4490e228ed710de95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -172,8 +172,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _ambient_occlusion_multiplier: 1
-    - _flip_ao_mask: 0
-    - _metallic_modifier: 0
+    - _flip_ao_mask: 1
+    - _metallic_modifier: 1
     - _roughness_multiplier: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
@@ -183,6 +183,6 @@ Material:
     - _diffuse_color: {r: 1, g: 1, b: 1, a: 1}
     - _emission_color: {r: 0, g: 0, b: 0, a: 0}
     - _offset: {r: 0, g: 0, b: 0, a: 0}
-    - _tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _tiling: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
