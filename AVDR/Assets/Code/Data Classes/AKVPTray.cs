@@ -8,11 +8,11 @@ using UnityEngine;
 [Serializable]
 public class AKVPTray : AssetKeyValuePair
 {
-    public GameObject tray;
+    public GameObject trayPrefab;
 
     public override string ToString() {
         string output = key;
-        output += ", " + tray.name;
+        output += ", " + trayPrefab.name;
         return output;
     }
 }

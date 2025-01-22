@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -37,35 +38,91 @@ public class EnvironmentManager : MonoBehaviour
     /// </summary>
     /// <param name="characterData"></param>
     void UpdateTray(CharacterData characterData) {
-        ResetTrays();
-        ActivateTray(characterData.traySet);
+        ResetTrays(characterData.trayName);
     }
 
     /// <summary>
     /// Hides all trays
     /// </summary>
-    void ResetTrays() {
+    void ResetTrays(string trayName) {
+        List<Transform> removeTheseChildren = new List<Transform>();
+        bool alreadyHadTheTray = false;
         foreach(Transform tray in trayParent) {
-            tray.gameObject.SetActive(false);
-            tray.transform.position = trayHoldingArea.position;
+            /* We're on the tray that the user selected. Poistion and activate it. */
+            if(tray.gameObject.name == trayName) {
+                SetTrayActive(tray, true);
+                alreadyHadTheTray = true;
+                continue;
+            }
+            /* We're on the default tray. Hide it, but don't delete it. */
+            else if(tray == defaultTray.transform) {
+                SetTrayActive(tray, false);
+                continue;
+            }
+            /* We found the tray holding area. Don't move or delete it. */
+            else if(tray == trayHoldingArea) {
+                continue;
+            }
+            /* Other tray. Discard. */
+            else {
+                SetTrayActive(tray, false);
+                removeTheseChildren.Add(tray);
+                continue;
+            }
+        }
+        foreach(Transform child in removeTheseChildren) {
+            Destroy(child.gameObject);
+        }
+        if(alreadyHadTheTray == false) {
+            InstantiateTray(trayName);
         }
     }
 
     /// <summary>
-    /// activates an owned tray by name
+    /// Instantiates a tray from the asset manager
     /// </summary>
     /// <param name="trayName"></param>
-    void ActivateTray(string trayName) {
+    void InstantiateTray(string trayName) {
         AKVPTray pair = assetManager.Owned.GetAssetPair(AssetType.Tray, trayName) as AKVPTray;
         if(pair == null) {
             Debug.LogError("User does not own " + trayName);
-            defaultTray.transform.position = Vector3.zero;
-            defaultTray.SetActive(true);
+            SetTrayActive(defaultTray, true);
             return;
         }
-        pair.tray.transform.position = Vector3.zero;
-        pair.tray.SetActive(true);
+        GameObject instance = Instantiate(pair.trayPrefab, Vector3.zero, Quaternion.identity, trayParent);
+        SetTrayActive(instance, true);
     }
+
+    /// <summary>
+    /// Enable or disable a tray.
+    /// </summary>
+    /// <param name="go">GameObject of tray</param>
+    void SetTrayActive(GameObject go, bool active) {
+        if(active == true) {
+            go.SetActive(true);
+            go.transform.position = Vector3.zero;
+        }
+        else {
+            go.SetActive(false);
+            go.transform.position = trayHoldingArea.position;
+        }
+    }
+
+    /// <summary>
+    /// Enable or disable a tray.
+    /// </summary>
+    /// <param name="tr">Transform of tray</param>
+    void SetTrayActive(Transform tr, bool active) {
+        if(active == true) {
+            tr.gameObject.SetActive(true);
+            tr.position = Vector3.zero;
+        }
+        else {
+            tr.gameObject.SetActive(false);
+            tr.position = trayHoldingArea.position;
+        }
+    }
+
 
     /// <summary>
     /// Sets up the scene lighting
@@ -90,6 +147,10 @@ public class EnvironmentManager : MonoBehaviour
     /// </summary>
     /// <param name="lightingRigName"></param>
     void ActivateLightingRig(string lightingRigName) {
+        if(string.IsNullOrEmpty(lightingRigName)) {
+            defaultLighting.SetActive(true);
+            return;
+        }
         AKVPLight pair = assetManager.Owned.GetAssetPair(AssetType.Lighting, lightingRigName) as AKVPLight;
         if(pair == null) {
             Debug.LogError("User does not own " + lightingRigName);

@@ -121,16 +121,16 @@ MonoBehaviour:
     trays:
     - key: Gray Felt
       priceInCents: 0
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 6455959306998359145, guid: 9a0404214f352af41b0607e55c8f3f0a, type: 3}
     - key: Polished Wood
       priceInCents: 0
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 3048758238191435295, guid: 7079ecea98a7bf24db5b42fe1d161384, type: 3}
     - key: Ancient Stone
       priceInCents: 0
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 928183413009431344, guid: 69c2fa75af5c7934497e91af7e683bde, type: 3}
     - key: Rocky Dirt
       priceInCents: 0
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 1055609251961015064, guid: b0e3e8c1f5c42bd4fbbcad6e41419162, type: 3}
     lightings:
     - key: Daylight
       priceInCents: 0
@@ -267,26 +267,62 @@ MonoBehaviour:
     trays:
     - key: Desert Sands
       priceInCents: 99
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 2355881541405728126, guid: 2d7ac86ad0a6b98409c9e685c844f628, type: 3}
     - key: Emerald Geode
       priceInCents: 99
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 8240344693049729857, guid: 78137d57904926f4ba2c1eb87afe2d3b, type: 3}
     - key: Sapphire Geode
       priceInCents: 99
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 4024096738920023099, guid: bdb197c0e8c9ba74dadbfc677f985f39, type: 3}
     - key: Amethyst Geode
       priceInCents: 99
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 3611858186901330309, guid: 37d7156a967f72746b595b0411dedddc, type: 3}
     - key: Ruby Geode
       priceInCents: 99
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 4977722756701753658, guid: ec06abea9e0927d41aa3f1e0d32ef444, type: 3}
     - key: Mossy Rocks
       priceInCents: 99
-      tray: {fileID: 0}
+      trayPrefab: {fileID: 4944098234535204146, guid: a074cb7e003175e47b1dd4762aeb47bb, type: 3}
     - key: Arcane Rune
       priceInCents: 99
-      tray: {fileID: 0}
-    lightings: []
+      trayPrefab: {fileID: 3520635476123506328, guid: 5e453f8cd31793640b8c9cad9225929b, type: 3}
+    - key: Etched Iron
+      priceInCents: 99
+      trayPrefab: {fileID: 3658998567043671222, guid: 96a60289283e03f4ea9b96f57f9cc6a2, type: 3}
+    - key: Fell Altar
+      priceInCents: 99
+      trayPrefab: {fileID: 6904557026649960151, guid: 07ec64c8f2ef3094cb9632a66fb30222, type: 3}
+    - key: Lovecraftian Ectoplasm
+      priceInCents: 99
+      trayPrefab: {fileID: 470634004008228369, guid: ccc2f2c7b222ec6409e41cbf05469ef8, type: 3}
+    lightings:
+    - key: Flaming Hell
+      priceInCents: 99
+      lightingRig: {fileID: 0}
+    - key: Flickering Candle
+      priceInCents: 99
+      lightingRig: {fileID: 0}
+    - key: Sickly Glow
+      priceInCents: 99
+      lightingRig: {fileID: 0}
+    - key: Enchanted Forest
+      priceInCents: 99
+      lightingRig: {fileID: 0}
+    - key: Flickering Candle
+      priceInCents: 99
+      lightingRig: {fileID: 0}
+    - key: Mystical Library
+      priceInCents: 99
+      lightingRig: {fileID: 0}
+    - key: Mountain Shadow
+      priceInCents: 99
+      lightingRig: {fileID: 0}
+    - key: Windswept Desert
+      priceInCents: 99
+      lightingRig: {fileID: 0}
+    - key: Forest Waterfall
+      priceInCents: 99
+      lightingRig: {fileID: 0}
     effects:
     - key: Bloody Mess
       priceInCents: 0

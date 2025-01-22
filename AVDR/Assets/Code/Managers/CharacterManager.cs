@@ -105,7 +105,7 @@ public class CharacterManager : MonoBehaviour
         if(selectedChar != null) {
             nameField.text = selectedChar.characterName;
             SetIndexOfOption(diceSetDropdown, selectedChar.diceSet);
-            SetIndexOfOption(trayDropdown, selectedChar.traySet);
+            SetIndexOfOption(trayDropdown, selectedChar.trayName);
             SetIndexOfOption(lightingDropdown, selectedChar.lightingSet);
             SetIndexOfOption(effectsDropdown, selectedChar.effectsSet);
             // SetIndexOfOption(d4TypeDropdown, selectedChar.d4Type.ToString() + " d4");
@@ -236,7 +236,7 @@ public class CharacterManager : MonoBehaviour
     /// </summary>
     public void SetTray(Int32 tempIndex) {
         TMP_Dropdown.OptionData option = trayDropdown.options[tempIndex];
-        selectedChar.traySet = option.text;
+        selectedChar.trayName = option.text;
         environmentManager.RebuildEnv(selectedChar);
         Save();
     }

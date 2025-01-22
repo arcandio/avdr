@@ -12,7 +12,7 @@ public class CharacterData {
     public List<DicePool> rollPresets = new List<DicePool>();
     public string diceSet;
     public D4Type d4Type;
-    public string traySet;
+    public string trayName;
     public string lightingSet;
     public string effectsSet;
 }
