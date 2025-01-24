@@ -295,6 +295,15 @@ MonoBehaviour:
     - key: Lovecraftian Ectoplasm
       priceInCents: 99
       trayPrefab: {fileID: 470634004008228369, guid: ccc2f2c7b222ec6409e41cbf05469ef8, type: 3}
+    - key: Worn Leather
+      priceInCents: 99
+      trayPrefab: {fileID: 4024096738920023099, guid: 06c95a177ae7963439d87d0e2db777d3, type: 3}
+    - key: Frozen Glacier
+      priceInCents: 99
+      trayPrefab: {fileID: 4024096738920023099, guid: db280071d9769604992a10d898e26aa6, type: 3}
+    - key: Ominous Derelict
+      priceInCents: 99
+      trayPrefab: {fileID: 4024096738920023099, guid: a7ef4d41512c906478b373a6ec1df680, type: 3}
     lightings:
     - key: Flaming Hell
       priceInCents: 99
