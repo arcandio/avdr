@@ -432,7 +432,7 @@ public class CharacterManager : MonoBehaviour
 
             /* error catching */
             default:
-                Debug.LogError("Dropped through PresetData Switch");
+                Debug.LogError("Dropped through PresetData Switch " + presetField);
                 break;
         }
         PopulatePresetListButtons();
