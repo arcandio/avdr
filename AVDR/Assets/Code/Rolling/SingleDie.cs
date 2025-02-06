@@ -21,6 +21,12 @@ public class SingleDie : MonoBehaviour
     /// </summary>
     public D4Type d4Type = D4Type.Caltrop;
 
+    public DieSizeAndType dieSizeAndType {
+        get {
+            return ExtensionMethods.CombineDieSizeAndType(dieSize, d4Type);
+        }
+    }
+
     public ParticleEffectManager particleEffectManager;
 
     public SingleDie pairedDie = null;
@@ -229,5 +235,12 @@ public class SingleDie : MonoBehaviour
     {
         return GetInstanceID();
     }
-
+#if UNITY_EDITOR
+    void OnDrawGizmos() {
+        if(pairedDie != null) {
+            Gizmos.color = new Color(0, 0, 1);
+            Gizmos.DrawLine(transform.position, pairedDie.transform.position);
+        }
+    }
+#endif
 }

@@ -15,7 +15,7 @@ public class HistoryManager : MonoBehaviour
     [SerializeField] private HistorySaveData data = new HistorySaveData();
 
 
-    void Start() {
+    public void Setup() {
         data = ioSystem.LoadHistoricalData();
         PopulateLoadedHistory();
     }

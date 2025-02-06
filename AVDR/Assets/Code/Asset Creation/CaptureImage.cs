@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
@@ -12,9 +13,16 @@ public class CaptureImage : MonoBehaviour
 
     private RenderTexture temporaryRenderTexture;
     private Texture2D texture2D;
+    private GameObject[] prototypeDice;
+    private GameObject defaultTray;
+    private GameObject defaultLight;
 
-    void Start() {
-        // CaptureScreen();
+    void Awake() {
+        /* gain control of the scene by turning off CharacterManager */
+        Debug.LogWarning("Capture Image Awake");
+        CharacterManager characterManager = FindFirstObjectByType<CharacterManager>(FindObjectsInactive.Include);
+        characterManager.enabled = false;
+        characterManager.gameObject.SetActive(false);
     }
 
     public void CaptureScreen() {
@@ -27,15 +35,12 @@ public class CaptureImage : MonoBehaviour
     }
 
     private IEnumerator CaptureAllCoroutine() {
+        yield return new WaitForEndOfFrame();
         /* get ready */
         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
         stopwatch.Start();
         Debug.LogWarning("Capture All Assets Started.");
-        // temporaryRenderTexture = RenderTexture.GetTemporary(size, size, 16, RenderTextureFormat.ARGB32);
-        // camera.targetTexture = temporaryRenderTexture;
-        // texture2D = new Texture2D(size, size, TextureFormat.RGB24, false);
-        // RenderTexture original = RenderTexture.active;
-        // RenderTexture.active = temporaryRenderTexture;
+
         
         /* get the assets we need to capture */
         AssetManager assetManager = FindFirstObjectByType<AssetManager>();
@@ -44,18 +49,9 @@ public class CaptureImage : MonoBehaviour
         /* capture each asset */
         yield return CaptureDiceSets(dicePairs, AssetType.DiceSet);
         
-        /* finish up */
-        // if(Application.isPlaying) {
-        //     Destroy(texture2D);
-        // }
-        // else {
-        //     DestroyImmediate(texture2D);
-        // }
-        // RenderTexture.ReleaseTemporary(temporaryRenderTexture);
-        // camera.targetTexture = null;
-        // RenderTexture.active = original;
         stopwatch.Stop();
-        Debug.Log("Capture All Assets completed in " + stopwatch.Elapsed + " s");
+        string elapsed = stopwatch.Elapsed.ToString();
+        Debug.Log("Capture All Assets completed in " + elapsed.Split('.', StringSplitOptions.None)[0] + " s");
     }
 
     /// <summary>

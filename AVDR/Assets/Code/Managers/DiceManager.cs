@@ -18,15 +18,17 @@ public class DiceManager : MonoBehaviour
 
     /* diceprefabs */
     public string defaultDiceName = "Humble Commoner";
-    public GameObject d4CaltropPrefab;
-    public GameObject d4CrystalPrefab;
-    public GameObject d4PendantPrefab;
-    public GameObject d6Prefab;
-    public GameObject d8Prefab;
-    public GameObject d10Prefab;
-    public GameObject d12Prefab;
-    public GameObject d20Prefab;
-    public GameObject d100Prefab;
+    // public GameObject d4CaltropPrefab;
+    // public GameObject d4CrystalPrefab;
+    // public GameObject d4PendantPrefab;
+    // public GameObject d6Prefab;
+    // public GameObject d8Prefab;
+    // public GameObject d10Prefab;
+    // public GameObject d12Prefab;
+    // public GameObject d20Prefab;
+    // public GameObject d100Prefab;
+
+    private Dictionary<DieSizeAndType, GameObject> dicePrefabs = new Dictionary<DieSizeAndType, GameObject>();
 
     /* private variables */
 
@@ -44,7 +46,7 @@ public class DiceManager : MonoBehaviour
     }
     private List<SingleDie> tempInstances = new List<SingleDie>();
 
-    void Awake() {
+    public void Setup() {
         if(instance == null) {
             instance = this;
         }
@@ -54,15 +56,11 @@ public class DiceManager : MonoBehaviour
         }
     }
 
-    void Start() {
-        CreateDice(dicePoolData);
-    }
-
     /// <summary>
     /// Cleans up the scene by removing the current dice.
     /// </summary>
     void ClearInstances() {
-        // Debug.Log("clear instances");
+        Debug.Log("clear instances");
         foreach(SingleDie die in diceInstances) {
             /* disable the instances so they don't try any last-minute calls
             on the frame they're destroyed. */
@@ -85,17 +83,17 @@ public class DiceManager : MonoBehaviour
         dicePoolData = inputDicePool;
         /* create one die for each one in the pool */
         tempInstances = new List<SingleDie>();
-        if(d4Type == D4Type.Caltrop) InstanceDie(d4CaltropPrefab, dicePoolData.d4s);
-        if(d4Type == D4Type.Crystal) InstanceDie(d4CrystalPrefab, dicePoolData.d4s);
-        if(d4Type == D4Type.Pendant) InstanceDie(d4PendantPrefab, dicePoolData.d4s);
-        InstanceDie(d6Prefab, dicePoolData.d6s);
-        InstanceDie(d8Prefab, dicePoolData.d8s);
-        InstanceDie(d10Prefab, dicePoolData.d10s);
-        InstanceDie(d12Prefab, dicePoolData.d12s);
-        InstanceDie(d20Prefab, dicePoolData.d20s);
+        if(d4Type == D4Type.Caltrop) InstanceDie(dicePrefabs[DieSizeAndType.d4Caltrop], dicePoolData.d4s);
+        if(d4Type == D4Type.Crystal) InstanceDie(dicePrefabs[DieSizeAndType.d4Crystal], dicePoolData.d4s);
+        if(d4Type == D4Type.Pendant) InstanceDie(dicePrefabs[DieSizeAndType.d4Pendant], dicePoolData.d4s);
+        InstanceDie(dicePrefabs[DieSizeAndType.d6], dicePoolData.d6s);
+        InstanceDie(dicePrefabs[DieSizeAndType.d8], dicePoolData.d8s);
+        InstanceDie(dicePrefabs[DieSizeAndType.d10], dicePoolData.d10s);
+        InstanceDie(dicePrefabs[DieSizeAndType.d12], dicePoolData.d12s);
+        InstanceDie(dicePrefabs[DieSizeAndType.d20], dicePoolData.d20s);
         // InstanceDie(d100Prefab, dicePoolData.d100s);
         // InstanceDie(d10Prefab, dicePoolData.d100s);
-        InstancePairedDice(d10Prefab, d100Prefab, dicePoolData.d100s);
+        InstancePairedDice(dicePrefabs[DieSizeAndType.d10], dicePrefabs[DieSizeAndType.d100], dicePoolData.d100s);
         // GetDiceInstances();
         diceInstances = tempInstances.ToArray();
         rollOutput.SetDicePool(dicePoolData);
@@ -162,46 +160,41 @@ public class DiceManager : MonoBehaviour
                 return;
             }
             else {
-                switch(singleDie.dieSize) {
-                    case DieSize.d4:
-                        switch(singleDie.d4Type) {
-                            case D4Type.Caltrop:
-                                d4CaltropPrefab = prefab;
-                                break;
-                            case D4Type.Crystal:
-                                d4CrystalPrefab = prefab;
-                                break;
-                            case D4Type.Pendant:
-                                d4PendantPrefab = prefab;
-                                break;
-                            default:
-                                Debug.LogError("Fell through D4Type switch.");
-                                break;
-                        }
-                        break;
-                    case DieSize.d6:
-                        d6Prefab = prefab;
-                        break;
-                    case DieSize.d8:
-                        d8Prefab = prefab;
-                        break;
-                    case DieSize.d10:
-                        d10Prefab = prefab;
-                        break;
-                    case DieSize.d12:
-                        d12Prefab = prefab;
-                        break;
-                    case DieSize.d20:
-                        d20Prefab = prefab;
-                        break;
-                    case DieSize.d100:
-                        d100Prefab = prefab;
-                        break;
-                    default:
-                        Debug.LogError("Fell through DieType switch.");
-                        break;
+                dicePrefabs[singleDie.dieSizeAndType] = prefab;
+            }
+        }
+        ReplaceInSitu();
+    }
+
+    /// <summary>
+    /// Replaces existing SingleDie instances with matching new ones
+    /// </summary>
+    private void ReplaceInSitu() {
+        List<SingleDie> newDice = new List<SingleDie>();
+        Dictionary<SingleDie, SingleDie> pairs = new Dictionary<SingleDie, SingleDie>();
+        for(int i = 0; i < diceInstances.Length; i++) {
+            SingleDie original = diceInstances[i];
+            GameObject prefab = dicePrefabs[original.dieSizeAndType];
+            GameObject temp = Instantiate(prefab, original.transform.position, original.transform.rotation, dicePoolParent);
+            SingleDie newSingleDie = temp.GetComponent<SingleDie>();
+            newDice.Add(newSingleDie);
+            newSingleDie.particleEffectManager = particleEffectManager;
+            particleEffectManager.AttachTrail(newSingleDie);
+
+            /* re-link paired dice */
+            if(original.pairedDie != null) {
+                if(pairs.ContainsKey(original)) {
+                    /* found a paired set, the other half of which was already  found */
+                    newSingleDie.pairedDie = pairs[original];
+                    pairs[original].pairedDie = newSingleDie;
+                }
+                else {
+                    /* add the OLD single die from the pair to check against */
+                    pairs[original.pairedDie] = newSingleDie;
                 }
             }
         }
+        ClearInstances();
+        diceInstances = newDice.ToArray();
     }
 }

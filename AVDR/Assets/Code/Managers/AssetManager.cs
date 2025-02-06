@@ -43,9 +43,6 @@ public class AssetManager : MonoBehaviour
         if(Debug.isDebugBuild) {
             CheatCode();
         }
-        #if UNITY_EDITOR || DEVELOPMENT_BUILD
-        CheatCode();
-        #endif
     }
 
     public void CheatCode() {

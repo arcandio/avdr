@@ -32,4 +32,37 @@ public static class ExtensionMethods {
         string str = ints.IntsToString(title, sep);
         UnityEngine.Debug.Log(str);
     }
+
+    public static DieSizeAndType CombineDieSizeAndType (DieSize dieSize, D4Type d4Type) {
+    if(dieSize == DieSize.d4) {
+        switch(d4Type) {
+            case D4Type.Crystal:
+                return DieSizeAndType.d4Crystal;
+            case D4Type.Pendant:
+                return DieSizeAndType.d4Pendant;
+            default:
+            case D4Type.Caltrop:
+                return DieSizeAndType.d4Caltrop;
+        }
+    }
+    else {
+        switch(dieSize) {
+            case DieSize.d6:
+                return DieSizeAndType.d6;
+            case DieSize.d8:
+                return DieSizeAndType.d8;
+            case DieSize.d10:
+                return DieSizeAndType.d10;
+            case DieSize.d12:
+                return DieSizeAndType.d12;
+            case DieSize.d20:
+                return DieSizeAndType.d20;
+            case DieSize.d100:
+                return DieSizeAndType.d100;
+            default:
+                UnityEngine.Debug.LogError("Fell through die size combiner");
+                return DieSizeAndType.d6;
+        }
+    }
+}
 }

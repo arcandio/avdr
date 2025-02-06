@@ -46,7 +46,7 @@ public class UiPageManager : MonoBehaviour
     /// </summary>
     public RectTransform screenArea;
 
-    void Awake() {
+    public void Setup() {
         if(instance == null) {
             instance = this;
         }
@@ -54,9 +54,6 @@ public class UiPageManager : MonoBehaviour
             Debug.LogError("Destroying duplicate UiPageManager");
             Destroy(gameObject);
         }
-    }
-    
-    void Start() {
         SetPage(PageName.TrayPage, false);
     }
 

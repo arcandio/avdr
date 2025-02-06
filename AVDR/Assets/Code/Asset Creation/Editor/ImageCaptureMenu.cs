@@ -16,13 +16,13 @@ public class ImageCaptureMenu : MonoBehaviour
 
     [MenuItem("AVDR/Test Screenshot", false, 910)]
     static void TestScreenshot() {
-        CaptureImage captureImage = FindFirstObjectByType<CaptureImage>();
+        CaptureImage captureImage = FindFirstObjectByType<CaptureImage>(FindObjectsInactive.Include);
         captureImage.CaptureScreen();
     }
 
     [MenuItem("AVDR/Capture All Assets", false, 911)]
     static void CaptureAllAssets() {
-        CaptureImage captureImage = FindFirstObjectByType<CaptureImage>();
+        CaptureImage captureImage = FindFirstObjectByType<CaptureImage>(FindObjectsInactive.Include);
         captureImage.CaptureAllAssets();
     }
 }

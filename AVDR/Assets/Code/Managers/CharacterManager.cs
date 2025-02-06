@@ -74,7 +74,8 @@ public class CharacterManager : MonoBehaviour
     /// <summary>
     /// Load data on start, and set up scene.
     /// </summary>
-    void Start() {
+    public void Setup() {
+        Debug.LogWarning("Character Manager Start");
         characterSettingsButton.gameObject.SetActive(false);
         presetListButton.gameObject.SetActive(false);
         characterDatas = ioSystem.LoadCharacterData();
