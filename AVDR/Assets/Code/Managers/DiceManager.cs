@@ -6,13 +6,12 @@ using UnityEngine;
 /// <summary>
 /// Manages the physical dice on the table.
 /// </summary>
-public class DiceManager : MonoBehaviour
+public class DiceManager : ManagerBehaviour
 {
     /* Managers */
     public static DiceManager instance;
     public AssetManager assetManager;
     public CharacterManager characterManager;
-    public ParticleEffectManager particleEffectManager;
     public Transform dicePoolParent;
     public RollOutput rollOutput;
 
@@ -46,7 +45,7 @@ public class DiceManager : MonoBehaviour
     }
     private List<SingleDie> tempInstances = new List<SingleDie>();
 
-    public void Setup() {
+    override public void SetupInAwake() {
         if(instance == null) {
             instance = this;
         }
@@ -60,7 +59,7 @@ public class DiceManager : MonoBehaviour
     /// Cleans up the scene by removing the current dice.
     /// </summary>
     void ClearInstances() {
-        Debug.Log("clear instances");
+        Debug.LogWarning("clear instances " + diceInstances.Length);
         foreach(SingleDie die in diceInstances) {
             /* disable the instances so they don't try any last-minute calls
             on the frame they're destroyed. */
@@ -111,8 +110,7 @@ public class DiceManager : MonoBehaviour
             SingleDie singleDie = temp.GetComponent<SingleDie>();
             tempInstances.Add(singleDie);
             /* attach particle effects */
-            singleDie.particleEffectManager = particleEffectManager;
-            particleEffectManager.AttachTrail(singleDie);
+            ParticleEffectManager.instance.AttachTrail(singleDie);
         }
     }
     void InstancePairedDice(GameObject prefabA, GameObject prefabB, int count) {
@@ -127,10 +125,8 @@ public class DiceManager : MonoBehaviour
             tempInstances.Add(singleDieA);
             tempInstances.Add(singleDieB);
             /* attach particle effects */
-            singleDieA.particleEffectManager = particleEffectManager;
-            singleDieB.particleEffectManager = particleEffectManager;
-            particleEffectManager.AttachTrail(singleDieA);
-            particleEffectManager.AttachTrail(singleDieB);
+            ParticleEffectManager.instance.AttachTrail(singleDieA);
+            ParticleEffectManager.instance.AttachTrail(singleDieB);
         }
     }
 
@@ -171,6 +167,7 @@ public class DiceManager : MonoBehaviour
     /// </summary>
     private void ReplaceInSitu() {
         /* get ready */
+        Debug.Log("Replace In Situ " + diceInstances.Length);
         List<SingleDie> newDice = new List<SingleDie>();
         Dictionary<SingleDie, SingleDie> pairs = new Dictionary<SingleDie, SingleDie>();
 
@@ -184,8 +181,7 @@ public class DiceManager : MonoBehaviour
             GameObject temp = Instantiate(prefab, original.transform.position, original.transform.rotation, dicePoolParent);
             SingleDie newSingleDie = temp.GetComponent<SingleDie>();
             newDice.Add(newSingleDie);
-            newSingleDie.particleEffectManager = particleEffectManager;
-            particleEffectManager.AttachTrail(newSingleDie);
+            ParticleEffectManager.instance.AttachTrail(newSingleDie);
 
             /* copy motion */
             newSingleDie.HasCheckedRollOutcome = original.HasCheckedRollOutcome;
@@ -214,5 +210,6 @@ public class DiceManager : MonoBehaviour
         /* reset instances list here in the dice manager */
         ClearInstances();
         diceInstances = newDice.ToArray();
+        Debug.Log(newDice.Count);
     }
 }

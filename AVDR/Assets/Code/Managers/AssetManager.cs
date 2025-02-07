@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// A class to handle the management of ownable and purchasable assets.
 /// </summary>
-public class AssetManager : MonoBehaviour
+public class AssetManager : ManagerBehaviour
 {
     /// <summary>
     /// The assets that are free.

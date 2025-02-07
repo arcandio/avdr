@@ -6,7 +6,7 @@ using UnityEngine;
 /// Handles the rolling of dice and sends commands to SingleDie
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
-public class Thrower : MonoBehaviour
+public class Thrower : ManagerBehaviour
 {
     public static Thrower instance;
     public TextMeshProUGUI tmp;
@@ -22,7 +22,7 @@ public class Thrower : MonoBehaviour
     float squaredAccelerationThreshold;
     float lastRollTime;
 
-    void Awake() {
+    override public void SetupInAwake() {
         if(instance == null) {
             instance = this;
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Collects the output of the rolled dice and tallies the final roll.
 /// </summary>
-public class RollOutput : MonoBehaviour
+public class RollOutput : ManagerBehaviour
 {
     public static RollOutput instance;
     public TextMeshProUGUI outputText;
@@ -20,7 +20,7 @@ public class RollOutput : MonoBehaviour
     /// <summary>
     /// Unity-style singleton pattern
     /// </summary>
-    public void Setup() {
+    override public void SetupInAwake() {
         if(instance == null) {
             instance = this;
         }

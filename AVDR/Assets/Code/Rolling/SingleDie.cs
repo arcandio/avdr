@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,8 +27,6 @@ public class SingleDie : MonoBehaviour
             return ExtensionMethods.CombineDieSizeAndType(dieSize, d4Type);
         }
     }
-
-    public ParticleEffectManager particleEffectManager;
 
     public SingleDie pairedDie = null;
 
@@ -154,7 +153,7 @@ public class SingleDie : MonoBehaviour
         // Debug.Log(rollOutcome + " on " + name);
         // Debug.Break();
         RollOutput.instance.ReturnDie(this, rollOutcome);
-        particleEffectManager.OnFinish(this);
+        ParticleEffectManager.instance.OnFinish(this);
     }
 
     
@@ -170,7 +169,7 @@ public class SingleDie : MonoBehaviour
         audioSource.clip = GlobalAdjustments.instance.diceBumpClips[Random.Range(0,
             GlobalAdjustments.instance.diceBumpClips.Length)];
         audioSource.Play();
-        particleEffectManager.OnHit(this, collision);
+        ParticleEffectManager.instance.OnHit(this, collision);
     }
 
     /// <summary>

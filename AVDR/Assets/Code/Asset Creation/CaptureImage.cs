@@ -19,7 +19,6 @@ public class CaptureImage : MonoBehaviour
 
     void Awake() {
         /* gain control of the scene by turning off CharacterManager */
-        Debug.LogWarning("Capture Image Awake");
         CharacterManager characterManager = FindFirstObjectByType<CharacterManager>(FindObjectsInactive.Include);
         characterManager.enabled = false;
         characterManager.gameObject.SetActive(false);

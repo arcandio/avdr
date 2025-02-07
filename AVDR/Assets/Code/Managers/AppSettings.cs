@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AppSettings : MonoBehaviour
+public class AppSettings : ManagerBehaviour
 {
     public static AppSettings instance;
 
@@ -16,7 +16,7 @@ public class AppSettings : MonoBehaviour
     /// <summary>
     /// Unity-style singleton pattern
     /// </summary>
-    public void Setup(){
+    override public void SetupInAwake(){
         if(instance == null) {
             instance = this;
         }

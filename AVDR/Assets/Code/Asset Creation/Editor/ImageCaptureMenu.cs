@@ -23,6 +23,14 @@ public class ImageCaptureMenu : MonoBehaviour
     [MenuItem("AVDR/Capture All Assets", false, 911)]
     static void CaptureAllAssets() {
         CaptureImage captureImage = FindFirstObjectByType<CaptureImage>(FindObjectsInactive.Include);
+        /* start play mode */
+
+        /* begin capture */
         captureImage.CaptureAllAssets();
+    }
+
+    static void Cleanup() {
+        /* end play mode */
+        /* reload original scene */
     }
 }

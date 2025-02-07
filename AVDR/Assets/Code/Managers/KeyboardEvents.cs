@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KeyboardEvents : MonoBehaviour
+public class KeyboardEvents : ManagerBehaviour
 {
     public CharacterManager characterManager;
     public int diceIndex = 0;

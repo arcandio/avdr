@@ -2,24 +2,20 @@ using UnityEngine;
 
 public class StartupManager : MonoBehaviour
 {
-    public CharacterManager characterManager;
-    public DiceManager diceManager;
-    public HistoryManager historyManager;
-    public UiPageManager uiPageManager;
-    public AppSettings appSettings;
-    public AssetManager assetManager;
-    public RollOutput rollOutput;
-
     public bool setupOnStart = true;
     public bool devGetsCheatCode = true;
+    public bool deleteObjectsOnStart = true;
+    public GameObject[] deleteObjects;
+    
+    private ManagerBehaviour[] managerBehaviours;
 
     void Awake() {
+        managerBehaviours = GetComponentsInChildren<ManagerBehaviour>();
         if(setupOnStart) {
             SetupAwake();
         }
         else {
             Debug.LogWarning("SetupOnStart was not true, not starting up.");
-
         }
     }
 
@@ -39,18 +35,28 @@ public class StartupManager : MonoBehaviour
     }
 
     void SetupAwake() {
-        diceManager.Setup();
-        uiPageManager.Setup();
-        appSettings.Setup();
-        rollOutput.Setup();
-        
-        if(Debug.isDebugBuild && devGetsCheatCode) {
+        foreach(ManagerBehaviour managerBehaviour in managerBehaviours) {
+            Debug.Log(managerBehaviour.gameObject.name);
+            managerBehaviour.SetupInAwake();
+            /* Begin edge cases */
+            if(managerBehaviour is AssetManager assetManager) {
+                if(Debug.isDebugBuild && devGetsCheatCode) {
             assetManager.CheatCode();
+                }
+            }
+        }
+        if(deleteObjectsOnStart == true) {
+            foreach(GameObject gameObject in deleteObjects) {
+                gameObject.SetActive(false);
+                Destroy(gameObject);
+            }
         }
     }
 
     void SetupStart() {
-        characterManager.Setup();
-        historyManager.Setup();
+        foreach(ManagerBehaviour managerBehaviour in managerBehaviours) {
+            managerBehaviour.SetupInStart();
+            /* begin edge cases */
+        }
     }
 }

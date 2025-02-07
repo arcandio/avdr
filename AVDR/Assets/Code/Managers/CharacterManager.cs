@@ -15,7 +15,7 @@ using UnityEngine.UI;
 /// It might be possible to split this into CharacterManager and PresetManager
 /// but for now, this is good enough.
 /// </remarks>
-public class CharacterManager : MonoBehaviour
+public class CharacterManager : ManagerBehaviour
 {
     /* external references */
     public IoSystem ioSystem;
@@ -74,8 +74,8 @@ public class CharacterManager : MonoBehaviour
     /// <summary>
     /// Load data on start, and set up scene.
     /// </summary>
-    public void Setup() {
-        Debug.LogWarning("Character Manager Start");
+    override public void SetupInStart() {
+        // Debug.LogWarning("Character Manager Start");
         characterSettingsButton.gameObject.SetActive(false);
         presetListButton.gameObject.SetActive(false);
         characterDatas = ioSystem.LoadCharacterData();

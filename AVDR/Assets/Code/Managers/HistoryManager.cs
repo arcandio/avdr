@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Manages historical statistical data
 /// </summary>
-public class HistoryManager : MonoBehaviour
+public class HistoryManager : ManagerBehaviour
 {
     public IoSystem ioSystem;
     public Transform historyUiEntryParent;
@@ -15,7 +15,7 @@ public class HistoryManager : MonoBehaviour
     [SerializeField] private HistorySaveData data = new HistorySaveData();
 
 
-    public void Setup() {
+    override public void SetupInStart() {
         data = ioSystem.LoadHistoricalData();
         PopulateLoadedHistory();
     }
