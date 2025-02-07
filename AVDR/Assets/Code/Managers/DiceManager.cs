@@ -170,8 +170,14 @@ public class DiceManager : MonoBehaviour
     /// Replaces existing SingleDie instances with matching new ones
     /// </summary>
     private void ReplaceInSitu() {
+        /* get ready */
         List<SingleDie> newDice = new List<SingleDie>();
         Dictionary<SingleDie, SingleDie> pairs = new Dictionary<SingleDie, SingleDie>();
+
+        /* clear instances in roll output*/
+        rollOutput.ResetOutcomePool();
+
+        /* generate new instances*/
         for(int i = 0; i < diceInstances.Length; i++) {
             SingleDie original = diceInstances[i];
             GameObject prefab = dicePrefabs[original.dieSizeAndType];
@@ -180,6 +186,13 @@ public class DiceManager : MonoBehaviour
             newDice.Add(newSingleDie);
             newSingleDie.particleEffectManager = particleEffectManager;
             particleEffectManager.AttachTrail(newSingleDie);
+
+            /* copy motion */
+            newSingleDie.HasCheckedRollOutcome = original.HasCheckedRollOutcome;
+            Rigidbody source = original.GetComponent<Rigidbody>();
+            Rigidbody destination = newSingleDie.GetComponent<Rigidbody>();
+            destination.angularVelocity = source.angularVelocity;
+            destination.linearVelocity = source.linearVelocity;
 
             /* re-link paired dice */
             if(original.pairedDie != null) {
@@ -193,7 +206,12 @@ public class DiceManager : MonoBehaviour
                     pairs[original.pairedDie] = newSingleDie;
                 }
             }
+
+            /* re-link dice to roll output */
+            rollOutput.RegisterDie(newSingleDie);
         }
+
+        /* reset instances list here in the dice manager */
         ClearInstances();
         diceInstances = newDice.ToArray();
     }

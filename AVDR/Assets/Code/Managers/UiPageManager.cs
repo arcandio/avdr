@@ -114,7 +114,7 @@ public class UiPageManager : MonoBehaviour
             thrower.enabled = true;
         }
         if(pageName == PageName.CharacterEditPage) {
-            characterManager.PopulateCharacterInputs();
+            characterManager.PopulateCharacterInputs(true);
         }
         UiPage target = FindPage(pageName);
         foreach(UiPage page in pages) {

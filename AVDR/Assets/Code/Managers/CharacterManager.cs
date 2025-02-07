@@ -91,9 +91,10 @@ public class CharacterManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets up the dropdowns for existing & owned assets.
+    /// Sets up the inputs on the character edit page.
     /// </summary>
-    public void PopulateCharacterInputs() {
+    /// <param name="setQuietly">Whether or not this call should trigger the changing of the dice, lights, tray, and effects.</param>
+    public void PopulateCharacterInputs(bool setQuietly) {
         // Debug.Log("PopulateCharacterInputs");
         diceSetDropdown.ClearOptions();
         diceSetDropdown.AddOptions(new List<string>(assetManager.Owned.GetDiceSetKeys()));
@@ -105,10 +106,10 @@ public class CharacterManager : MonoBehaviour
         effectsDropdown.AddOptions(new List<string>(assetManager.Owned.GetEffectKeys()));
         if(selectedChar != null) {
             nameField.text = selectedChar.characterName;
-            SetIndexOfOption(diceSetDropdown, selectedChar.diceSet);
-            SetIndexOfOption(trayDropdown, selectedChar.trayName);
-            SetIndexOfOption(lightingDropdown, selectedChar.lightingSet);
-            SetIndexOfOption(effectsDropdown, selectedChar.effectsSet);
+            SetIndexOfOption(diceSetDropdown, selectedChar.diceSet, setQuietly);
+            SetIndexOfOption(trayDropdown, selectedChar.trayName, setQuietly);
+            SetIndexOfOption(lightingDropdown, selectedChar.lightingSet, setQuietly);
+            SetIndexOfOption(effectsDropdown, selectedChar.effectsSet, setQuietly);
             // SetIndexOfOption(d4TypeDropdown, selectedChar.d4Type.ToString() + " d4");
             d4TypeDropdown.value = (int)selectedChar.d4Type;
         }
@@ -119,16 +120,26 @@ public class CharacterManager : MonoBehaviour
     /// </summary>
     /// <param name="dropDown"></param>
     /// <param name="searchString"></param>
-    void SetIndexOfOption(TMP_Dropdown dropDown, string searchString) {
+    void SetIndexOfOption(TMP_Dropdown dropDown, string searchString, bool setQuietly) {
         for(int i = 0; i < dropDown.options.Count; i++) {
             var option = dropDown.options[i];
             if(option.text == searchString) {
-                dropDown.value = i;
+                if(setQuietly) {
+                    dropDown.SetValueWithoutNotify(i);
+                }
+                else {
+                    dropDown.value = i;
+                }
                 return;
             }
         }
-        dropDown.value = 0;
-        // Debug.LogError("dropdown did not contain an option with text: " + searchString);
+        if(setQuietly) {
+            dropDown.SetValueWithoutNotify(0);
+        }
+        else {
+            dropDown.value = 0;
+        }
+        return;
     }
 
     /// <summary>
@@ -157,7 +168,7 @@ public class CharacterManager : MonoBehaviour
         CharacterData temp = new CharacterData();
         temp.characterName = nameTemp;
         characterDatas.Add(temp);
-        PopulateCharacterInputs();
+        PopulateCharacterInputs(true);
         PopulateCharacterListButtons();
         Save();
     }
@@ -175,10 +186,18 @@ public class CharacterManager : MonoBehaviour
             presetListButton.gameObject.SetActive(false);
             return;
         }
+        else if(selectedChar == characterDatas[tempIndex]) {
+            /* our character is already selected */
+            characterPageScrollContent.localPosition = Vector3.zero;
+            PopulateCharacterInputs(true);
+            PopulatePresetListButtons();
+            characterSettingsButton.gameObject.SetActive(true);
+            presetListButton.gameObject.SetActive(true);
+        }
         else {
             selectedChar = characterDatas[tempIndex];
             characterPageScrollContent.localPosition = Vector3.zero;
-            PopulateCharacterInputs();
+            PopulateCharacterInputs(false);
             PopulatePresetListButtons();
             characterSettingsButton.gameObject.SetActive(true);
             presetListButton.gameObject.SetActive(true);

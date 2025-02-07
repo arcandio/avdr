@@ -36,15 +36,6 @@ public class AssetManager : MonoBehaviour
         get => free + purchased;
     }
 
-    /// <summary>
-    /// If we're in the editor or a dev build, give the user all the dice.
-    /// </summary>
-    void Awake() {
-        if(Debug.isDebugBuild) {
-            CheatCode();
-        }
-    }
-
     public void CheatCode() {
         purchased = paid;
         Debug.LogWarning("Gave the user All Paid Dice.");

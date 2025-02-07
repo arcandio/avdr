@@ -20,7 +20,7 @@ public class RollOutput : MonoBehaviour
     /// <summary>
     /// Unity-style singleton pattern
     /// </summary>
-    void Awake() {
+    public void Setup() {
         if(instance == null) {
             instance = this;
         }

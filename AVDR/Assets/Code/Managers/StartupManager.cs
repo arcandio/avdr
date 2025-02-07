@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class StartupManager : MonoBehaviour
 {
+    public CharacterManager characterManager;
+    public DiceManager diceManager;
+    public HistoryManager historyManager;
+    public UiPageManager uiPageManager;
+    public AppSettings appSettings;
+    public AssetManager assetManager;
+    public RollOutput rollOutput;
+
     public bool setupOnStart = true;
-    CharacterManager characterManager;
-    DiceManager diceManager;
-    HistoryManager historyManager;
-    UiPageManager uiPageManager;
-    AppSettings appSettings;
+    public bool devGetsCheatCode = true;
 
     void Awake() {
         if(setupOnStart) {
@@ -38,6 +42,11 @@ public class StartupManager : MonoBehaviour
         diceManager.Setup();
         uiPageManager.Setup();
         appSettings.Setup();
+        rollOutput.Setup();
+        
+        if(Debug.isDebugBuild && devGetsCheatCode) {
+            assetManager.CheatCode();
+        }
     }
 
     void SetupStart() {

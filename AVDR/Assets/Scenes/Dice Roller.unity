@@ -8710,6 +8710,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278717661}
   m_CullTransparentMesh: 1
+--- !u!1 &282815630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 282815631}
+  - component: {fileID: 282815632}
+  m_Layer: 0
+  m_Name: StartupManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &282815631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282815630}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1764178819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282815632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282815630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b027a1e75ea89648b00d6d2b5faaed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterManager: {fileID: 987908455379980957}
+  diceManager: {fileID: 8407431726809404562}
+  historyManager: {fileID: 129075321656101009}
+  uiPageManager: {fileID: 2016143809229966450}
+  appSettings: {fileID: 862243547}
+  assetManager: {fileID: 3998179795227566476}
+  rollOutput: {fileID: 7788887306059927122}
+  setupOnStart: 1
+  devGetsCheatCode: 1
 --- !u!1 &283345780
 GameObject:
   m_ObjectHideFlags: 0
@@ -32469,6 +32522,55 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &862243545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 862243546}
+  - component: {fileID: 862243547}
+  m_Layer: 0
+  m_Name: AppSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &862243546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862243545}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1764178819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &862243547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862243545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb94311ca282a34c88130a0d1c7b849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  d4Type: 0
+  globalVolume: 1
+  cameraHeight: 0.3629065
+  tossThreshold: 1.5
+  autoRollOnLoad: 0
 --- !u!1 &863760823
 GameObject:
   m_ObjectHideFlags: 0
@@ -67933,7 +68035,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 450993385}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999195
+  m_Size: 0.9999716
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -68806,6 +68908,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 282815631}
   - {fileID: 2326733552103055196}
   - {fileID: 6487561092591378074}
   - {fileID: 5662788130292432881}
@@ -68819,6 +68922,7 @@ Transform:
   - {fileID: 684539193210507613}
   - {fileID: 397261691}
   - {fileID: 233818018715364878}
+  - {fileID: 862243546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1773253305
@@ -80454,7 +80558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000035595232}
+  m_AnchoredPosition: {x: 0, y: 0.000009300642}
   m_SizeDelta: {x: 0, y: 387.76}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1912123366

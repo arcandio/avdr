@@ -36,6 +36,14 @@ public class SingleDie : MonoBehaviour
     [SerializeField] private Transform[] faces;
     [SerializeField] private int rollOutcome;
     private bool hasCheckedRollOutcome = false;
+
+    public bool HasCheckedRollOutcome {
+        get => hasCheckedRollOutcome;
+        set {
+            hasCheckedRollOutcome = value;
+        }
+    }
+
     private GlobalAdjustments gai;
     private float lastRollTime;
 
@@ -65,7 +73,7 @@ public class SingleDie : MonoBehaviour
     /// </summary>
     public void DoThrow(Vector3 force, Vector3 torque) {
         RollOutput.instance.RegisterDie(this);
-        RespawnDie();
+        RecenterDie();
         rb.constraints = RigidbodyConstraints.None;
         hasCheckedRollOutcome = false;
         rb.AddForce(force, ForceMode.Impulse);
@@ -103,7 +111,7 @@ public class SingleDie : MonoBehaviour
         the physics colliders and reset us if we do. */
         if(transform.position.y < 0) {
             // Debug.Log("we broke out!");
-            RespawnDie();
+            RecenterDie();
         }
     }
 
@@ -170,7 +178,7 @@ public class SingleDie : MonoBehaviour
     /// Primarily used for when the physics engine kicks a die out of the viewable area.
     /// Requires a GameObject tagged `Respawn` in the scene.
     /// </summary>
-    public void RespawnDie() {
+    public void RecenterDie() {
         // Debug.Log("RespawningDie");
         GameObject respawner = GameObject.FindGameObjectWithTag("Respawn");
         // Debug.Log(respawner);
