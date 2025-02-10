@@ -1,18 +1,30 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Analytics;
 
 /// <summary>
 /// Spawns and destroys particle effects.
 /// </summary>
-public class ParticleEffectManager : MonoBehaviour
+public class ParticleEffectManager : ManagerBehaviour
 {
     public CharacterManager characterManager;
     public float minBounceSpeed = 1000;
     public float minDelay = .1f;
     [SerializeField] AKVPEffect effects;
     private List<GameObject> particleSystems = new List<GameObject>();
+    
+    public static ParticleEffectManager instance;
+    
+    override public void SetupInAwake() {
+        if(instance == null) {
+            instance = this;
+        }
+        else {
+            Destroy(gameObject);
+        }
+    }
 
     public void SetParticleEffectPrefabs(AKVPEffect inputEffects) {
         effects = inputEffects;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KeyboardEvents : MonoBehaviour
+public class KeyboardEvents : ManagerBehaviour
 {
     public CharacterManager characterManager;
     public int diceIndex = 0;
@@ -13,25 +13,25 @@ public class KeyboardEvents : MonoBehaviour
             diceIndex++;
             diceIndex %= characterManager.diceSetDropdown.options.Count;
             characterManager.SetDiceSet(diceIndex);
-            characterManager.PopulateCharacterInputs();
+            characterManager.PopulateCharacterInputs(false);
         }
         if(Input.GetButtonDown("Tray")) {
             trayIndex++;
             trayIndex %= characterManager.trayDropdown.options.Count;
             characterManager.SetTray(trayIndex);
-            characterManager.PopulateCharacterInputs();
+            characterManager.PopulateCharacterInputs(false);
         }
         if(Input.GetButtonDown("Lighting")) {
             lightingIndex++;
             lightingIndex %= characterManager.lightingDropdown.options.Count;
             characterManager.SetLighting(lightingIndex);
-            characterManager.PopulateCharacterInputs();
+            characterManager.PopulateCharacterInputs(false);
         }
         if(Input.GetButtonDown("Effects")) {
             effectsIndex++;
             effectsIndex %= characterManager.effectsDropdown.options.Count;
             characterManager.SetEffects(effectsIndex);
-            characterManager.PopulateCharacterInputs();
+            characterManager.PopulateCharacterInputs(false);
         }
     }
 }

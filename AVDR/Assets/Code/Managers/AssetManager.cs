@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// A class to handle the management of ownable and purchasable assets.
 /// </summary>
-public class AssetManager : MonoBehaviour
+public class AssetManager : ManagerBehaviour
 {
     /// <summary>
     /// The assets that are free.
@@ -34,18 +34,6 @@ public class AssetManager : MonoBehaviour
     /// </summary>
     public AssetSet Owned {
         get => free + purchased;
-    }
-
-    /// <summary>
-    /// If we're in the editor or a dev build, give the user all the dice.
-    /// </summary>
-    void Awake() {
-        if(Debug.isDebugBuild) {
-            CheatCode();
-        }
-        #if UNITY_EDITOR || DEVELOPMENT_BUILD
-        CheatCode();
-        #endif
     }
 
     public void CheatCode() {

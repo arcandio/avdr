@@ -13,6 +13,6 @@ public class DistanceLimit : MonoBehaviour
             Debug.LogError("exiting collider was not a die");
             return;
         }
-        singleDie.RespawnDie();
+        singleDie.RecenterDie();
     }
 }

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,7 +22,11 @@ public class SingleDie : MonoBehaviour
     /// </summary>
     public D4Type d4Type = D4Type.Caltrop;
 
-    public ParticleEffectManager particleEffectManager;
+    public DieSizeAndType dieSizeAndType {
+        get {
+            return ExtensionMethods.CombineDieSizeAndType(dieSize, d4Type);
+        }
+    }
 
     public SingleDie pairedDie = null;
 
@@ -30,6 +35,14 @@ public class SingleDie : MonoBehaviour
     [SerializeField] private Transform[] faces;
     [SerializeField] private int rollOutcome;
     private bool hasCheckedRollOutcome = false;
+
+    public bool HasCheckedRollOutcome {
+        get => hasCheckedRollOutcome;
+        set {
+            hasCheckedRollOutcome = value;
+        }
+    }
+
     private GlobalAdjustments gai;
     private float lastRollTime;
 
@@ -59,7 +72,7 @@ public class SingleDie : MonoBehaviour
     /// </summary>
     public void DoThrow(Vector3 force, Vector3 torque) {
         RollOutput.instance.RegisterDie(this);
-        RespawnDie();
+        RecenterDie();
         rb.constraints = RigidbodyConstraints.None;
         hasCheckedRollOutcome = false;
         rb.AddForce(force, ForceMode.Impulse);
@@ -97,7 +110,7 @@ public class SingleDie : MonoBehaviour
         the physics colliders and reset us if we do. */
         if(transform.position.y < 0) {
             // Debug.Log("we broke out!");
-            RespawnDie();
+            RecenterDie();
         }
     }
 
@@ -140,7 +153,7 @@ public class SingleDie : MonoBehaviour
         // Debug.Log(rollOutcome + " on " + name);
         // Debug.Break();
         RollOutput.instance.ReturnDie(this, rollOutcome);
-        particleEffectManager.OnFinish(this);
+        ParticleEffectManager.instance.OnFinish(this);
     }
 
     
@@ -156,7 +169,7 @@ public class SingleDie : MonoBehaviour
         audioSource.clip = GlobalAdjustments.instance.diceBumpClips[Random.Range(0,
             GlobalAdjustments.instance.diceBumpClips.Length)];
         audioSource.Play();
-        particleEffectManager.OnHit(this, collision);
+        ParticleEffectManager.instance.OnHit(this, collision);
     }
 
     /// <summary>
@@ -164,7 +177,7 @@ public class SingleDie : MonoBehaviour
     /// Primarily used for when the physics engine kicks a die out of the viewable area.
     /// Requires a GameObject tagged `Respawn` in the scene.
     /// </summary>
-    public void RespawnDie() {
+    public void RecenterDie() {
         // Debug.Log("RespawningDie");
         GameObject respawner = GameObject.FindGameObjectWithTag("Respawn");
         // Debug.Log(respawner);
@@ -229,5 +242,12 @@ public class SingleDie : MonoBehaviour
     {
         return GetInstanceID();
     }
-
+#if UNITY_EDITOR
+    void OnDrawGizmos() {
+        if(pairedDie != null) {
+            Gizmos.color = new Color(0, 0, 1);
+            Gizmos.DrawLine(transform.position, pairedDie.transform.position);
+        }
+    }
+#endif
 }

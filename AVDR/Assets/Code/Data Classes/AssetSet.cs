@@ -193,6 +193,14 @@ public class AssetSet
         return keys.ToArray();
     }
 
+    public GameObject[][] GetDicePrefabSets() {
+        List<GameObject[]> sets = new List<GameObject[]>();
+        foreach(AKVPDice pair in diceSets) {
+            sets.Add(pair.prefabs);
+        }
+        return sets.ToArray();
+    }
+
     /// <summary>
     /// Creates a list of all the assets in the set.
     /// </summary>

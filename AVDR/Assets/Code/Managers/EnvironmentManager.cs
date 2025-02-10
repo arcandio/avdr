@@ -5,7 +5,7 @@ using UnityEngine;
 /// A manager for handling trays, lighting, and particle effect swapping.
 /// This does NOT handle particle effect instantiation, for that, see ParticleEffectManager.cs
 /// </summary>
-public class EnvironmentManager : MonoBehaviour
+public class EnvironmentManager : ManagerBehaviour
 {
     // public CharacterManager characterManager;
     public AssetManager assetManager;

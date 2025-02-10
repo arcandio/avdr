@@ -6,7 +6,7 @@ using UnityEngine;
 /// Manages what page the app is on and navigation
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
-public class UiPageManager : MonoBehaviour
+public class UiPageManager : ManagerBehaviour
 {
     public static UiPageManager instance;
     public CharacterManager characterManager;
@@ -21,8 +21,6 @@ public class UiPageManager : MonoBehaviour
     public UiPage presetEditPage;
     public UiPage historyPage;
     public UiPage settingsPage;
-
-
 
     /// <summary>
     /// The existing pages in the scene.
@@ -46,7 +44,7 @@ public class UiPageManager : MonoBehaviour
     /// </summary>
     public RectTransform screenArea;
 
-    void Awake() {
+    override public void SetupInAwake() {
         if(instance == null) {
             instance = this;
         }
@@ -54,9 +52,6 @@ public class UiPageManager : MonoBehaviour
             Debug.LogError("Destroying duplicate UiPageManager");
             Destroy(gameObject);
         }
-    }
-    
-    void Start() {
         SetPage(PageName.TrayPage, false);
     }
 
@@ -117,7 +112,7 @@ public class UiPageManager : MonoBehaviour
             thrower.enabled = true;
         }
         if(pageName == PageName.CharacterEditPage) {
-            characterManager.PopulateCharacterInputs();
+            characterManager.PopulateCharacterInputs(true);
         }
         UiPage target = FindPage(pageName);
         foreach(UiPage page in pages) {

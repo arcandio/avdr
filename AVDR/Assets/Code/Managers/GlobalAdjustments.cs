@@ -6,7 +6,7 @@ using UnityEngine;
 /// and setup of the app.
 /// For user-facing app settings, see `AppSettings`.
 /// </summary>
-public class GlobalAdjustments : MonoBehaviour
+public class GlobalAdjustments : ManagerBehaviour
 {
     public static GlobalAdjustments instance;
     public float angularSleepThreshold = 300;
