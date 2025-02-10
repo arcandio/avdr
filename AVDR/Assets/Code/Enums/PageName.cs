@@ -9,5 +9,6 @@ public enum PageName {
     PresetListPage,
     PresetEditPage,
     HistoryPage,
-    SettingsPage
+    SettingsPage,
+    SharePage
 }

@@ -21,6 +21,7 @@ public class UiPageManager : ManagerBehaviour
     public UiPage presetEditPage;
     public UiPage historyPage;
     public UiPage settingsPage;
+    public UiPage sharePage;
 
     /// <summary>
     /// The existing pages in the scene.
@@ -91,6 +92,9 @@ public class UiPageManager : ManagerBehaviour
                 break;
             case PageName.SettingsPage:
                 foundPage = settingsPage;
+                break;
+            case PageName.SharePage:
+                foundPage = sharePage;
                 break;
             default:
                 Debug.LogError("Did not find page " + pageName);
