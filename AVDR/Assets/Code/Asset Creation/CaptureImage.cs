@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Camera))]
 public class CaptureImage : MonoBehaviour
 {
     // public RenderTexture renderTexture;
     public int size = 1024;
     new public Camera camera;
 
+    private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
     private RenderTexture temporaryRenderTexture;
     private Texture2D texture2D;
     private GameObject[] prototypeDice;
@@ -18,10 +20,9 @@ public class CaptureImage : MonoBehaviour
     private GameObject defaultLight;
 
     void Awake() {
-        /* gain control of the scene by turning off CharacterManager */
-        CharacterManager characterManager = FindFirstObjectByType<CharacterManager>(FindObjectsInactive.Include);
-        characterManager.enabled = false;
-        characterManager.gameObject.SetActive(false);
+        stopwatch.Start();
+        Debug.LogWarning("Capture Image Awake");
+        StartCoroutine(CaptureAllCoroutine());
     }
 
     public void CaptureScreen() {
@@ -29,18 +30,19 @@ public class CaptureImage : MonoBehaviour
         // ScreenCapture.CaptureScreenshot(path, 1);
     }
 
-    public void CaptureAllAssets() {
-        StartCoroutine(CaptureAllCoroutine());
-    }
+    // public void CaptureAllAssets() {
+    //     StartCoroutine(CaptureAllCoroutine());
+    // }
 
-    private IEnumerator CaptureAllCoroutine() {
-        yield return new WaitForEndOfFrame();
-        /* get ready */
-        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-        stopwatch.Start();
+    public IEnumerator CaptureAllCoroutine() {
         Debug.LogWarning("Capture All Assets Started.");
+        yield return new WaitForEndOfFrame();
 
-        
+        /* gain control of the scene by turning off CharacterManager */
+        CharacterManager characterManager = FindFirstObjectByType<CharacterManager>(FindObjectsInactive.Include);
+        characterManager.enabled = false;
+        characterManager.gameObject.SetActive(false);
+
         /* get the assets we need to capture */
         AssetManager assetManager = FindFirstObjectByType<AssetManager>();
         AKVPDice[] dicePairs = assetManager.All.diceSets;
@@ -48,9 +50,19 @@ public class CaptureImage : MonoBehaviour
         /* capture each asset */
         yield return CaptureDiceSets(dicePairs, AssetType.DiceSet);
         
+        /* finish */
+        AssetDatabase.Refresh();
+        Output();
+        Destroy(gameObject);
+        EditorApplication.isPlaying = false;
+    }
+
+    void Output() {
+        Debug.Log("Output");
         stopwatch.Stop();
-        string elapsed = stopwatch.Elapsed.ToString();
-        Debug.Log("Capture All Assets completed in " + elapsed.Split('.', StringSplitOptions.None)[0] + " s");
+        string elapsed = stopwatch.Elapsed.ToString().Split('.', StringSplitOptions.None)[0];
+        stopwatch.Reset();
+        Debug.LogWarning("Capture All Assets completed in " + elapsed + " hh:mm:ss");
     }
 
     /// <summary>

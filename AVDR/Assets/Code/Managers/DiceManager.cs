@@ -59,7 +59,7 @@ public class DiceManager : ManagerBehaviour
     /// Cleans up the scene by removing the current dice.
     /// </summary>
     void ClearInstances() {
-        Debug.LogWarning("clear instances " + diceInstances.Length);
+        // Debug.LogWarning("clear instances " + diceInstances.Length);
         foreach(SingleDie die in diceInstances) {
             /* disable the instances so they don't try any last-minute calls
             on the frame they're destroyed. */
@@ -167,7 +167,7 @@ public class DiceManager : ManagerBehaviour
     /// </summary>
     private void ReplaceInSitu() {
         /* get ready */
-        Debug.Log("Replace In Situ " + diceInstances.Length);
+        // Debug.Log("Replace In Situ " + diceInstances.Length);
         List<SingleDie> newDice = new List<SingleDie>();
         Dictionary<SingleDie, SingleDie> pairs = new Dictionary<SingleDie, SingleDie>();
 
@@ -210,6 +210,6 @@ public class DiceManager : ManagerBehaviour
         /* reset instances list here in the dice manager */
         ClearInstances();
         diceInstances = newDice.ToArray();
-        Debug.Log(newDice.Count);
+        // Debug.Log(newDice.Count);
     }
 }

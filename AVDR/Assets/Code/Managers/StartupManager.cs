@@ -10,6 +10,7 @@ public class StartupManager : MonoBehaviour
     private ManagerBehaviour[] managerBehaviours;
 
     void Awake() {
+        Debug.LogWarning("STARTUP MANAGER LIVES");
         managerBehaviours = GetComponentsInChildren<ManagerBehaviour>();
         if(setupOnStart) {
             SetupAwake();

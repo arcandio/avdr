@@ -2,35 +2,47 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
-using System.Reflection;
-using System.Security.Permissions;
+using System;
 
+[InitializeOnLoad]
 public class ImageCaptureMenu : MonoBehaviour
 {
-    /* references to stuff we'll need in order to control the scene */
-    CharacterManager characterManager;
-    Thrower thrower;
-    Canvas canvas;
-    static ImageCaptureMenu instance;
-    static System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-
-    [MenuItem("AVDR/Test Screenshot", false, 910)]
+    [MenuItem("AVDR Screenshots/Test Screenshot", false, 910)]
     static void TestScreenshot() {
-        CaptureImage captureImage = FindFirstObjectByType<CaptureImage>(FindObjectsInactive.Include);
-        captureImage.CaptureScreen();
+        
     }
 
-    [MenuItem("AVDR/Capture All Assets", false, 911)]
+    [MenuItem("AVDR Screenshots/Capture All Assets", false, 911)]
     static void CaptureAllAssets() {
-        CaptureImage captureImage = FindFirstObjectByType<CaptureImage>(FindObjectsInactive.Include);
-        /* start play mode */
+        Debug.Log("Capture All Assets Begins");
 
-        /* begin capture */
-        captureImage.CaptureAllAssets();
+        /* get prefab to instantiate */
+        string prefabPath = "Assets/Code/Asset Creation/Thumbnail Rig.prefab";
+        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+
+        /* save scene */
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+
+        /* load scene */
+        string mainScenePath = Application.dataPath + "/Scenes/Dice Roller.unity";
+        EditorSceneManager.OpenScene(mainScenePath, OpenSceneMode.Single);
+
+        /* start play mode */
+        EditorApplication.isPlaying = true;
+        GameObject instance = Instantiate(prefab);
     }
 
-    static void Cleanup() {
-        /* end play mode */
-        /* reload original scene */
+    static void KillThumbnailRig(PlayModeStateChange state) {
+        if(state == PlayModeStateChange.EnteredEditMode) {
+            EditorApplication.Beep();
+            // Debug.LogWarning("Kill Thumbnail Rig");
+            // EditorApplication.playModeStateChanged -= KillThumbnailRig;
+            GameObject rig = FindAnyObjectByType<CaptureImage>().gameObject;
+            DestroyImmediate(rig);
+        }
+    }
+
+    static ImageCaptureMenu() {
+        EditorApplication.playModeStateChanged += KillThumbnailRig;
     }
 }
