@@ -3,16 +3,23 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
 
 [InitializeOnLoad]
 public class ImageCaptureMenu : MonoBehaviour
 {
-    [MenuItem("AVDR Screenshots/Test Screenshot", false, 910)]
+    [MenuItem("AVDR Screenshots/Marketing Screenshot", false, 0)]
     static void TestScreenshot() {
-        
+        string now = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+        string path = $"Marketing/Screenshots/{now}.png";
+        ScreenCapture.CaptureScreenshot(path);
+        string dataPath = Application.dataPath.Replace("/Assets", "") + "/Marketing/Screenshots/";
+        dataPath = dataPath.Replace(@"/", @"\");
+        Debug.Log(path);
+        System.Diagnostics.Process.Start("explorer.exe", (Directory.Exists(dataPath) ? "/root," : "/select,") + dataPath);
     }
 
-    [MenuItem("AVDR Screenshots/Capture All Assets", false, 911)]
+    [MenuItem("AVDR Screenshots/Capture All Assets", false, 10)]
     static void CaptureAllAssets() {
         Debug.Log("Capture All Assets Begins");
 

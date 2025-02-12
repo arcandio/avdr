@@ -10,6 +10,14 @@
 /AVDR/[Ll]ogs/
 /AVDR/[Uu]ser[Ss]ettings/
 
+# keep the generated content out of the repo
+/AVDR/[Aa]ssets/[Rr]esources/[Ss]creen[Ss]hots/*/*.png
+/AVDR/[Aa]ssets/[Rr]esources/[Ss]creen[Ss]hots/*/*.jpg
+/AVDR/[Aa]ssets/[Rr]esources/[Ss]creen[Ss]hots/*/*.tif
+/AVDR/[Aa]ssets/[Rr]esources/[Ss]creen[Ss]hots/*/*.tiff
+/AVDR/[Aa]ssets/[Rr]esources/[Ss]creen[Ss]hots/*/*.meta
+/AVDR/[Mm]arketing/[Ss]creenshots/
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /AVDR/[Mm]emoryCaptures/
@@ -74,3 +82,4 @@ crashlytics-build.properties
 
 # Extraneous asset stuff
 *.blend1
+*.autosave/
