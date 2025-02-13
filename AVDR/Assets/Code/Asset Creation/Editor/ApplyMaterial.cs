@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ApplyMaterial: MonoBehaviour
 {
-    [MenuItem("AVDR Content/Apply Material To Visual Meshes", priority = 21)]
+    [MenuItem("AVDR/Content/Apply Material To Visual Meshes", priority = 21)]
     static void ApplyMaterialToSelection() {
         Debug.LogWarning("Applying Material to Selection");
 

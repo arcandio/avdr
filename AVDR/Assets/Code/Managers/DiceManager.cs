@@ -167,7 +167,7 @@ public class DiceManager : ManagerBehaviour
     /// </summary>
     private void ReplaceInSitu() {
         /* get ready */
-        // Debug.Log("Replace In Situ " + diceInstances.Length);
+        Debug.Log("Replace In Situ " + diceInstances.Length);
         List<SingleDie> newDice = new List<SingleDie>();
         Dictionary<SingleDie, SingleDie> pairs = new Dictionary<SingleDie, SingleDie>();
 
@@ -211,5 +211,9 @@ public class DiceManager : ManagerBehaviour
         ClearInstances();
         diceInstances = newDice.ToArray();
         // Debug.Log(newDice.Count);
+    }
+
+    public void GetExistingDice() {
+        diceInstances = FindObjectsByType<SingleDie>(FindObjectsSortMode.None);
     }
 }

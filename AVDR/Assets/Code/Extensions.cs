@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// A class for helper extension methods. Primarily for debugging.
@@ -62,7 +63,34 @@ public static class ExtensionMethods {
             default:
                 UnityEngine.Debug.LogError("Fell through die size combiner");
                 return DieSizeAndType.d6;
+            }
         }
     }
-}
+
+    /// <summary>
+    /// Gets a periodic subset of an array.
+    /// </summary>
+    /// <param name="originalArray">The set of elements to pick from</param>
+    /// <param name="divisor">how big of a period</param>
+    /// <param name="offset">how far along the period to start</param>
+    /// <returns>A subset of the original array</returns>
+    public static T[] GetPeriodicSubsetOfArray<T>(T[] originalArray, int divisor, int offset) {
+        if(divisor < 1) {
+            UnityEngine.Debug.LogError("Divisor must be greater than 0. Divisor: " + divisor);
+            return null;
+        }
+        if(originalArray.Length < 2) {
+            UnityEngine.Debug.LogError("Original Array must be bigger than 1 element. Length: " + originalArray.Length);
+            return null;
+        }
+        T[] filteredArray = new T[Mathf.FloorToInt(originalArray.Length / divisor)];
+        int newIndex = 0;
+        for(int i = 0; i < originalArray.Length; i++) {
+            if((i + offset) % divisor == 0) {
+                filteredArray[newIndex] = originalArray[i];
+                newIndex++;
+            }
+        }
+        return filteredArray;
+    }
 }

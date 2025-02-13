@@ -8,7 +8,7 @@ using System.IO;
 [InitializeOnLoad]
 public class ImageCaptureMenu : MonoBehaviour
 {
-    [MenuItem("AVDR Screenshots/Marketing Screenshot", false, 0)]
+    [MenuItem("AVDR/Screenshots/Marketing Screenshot _s", false, 0)]
     static void TestScreenshot() {
         string now = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
         string path = $"Marketing/Screenshots/{now}.png";
@@ -19,7 +19,7 @@ public class ImageCaptureMenu : MonoBehaviour
         System.Diagnostics.Process.Start("explorer.exe", (Directory.Exists(dataPath) ? "/root," : "/select,") + dataPath);
     }
 
-    [MenuItem("AVDR Screenshots/Capture All Assets", false, 10)]
+    [MenuItem("AVDR/Screenshots/Capture All Assets", false, 10)]
     static void CaptureAllAssets() {
         Debug.Log("Capture All Assets Begins");
 
@@ -44,8 +44,10 @@ public class ImageCaptureMenu : MonoBehaviour
             EditorApplication.Beep();
             // Debug.LogWarning("Kill Thumbnail Rig");
             // EditorApplication.playModeStateChanged -= KillThumbnailRig;
-            GameObject rig = FindAnyObjectByType<CaptureImage>().gameObject;
-            DestroyImmediate(rig);
+            CaptureImage rig = FindAnyObjectByType<CaptureImage>();
+            if(rig != null) {
+                DestroyImmediate(rig.gameObject);
+            }
         }
     }
 

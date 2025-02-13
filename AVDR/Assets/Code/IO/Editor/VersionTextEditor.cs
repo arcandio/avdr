@@ -89,27 +89,27 @@ namespace Editor
         #region MENU ITEMS
 
 
-        [MenuItem("AVDR Version/Reset Android Bundle Version Number")]
+        [MenuItem("AVDR/Version/Reset Android Bundle Version Number")]
         static void ResetAndroidBundleVersion()
         {
             SetAndroidBundleVersion(GetVersionNumberInts());
         }
-        [MenuItem("AVDR Version/Increment IOS Build Number (x.y.z a++)")]
+        [MenuItem("AVDR/Version/Increment IOS Build Number (x.y.z a++)")]
         static void IncrementIosBuildNumber()
         {
             IncrementVersionNumber(3);
         }
-        [MenuItem("AVDR Version/Increment Patch (x.y.++z)")]
+        [MenuItem("AVDR/Version/Increment Patch (x.y.++z)")]
         static void IncrementPatch()
         {
             IncrementVersionNumber(2);
         }
-        [MenuItem("AVDR Version/Increment Minor (x.++y.z)")]
+        [MenuItem("AVDR/Version/Increment Minor (x.++y.z)")]
         static void IncrementMinor()
         {
             IncrementVersionNumber(1);
         }
-        [MenuItem("AVDR Version/Increment Major (++x.y.z)")]
+        [MenuItem("AVDR/Version/Increment Major (++x.y.z)")]
         static void IncrementMajor()
         {
             IncrementVersionNumber(0);
