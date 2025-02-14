@@ -41,17 +41,24 @@ public class ImageCaptureMenu : MonoBehaviour
 
     static void KillThumbnailRig(PlayModeStateChange state) {
         if(state == PlayModeStateChange.EnteredEditMode) {
-            EditorApplication.Beep();
-            // Debug.LogWarning("Kill Thumbnail Rig");
-            // EditorApplication.playModeStateChanged -= KillThumbnailRig;
             CaptureImage rig = FindAnyObjectByType<CaptureImage>();
             if(rig != null) {
                 DestroyImmediate(rig.gameObject);
+                EditorApplication.Beep();
             }
         }
     }
 
     static ImageCaptureMenu() {
         EditorApplication.playModeStateChanged += KillThumbnailRig;
+    }
+
+    [MenuItem("AVDR/Screenshots/Test SCCS 1x", false, 30)]
+    static void SCCSTest1() {
+        ScreenCapture.CaptureScreenshot("Assets/Resources/Screenshots/Test/SCCS 1x.png");
+    }
+    [MenuItem("AVDR/Screenshots/Test SCCS 5x", false, 30)]
+    static void SCCSTest5() {
+        ScreenCapture.CaptureScreenshot("Assets/Resources/Screenshots/Test/SCCS 5x.png", 5);
     }
 }

@@ -4,9 +4,11 @@ using System.IO;
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using UnityEngine.Rendering.Universal;
 
 public class CaptureImage : MonoBehaviour
 {
+    #region variables
     // public RenderTexture renderTexture;
     public int size = 1024;
     new public Camera camera;
@@ -19,7 +21,9 @@ public class CaptureImage : MonoBehaviour
     private DiceManager diceManager;
 
     private Vector3[] originalDicePositons;
-    private float environmentParticleMultiplier = 5;
+
+    #endregion
+    #region setup
 
     void Awake() {
         stopwatch.Start();
@@ -34,6 +38,8 @@ public class CaptureImage : MonoBehaviour
         characterManager = FindFirstObjectByType<CharacterManager>(FindObjectsInactive.Include);
         assetManager = FindFirstObjectByType<AssetManager>(FindObjectsInactive.Include);
         diceManager = FindFirstObjectByType<DiceManager>(FindObjectsInactive.Include);
+
+        
 
         /* check for dice */
         diceManager.GetExistingDice();
@@ -73,6 +79,9 @@ public class CaptureImage : MonoBehaviour
         Debug.LogWarning("Capture All Assets completed in " + elapsed + " hh:mm:ss");
     }
 
+    #endregion
+    #region dice
+
     /// <summary>
     /// Iterates over the given assets and creates a screenshot and saves it.
     /// </summary>
@@ -104,6 +113,9 @@ public class CaptureImage : MonoBehaviour
             PerformSerialCapture(path);
         }
     }
+
+    #endregion
+    #region trays
 
     private IEnumerator CaptureTrays(AKVPTray[] trays) {
         yield return new WaitForEndOfFrame();
@@ -142,6 +154,9 @@ public class CaptureImage : MonoBehaviour
         }
     }
 
+    #endregion
+    #region lights
+
     private IEnumerator CaptureLights(AKVPLight[] lights) {
         yield return new WaitForEndOfFrame();
         
@@ -174,6 +189,9 @@ public class CaptureImage : MonoBehaviour
         }
     }
 
+    #endregion
+    #region effects
+
     private IEnumerator CaptureEffects(AKVPEffect[] effects) {
         yield return new WaitForEndOfFrame();
         
@@ -200,10 +218,23 @@ public class CaptureImage : MonoBehaviour
             string path = "Resources/Screenshots/Effects/" + pair.key + ".png";
 
             /* organize dice sets */
-            int offset = UnityEngine.Random.Range(0, 3);
-            SingleDie[] trailDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, 3, offset + 0);
-            SingleDie[] hitDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, 3, offset + 1);
-            SingleDie[] finishDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, 3, offset + 2);
+            int slots = 0;
+            int offset = UnityEngine.Random.Range(0, slots);
+            slots += pair.onHitPrefab != null ? 1 :0;
+            slots += pair.onFinishPrefab != null ? 1 :0;
+            slots += pair.trailPrefab != null ? 1 :0;
+            SingleDie[] trailDice = new SingleDie[0];
+            SingleDie[] hitDice = new SingleDie[0];
+            SingleDie[] finishDice = new SingleDie[0];
+            if(pair.onHitPrefab != null) {
+                hitDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, slots, offset + 0);
+            }
+            if(pair.onFinishPrefab != null) {
+                finishDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, slots, offset + 1);
+            }
+            if(pair.trailPrefab != null) {
+                trailDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, slots, offset + 2);
+            }
 
             /* record the finish positions of the trail dice */
             ResetDicePositions();
@@ -236,9 +267,10 @@ public class CaptureImage : MonoBehaviour
                     ParticleSystem.MainModule main = envSystem.main;
                     main.prewarm = true;
                     ParticleSystem.EmissionModule emission = envSystem.emission;
-                    emission.rateOverTimeMultiplier *= environmentParticleMultiplier;
+                    emission.rateOverTimeMultiplier *= pair.captureMultiplier;
+                    main.maxParticles = (int)(main.maxParticles * pair.captureMultiplier);
                     envSystem.Play();
-                    yield return new WaitForSeconds(main.duration / 2);
+                    yield return new WaitForEndOfFrame();
                 }
             }
 
@@ -253,20 +285,20 @@ public class CaptureImage : MonoBehaviour
 
             /* get ready for our timing loop */
             List<GameObject> deleteList = new List<GameObject>();
-            float waitDuration = .4f;
+            float renderDuration = pair.RenderDuration;
             float startTime = Time.time;
-            float finishTime = startTime + waitDuration;
+            float finishTime = startTime + renderDuration;
             float hitSpawnTime = finishTime - pair.hitPeakTime;
             float finishSpawnTime = finishTime - pair.finishPeakTime;
             bool didSpawnHit = false;
-            bool didSpawnFInish = false;
+            bool didSpawnFinish = false;
 
             /* timing loop */
             while(Time.time <= finishTime) {
                 /* move trail dice around so the trail appears */
                 for(int m = 0; m < trailDice.Length; m++) {
                     SingleDie die = trailDice[m];
-                    float percentage = TimePercentage(startTime, finishTime, waitDuration);
+                    float percentage = TimePercentage(startTime, finishTime, renderDuration);
                     die.transform.position = Vector3.Lerp(startPositions[m], finalPositions[m], percentage);
                 }
                 /* instantiate particle effects manually */
@@ -283,10 +315,10 @@ public class CaptureImage : MonoBehaviour
                 }
                 if(
                     pair.onFinishPrefab != null &&
-                    didSpawnFInish == false &&
+                    didSpawnFinish == false &&
                     Time.time >= finishSpawnTime
                 ) {
-                    didSpawnFInish = true;
+                    didSpawnFinish = true;
                     foreach(SingleDie d in finishDice) {
                         GameObject instance = Instantiate(pair.onFinishPrefab, d.transform.position, Quaternion.identity);
                         deleteList.Add(instance);
@@ -294,13 +326,12 @@ public class CaptureImage : MonoBehaviour
                 }
                 yield return new WaitForEndOfFrame();
             }
-
             /* totally reset the dice to ensure uniformity across thumbnails */
             ResetDicePositions();
 
             /* capture */
-            PerformSerialCapture(path);
             yield return new WaitForEndOfFrame();
+            PerformSerialCapture(path);
 
             /* clear particle effects */
             for(int e = 0; e < deleteList.Count; e++) {
@@ -327,8 +358,15 @@ public class CaptureImage : MonoBehaviour
 
     private float TimePercentage(float start, float finish, float duration) {
         float progress = finish - start;
+        if(duration <= 0) {
+            Debug.LogError("duration cannot be zero.");
+            return 0;
+        }
         return progress / duration;
     }
+
+    #endregion
+    #region capture
 
     private void PerformSerialCapture(string path) {
         RenderTexture temporary = RenderTexture.GetTemporary(size, size, 16, RenderTextureFormat.ARGB32);
@@ -371,4 +409,5 @@ public class CaptureImage : MonoBehaviour
         File.WriteAllBytes(path, bytes);
         Debug.Log(path);
     }
+    #endregion
 }

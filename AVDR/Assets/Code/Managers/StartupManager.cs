@@ -37,7 +37,7 @@ public class StartupManager : MonoBehaviour
 
     void SetupAwake() {
         foreach(ManagerBehaviour managerBehaviour in managerBehaviours) {
-            Debug.Log(managerBehaviour.gameObject.name);
+            // Debug.Log(managerBehaviour.gameObject.name);
             managerBehaviour.SetupInAwake();
             /* Begin edge cases */
             if(managerBehaviour is AssetManager assetManager) {

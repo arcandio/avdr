@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -86,7 +87,8 @@ public static class ExtensionMethods {
         T[] filteredArray = new T[Mathf.FloorToInt(originalArray.Length / divisor)];
         int newIndex = 0;
         for(int i = 0; i < originalArray.Length; i++) {
-            if((i + offset) % divisor == 0) {
+            if((i + offset) % divisor == 0 && newIndex < filteredArray.Length) {
+                UnityEngine.Debug.Log($"new {newIndex}/{filteredArray.Length}. original {i}/{originalArray.Length}");
                 filteredArray[newIndex] = originalArray[i];
                 newIndex++;
             }

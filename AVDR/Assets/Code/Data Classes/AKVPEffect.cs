@@ -8,22 +8,50 @@ using UnityEngine;
 public class AKVPEffect : AssetKeyValuePair
 {
     public GameObject onHitPrefab;
-    public GameObject onFinishPrefab;
-    public GameObject trailPrefab;
-    public GameObject environmentPrefab;
-
     /// <summary>
     /// How long in seconds it takes for the onHitPrefab particle effect to
     /// reach its most interesting point.
     /// Used for thumbnails.
     /// </summary>
+    [Range(0,1)]
+    [Tooltip("The peak screenshot time of the onHitPrefab")]
     public float hitPeakTime = 0;
+    
+    public GameObject onFinishPrefab;
     /// <summary>
     /// How long in seconds it takes for the onFinishPrefab particle effect to
     /// reach its most interesting point.
     /// Used for thumbnails.
     /// </summary>
+    [Range(0,1)]
+    [Tooltip("The peak screenshot time of the onFinishPrefab")]
     public float finishPeakTime = 0;
+    
+    public GameObject trailPrefab;
+    /// <summary>
+    /// How long in seconds it takes for the trailPrefab particle effect to
+    /// reach its most interesting point.
+    /// Used for thumbnails.
+    /// </summary>
+    [Range(0,1)]
+    [Tooltip("The peak screenshot time of the trailPrefab")]
+    public float trailPeakTime = 0;
+
+    public GameObject environmentPrefab;
+    [Range(0, 10)]
+    [Tooltip("How much to multiply the base environment particle amount for screeshots.")]
+    public int captureMultiplier = 1;
+
+    public float RenderDuration {
+        get {
+            if(trailPrefab == null) {
+                return .4f;
+            }
+            else {
+                return trailPeakTime;
+            }
+        }
+    }
 
     public override string ToString() {
         string output = key;
@@ -43,7 +71,9 @@ public class AKVPEffect : AssetKeyValuePair
     /// <returns>boolean: Is the effect system valid.</returns>
     public bool CheckValidity() {
         return CheckDuration(onHitPrefab, hitPeakTime, "hitPeakTime") &&
-        CheckDuration(onFinishPrefab, finishPeakTime, "finishPeakTime");
+        CheckDuration(onFinishPrefab, finishPeakTime, "finishPeakTime") &&
+        CheckDuration(trailPrefab, trailPeakTime, "trailPeakTime") &&
+        captureMultiplier > 0;
     }
 
     /// <summary>
