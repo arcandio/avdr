@@ -7053,7 +7053,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1580711680}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999996
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7463,7 +7463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5d9c1b50c091edc4db07be9235fb9dba, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 62592401e6fb6b9458fc4b83715ec7b8, type: 2}
@@ -9941,7 +9941,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -9956,7 +9956,7 @@ Camera:
     height: 1
   near clip plane: 1
   far clip plane: 100
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -10019,7 +10019,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -15710,9 +15710,13 @@ MonoBehaviour:
     key: 
     priceInCents: 0
     onHitPrefab: {fileID: 0}
+    hitPeakTime: 0
     onFinishPrefab: {fileID: 0}
+    finishPeakTime: 0
     trailPrefab: {fileID: 0}
+    trailPeakTime: 0
     environmentPrefab: {fileID: 0}
+    captureMultiplier: 1
 --- !u!1 &399860285
 GameObject:
   m_ObjectHideFlags: 0
@@ -21573,8 +21577,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 916405177}
   m_HandleRect: {fileID: 916405176}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.5470099
+  m_Value: 1
+  m_Size: 0.6839724
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -51210,7 +51214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1, 2, 3, 4, 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5d9c1b50c091edc4db07be9235fb9dba, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 62592401e6fb6b9458fc4b83715ec7b8, type: 2}
@@ -51237,7 +51241,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
+  m_fontSize: 20
   m_fontSizeBase: 20.3
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -52038,7 +52042,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 138832156}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999833
+  m_Size: 0.9999986
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -52754,7 +52758,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 259396601}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999996
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -58905,7 +58909,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 222026208}
   m_Direction: 0
   m_Value: -1
-  m_Size: 0.99999833
+  m_Size: 0.9999986
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -62848,7 +62852,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1897742381}
   m_Direction: 0
   m_Value: -1
-  m_Size: 0.99999833
+  m_Size: 0.9999986
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -68903,7 +68907,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 450993386}
   m_HandleRect: {fileID: 450993385}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -69834,6 +69838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setupOnStart: 1
   devGetsCheatCode: 1
+  everyoneGetsCheatCode: 1
   deleteObjectsOnStart: 1
   deleteObjects:
   - {fileID: 210878505}
@@ -81483,7 +81488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0009249934}
+  m_AnchoredPosition: {x: 0, y: -0.00006151199}
   m_SizeDelta: {x: 0, y: 387.76}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1912123366
@@ -85047,21 +85052,11 @@ MonoBehaviour:
   historyUiEntryParent: {fileID: 985130702}
   historyUiEntryPrefab: {fileID: 1185040804464775510, guid: a89a7167c1c506944803c574a5a7c1e7, type: 3}
   maxHistoryUiEntries: 99
---- !u!4 &233818018715364878
+--- !u!4 &233818018715364878 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+  m_PrefabInstance: {fileID: 7899913492413067178}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5055718321632316940}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1940373945}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &631893235450541853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85618,396 +85613,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3998179795227566476
+--- !u!114 &3998179795227566476 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+  m_PrefabInstance: {fileID: 7899913492413067178}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5055718321632316940}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 550c156b75cdb634d8f291a4be00136e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  free:
-    diceSets:
-    - key: Humble Commoner
-      priceInCents: 0
-      prefabs:
-      - {fileID: 5312348197640893989, guid: c51c714d535e23c448437402a4735b58, type: 3}
-      - {fileID: 7112815720732814277, guid: e326524b0055e6044b91cff677ce22b4, type: 3}
-      - {fileID: 4249416951732806733, guid: 9760c22b07274b14292fc4131583bcf2, type: 3}
-      - {fileID: 8087074312752840239, guid: 2e3a35c4cff5615499bd836e8e40a53d, type: 3}
-      - {fileID: 2134171488300191699, guid: 3bd06b006eda7c6408d98717469e79b5, type: 3}
-      - {fileID: 4109723479904856207, guid: 5aa9d0519f1c8bf4daf1589108c8d788, type: 3}
-      - {fileID: 2234057422914795532, guid: 91a1601ab8ff0a14caf4c156b90c33e4, type: 3}
-      - {fileID: 2505445690124151882, guid: 050b43bb62bb9154cb1fca3a0c96593d, type: 3}
-      - {fileID: 1496617101837048839, guid: c66262cb3006c474db47708cbc67e4a0, type: 3}
-    - key: Weary Soldier
-      priceInCents: 0
-      prefabs:
-      - {fileID: 5312348197640893989, guid: 897e6e2c6c3584f41b4b5330636f5071, type: 3}
-      - {fileID: 7112815720732814277, guid: d7cd86bdb7d055747854e6d5635727d2, type: 3}
-      - {fileID: 4249416951732806733, guid: 592367f252b936241bcf0eccb767f1c6, type: 3}
-      - {fileID: 8087074312752840239, guid: 16b4b5b6879520f47bfdafaeec6d21a3, type: 3}
-      - {fileID: 2134171488300191699, guid: 3952a0383823e5b4a8a7d4a17d429f4e, type: 3}
-      - {fileID: 4109723479904856207, guid: 9d52fb84c2e231c43a448ec536b30e0c, type: 3}
-      - {fileID: 2234057422914795532, guid: b6c424ca8780acb4494e49ae07e8a638, type: 3}
-      - {fileID: 2505445690124151882, guid: 5027bbfc10daab4439c8faf825f98656, type: 3}
-      - {fileID: 1496617101837048839, guid: 36dd762940886bb4983deecbe65de7a6, type: 3}
-    - key: Elderly Wizard
-      priceInCents: 0
-      prefabs:
-      - {fileID: 5312348197640893989, guid: ef4be362710227540b1572e583a195bf, type: 3}
-      - {fileID: 7112815720732814277, guid: b26a6ec2941feda4b8d3e89942d233a5, type: 3}
-      - {fileID: 4249416951732806733, guid: 084d84d2b15dcb94db3dfac3f88c4ed7, type: 3}
-      - {fileID: 8087074312752840239, guid: 21c584841588bcb488c79fa1387c3ab9, type: 3}
-      - {fileID: 2134171488300191699, guid: b0d848a15e59f7d428a471d8dba1c6a3, type: 3}
-      - {fileID: 4109723479904856207, guid: f74c9da243237234cbb3d6b2659d3bcc, type: 3}
-      - {fileID: 2234057422914795532, guid: 604a19115795c654c9a7697d7e5314bd, type: 3}
-      - {fileID: 2505445690124151882, guid: 6da9d4e5b88bbd84cbba5a81faca889f, type: 3}
-      - {fileID: 1496617101837048839, guid: 3b3d3363ba92c3e44bc5a56b2c9fecce, type: 3}
-    - key: Pious Cleric
-      priceInCents: 0
-      prefabs:
-      - {fileID: 5312348197640893989, guid: dab5b01872e3bf1469afa0e1148d669c, type: 3}
-      - {fileID: 7112815720732814277, guid: 8a00e8a74c81398468c662f462e46070, type: 3}
-      - {fileID: 4249416951732806733, guid: eb314af33e0d50443bd5bd43c5cd0adc, type: 3}
-      - {fileID: 8087074312752840239, guid: 3ccf6023b4e3a7b4184e20301b62abe1, type: 3}
-      - {fileID: 2134171488300191699, guid: 1c2c87f010db41140ac5c3e67cd6fd98, type: 3}
-      - {fileID: 4109723479904856207, guid: 711146845e2426640af8a68e00c88cc7, type: 3}
-      - {fileID: 2234057422914795532, guid: 95709ec86eaa2c94398fa89df9ff3523, type: 3}
-      - {fileID: 2505445690124151882, guid: a78017ee93d1fd14a9b95e9e8b87c319, type: 3}
-      - {fileID: 1496617101837048839, guid: 0fae53257fc66e74185b32954a45bc33, type: 3}
-    - key: Plastic Childhood
-      priceInCents: 0
-      prefabs:
-      - {fileID: 5312348197640893989, guid: d21c5c34a37a9714eb11ae27348bf653, type: 3}
-      - {fileID: 7112815720732814277, guid: 14f205f51a314c64c8b27f9767aaf6d6, type: 3}
-      - {fileID: 4249416951732806733, guid: d5863d6e618d22546b7408457288b198, type: 3}
-      - {fileID: 8087074312752840239, guid: f8b643b922263b64085f2a94a8f73203, type: 3}
-      - {fileID: 2134171488300191699, guid: 577d8cd41aee9b14591302f789f1281e, type: 3}
-      - {fileID: 4109723479904856207, guid: 9d57f8acbcb26cd4e9209560db62e0f9, type: 3}
-      - {fileID: 2234057422914795532, guid: 2f81bb74d717f134f9951c1140c81c11, type: 3}
-      - {fileID: 2505445690124151882, guid: 912847a515f545648afd88f77c1ec8c3, type: 3}
-      - {fileID: 1496617101837048839, guid: ca2b652278e0fa64f940ce069fb70156, type: 3}
-    - key: Elven Steel
-      priceInCents: 0
-      prefabs:
-      - {fileID: 5312348197640893989, guid: 9ead57a95549e374f818a7394ddb6c51, type: 3}
-      - {fileID: 7112815720732814277, guid: 4f846706c3e6c6a409b85840a0cb127e, type: 3}
-      - {fileID: 4249416951732806733, guid: 7387a05738d5af7458e7f61f2d404a49, type: 3}
-      - {fileID: 8087074312752840239, guid: d0db0db3842fb5a41a65c4d141a2256b, type: 3}
-      - {fileID: 2134171488300191699, guid: ec3b3ce50338acc478bcb7f615363d2d, type: 3}
-      - {fileID: 4109723479904856207, guid: d7caf63c3b004e74ca437a946162c358, type: 3}
-      - {fileID: 2234057422914795532, guid: 24546cc491912474f908a9a6ae6c9fbc, type: 3}
-      - {fileID: 2505445690124151882, guid: 6d87a8d1a5c6ccb47a3cff6bb00d6700, type: 3}
-      - {fileID: 1496617101837048839, guid: d5f280678e5706f43878a2f9481c5ea9, type: 3}
-    trays:
-    - key: Gray Felt
-      priceInCents: 0
-      trayPrefab: {fileID: 6455959306998359145, guid: 9a0404214f352af41b0607e55c8f3f0a, type: 3}
-    - key: Polished Wood
-      priceInCents: 0
-      trayPrefab: {fileID: 3048758238191435295, guid: 7079ecea98a7bf24db5b42fe1d161384, type: 3}
-    - key: Ancient Stone
-      priceInCents: 0
-      trayPrefab: {fileID: 928183413009431344, guid: 69c2fa75af5c7934497e91af7e683bde, type: 3}
-    - key: Rocky Dirt
-      priceInCents: 0
-      trayPrefab: {fileID: 1055609251961015064, guid: b0e3e8c1f5c42bd4fbbcad6e41419162, type: 3}
-    lightings:
-    - key: Daylight
-      priceInCents: 0
-      lightingRig: {fileID: 2123916432}
-    - key: Night Time
-      priceInCents: 0
-      lightingRig: {fileID: 700863132}
-    - key: Setting Sun
-      priceInCents: 0
-      lightingRig: {fileID: 1157053814}
-    effects:
-    - key: None
-      priceInCents: 0
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 0}
-      trailPrefab: {fileID: 0}
-      environmentPrefab: {fileID: 0}
-    - key: Rainbow Sparkles
-      priceInCents: 0
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 6590860367052012227, guid: 5ab53de37ed6eb0489e8330f28738a3c, type: 3}
-      trailPrefab: {fileID: 6590860367052012227, guid: 6bb7ea7336fae464db1e592315b3cd93, type: 3}
-      environmentPrefab: {fileID: 0}
-    - key: Bam Kapow
-      priceInCents: 0
-      onHitPrefab: {fileID: 3831107805912277416, guid: 380a7617975d8f747b0b9a9b127c5814, type: 3}
-      onFinishPrefab: {fileID: 5635257346947273039, guid: ffbbcba409a358945abb9c1ecb8f437d, type: 3}
-      trailPrefab: {fileID: 0}
-      environmentPrefab: {fileID: 0}
-    - key: Yellow Stars
-      priceInCents: 0
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 6590860367052012227, guid: 6b5b524aaa2b6ae49926086538e34d6d, type: 3}
-      trailPrefab: {fileID: 6590860367052012227, guid: 4627ea99dd50cca41bb454a351c06b81, type: 3}
-      environmentPrefab: {fileID: 0}
-  paid:
-    diceSets:
-    - key: Sinister Vampire
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: adcb6ea679a0c694bb944266314f4c5c, type: 3}
-      - {fileID: 7112815720732814277, guid: 7c2c90fdd27276f48bc1f2af429ecc01, type: 3}
-      - {fileID: 4249416951732806733, guid: 86916ac521ae4724fb00ab2f13471612, type: 3}
-      - {fileID: 8087074312752840239, guid: d97ce52192416d848a0f01b1f847af04, type: 3}
-      - {fileID: 2134171488300191699, guid: f3d84bb4d444a154897638fba84724e3, type: 3}
-      - {fileID: 4109723479904856207, guid: 1460e9be34c6d584fb4a208efba4532e, type: 3}
-      - {fileID: 2234057422914795532, guid: 8c8989766b5d4ff4b917518f22cbb736, type: 3}
-      - {fileID: 2505445690124151882, guid: 1078186e06904e942b40e3083a5b13b6, type: 3}
-      - {fileID: 1496617101837048839, guid: 877776ac8aee4684e9c2629d3546662c, type: 3}
-    - key: Turbulent Ocean
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: 4eabbdfabc7899a4e9b2597aac14d578, type: 3}
-      - {fileID: 7112815720732814277, guid: 62df5f3d80c084649860cfe3f09f24b7, type: 3}
-      - {fileID: 4249416951732806733, guid: 0630031a9f006e94e8737a57126d3675, type: 3}
-      - {fileID: 8087074312752840239, guid: f0575e34bad57654aa13934fcf0e76e9, type: 3}
-      - {fileID: 2134171488300191699, guid: d10472d8899c1cf439b924d82e9825b8, type: 3}
-      - {fileID: 4109723479904856207, guid: 1e5aa8c12e58993458428adc447ac813, type: 3}
-      - {fileID: 2234057422914795532, guid: a8cfd26c20fcf49488ba25b9d6f7c3f5, type: 3}
-      - {fileID: 2505445690124151882, guid: a89bb72bb348fe54c923d834215a5b36, type: 3}
-      - {fileID: 1496617101837048839, guid: ff2b70dac7b6b6a439d0e537a35d37dd, type: 3}
-    - key: Nefarious Warlock
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: b1514d27a9f207c45b0db355bf35b15a, type: 3}
-      - {fileID: 7112815720732814277, guid: d2e48a04664cd0f4fb3582dac26a32fd, type: 3}
-      - {fileID: 4249416951732806733, guid: 421ca8e148c77004a81b6725b6027b89, type: 3}
-      - {fileID: 8087074312752840239, guid: d08dc01bc6c71954bb09ebd050e033ad, type: 3}
-      - {fileID: 2134171488300191699, guid: 424163c4c738f6a4ebd363105ddd3a50, type: 3}
-      - {fileID: 4109723479904856207, guid: 8f90f2c84e3a2554b8962ec9e2a374f6, type: 3}
-      - {fileID: 2234057422914795532, guid: 885360fef1c901446ab454ac994ac0fc, type: 3}
-      - {fileID: 2505445690124151882, guid: 2298d7d2fdd6b2f49b843957d515bfd8, type: 3}
-      - {fileID: 1496617101837048839, guid: 67e4c49ac7fce2e468f29080de0ddbc2, type: 3}
-    - key: Starry Witch
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: dd7aa52b8fdba57499827cdcf0d9e9b1, type: 3}
-      - {fileID: 7112815720732814277, guid: f03ce413967e637428a82ab1c3958240, type: 3}
-      - {fileID: 4249416951732806733, guid: f79cad352899e104494ac15bf6f5f456, type: 3}
-      - {fileID: 8087074312752840239, guid: a2b7bd038e8d9a04e9d493bcf5b6d481, type: 3}
-      - {fileID: 2134171488300191699, guid: b3b0b64658bcde84d8afcc7f8a4ec8fb, type: 3}
-      - {fileID: 4109723479904856207, guid: c6f1c596f2a68dd47bc776ad11a3146f, type: 3}
-      - {fileID: 2234057422914795532, guid: 5923e0de6f9a5e54199063f0290ac407, type: 3}
-      - {fileID: 2505445690124151882, guid: 9235de65c6da39440996af721d61fb70, type: 3}
-      - {fileID: 1496617101837048839, guid: c940c257c4f86df4990c4099a414f6d0, type: 3}
-    - key: Fleshy Mass
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: 087c0102b0a6d2043b7c3d73680a688d, type: 3}
-      - {fileID: 7112815720732814277, guid: ab61235b83b4b464d93df80dbcce8165, type: 3}
-      - {fileID: 4249416951732806733, guid: a73d53dc3cdb3004e8f244754163f092, type: 3}
-      - {fileID: 8087074312752840239, guid: 19875fd3b9273bc4b824b0c15c73ef86, type: 3}
-      - {fileID: 2134171488300191699, guid: 9febdc83cfede1b4a84a1719b8e85e87, type: 3}
-      - {fileID: 4109723479904856207, guid: bfc128a76d0e5d641a8da5593d4a0a78, type: 3}
-      - {fileID: 2234057422914795532, guid: 89eabd5b4e2858944b8b21768fa6c03e, type: 3}
-      - {fileID: 2505445690124151882, guid: b1a2da13c9692524f943d05c6341ae33, type: 3}
-      - {fileID: 1496617101837048839, guid: 7826e1ee25d878d40a1c43e91ae2f24c, type: 3}
-    - key: Advanced Circuits
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: 82ae7bf6aafd7c140b8b8b85d5884379, type: 3}
-      - {fileID: 7112815720732814277, guid: 27268735c800e8a4c9fdef4e9569f10c, type: 3}
-      - {fileID: 4249416951732806733, guid: 62319e35b42193349a7f24ca669dbba4, type: 3}
-      - {fileID: 8087074312752840239, guid: a54d5a691c5c64a4db925afd9c299980, type: 3}
-      - {fileID: 2134171488300191699, guid: 03795cafc9dc9a74ab4a8dd223c2877c, type: 3}
-      - {fileID: 4109723479904856207, guid: cf855316f79f0854ba69566c29ffb028, type: 3}
-      - {fileID: 2234057422914795532, guid: 03b0bd6622ef90742ad92a2cc2e4298c, type: 3}
-      - {fileID: 2505445690124151882, guid: 4ac179d80285aa44d9c0c8b5617e3065, type: 3}
-      - {fileID: 1496617101837048839, guid: 300357f8809b208448f4cfc05d9d4070, type: 3}
-    - key: Vibrant Rainbow
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: 3f326dda6494a024e9b37ce6ed196e7b, type: 3}
-      - {fileID: 7112815720732814277, guid: f9c94ebc646a5b44daee779903f71188, type: 3}
-      - {fileID: 4249416951732806733, guid: 71064321b76b4a14bbf83692ec9ab3f1, type: 3}
-      - {fileID: 8087074312752840239, guid: 206351eb1d16b2640bc71692f200ab27, type: 3}
-      - {fileID: 2134171488300191699, guid: 6e121a2c1f9ab334d9a51c6aaf0f35d1, type: 3}
-      - {fileID: 4109723479904856207, guid: 8fbec3bde63e5ed469883325aa922671, type: 3}
-      - {fileID: 2234057422914795532, guid: 231ce87d50b152346a73e263216e220e, type: 3}
-      - {fileID: 2505445690124151882, guid: 2f18dce6d498e5141b08cd67d44e443e, type: 3}
-      - {fileID: 1496617101837048839, guid: e899e8b2b38f70149a7e608fcb3b966b, type: 3}
-    - key: Freshly Forged
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: 010b01936b210d2408126ec32a7825ee, type: 3}
-      - {fileID: 7112815720732814277, guid: 38d8ce7a549421a4ebd41d84c36549fc, type: 3}
-      - {fileID: 4249416951732806733, guid: 614b025756a3c814a8418049c77b73fb, type: 3}
-      - {fileID: 8087074312752840239, guid: 9375fc1450cf0d34d9027555eb422c8b, type: 3}
-      - {fileID: 2134171488300191699, guid: 2cd1de82387d40749832b65452d61ef8, type: 3}
-      - {fileID: 4109723479904856207, guid: c65bb05b0d6b50940bc99e58856661d3, type: 3}
-      - {fileID: 2234057422914795532, guid: 025f9a507551de14db6731402de118d4, type: 3}
-      - {fileID: 2505445690124151882, guid: 878d7b5d141d5044f9372e7126ef534a, type: 3}
-      - {fileID: 1496617101837048839, guid: f5cc8a1203d33364f80036efe66b735f, type: 3}
-    - key: Cooling Magma
-      priceInCents: 99
-      prefabs:
-      - {fileID: 5312348197640893989, guid: da0fbabba60d45544ae494af9a15f84d, type: 3}
-      - {fileID: 7112815720732814277, guid: 32b50933f889bd8458aff842ba511ff5, type: 3}
-      - {fileID: 4249416951732806733, guid: 3635ac67d5fac6d4bafcf509092ca9b5, type: 3}
-      - {fileID: 8087074312752840239, guid: 5312de380c37aab45a1b6124bb9eada3, type: 3}
-      - {fileID: 2134171488300191699, guid: d38e40313166d5440aaf3c3e3ff066cc, type: 3}
-      - {fileID: 4109723479904856207, guid: ae0417f030dcfab49a146f90fa371a14, type: 3}
-      - {fileID: 2234057422914795532, guid: 2b8f21738a4db2f4a912906ace2be7fa, type: 3}
-      - {fileID: 2505445690124151882, guid: 7c2c110576e0cb94eb8fd4ca152a945e, type: 3}
-      - {fileID: 1496617101837048839, guid: bf36075624f502044a5343353cd7f165, type: 3}
-    trays:
-    - key: Desert Sands
-      priceInCents: 99
-      trayPrefab: {fileID: 2355881541405728126, guid: 2d7ac86ad0a6b98409c9e685c844f628, type: 3}
-    - key: Emerald Geode
-      priceInCents: 99
-      trayPrefab: {fileID: 8240344693049729857, guid: 78137d57904926f4ba2c1eb87afe2d3b, type: 3}
-    - key: Sapphire Geode
-      priceInCents: 99
-      trayPrefab: {fileID: 4024096738920023099, guid: bdb197c0e8c9ba74dadbfc677f985f39, type: 3}
-    - key: Amethyst Geode
-      priceInCents: 99
-      trayPrefab: {fileID: 3611858186901330309, guid: 37d7156a967f72746b595b0411dedddc, type: 3}
-    - key: Ruby Geode
-      priceInCents: 99
-      trayPrefab: {fileID: 4977722756701753658, guid: ec06abea9e0927d41aa3f1e0d32ef444, type: 3}
-    - key: Mossy Rocks
-      priceInCents: 99
-      trayPrefab: {fileID: 4944098234535204146, guid: a074cb7e003175e47b1dd4762aeb47bb, type: 3}
-    - key: Arcane Rune
-      priceInCents: 99
-      trayPrefab: {fileID: 3520635476123506328, guid: 5e453f8cd31793640b8c9cad9225929b, type: 3}
-    - key: Etched Iron
-      priceInCents: 99
-      trayPrefab: {fileID: 3658998567043671222, guid: 96a60289283e03f4ea9b96f57f9cc6a2, type: 3}
-    - key: Fell Altar
-      priceInCents: 99
-      trayPrefab: {fileID: 6904557026649960151, guid: 07ec64c8f2ef3094cb9632a66fb30222, type: 3}
-    - key: Lovecraftian Ectoplasm
-      priceInCents: 99
-      trayPrefab: {fileID: 470634004008228369, guid: ccc2f2c7b222ec6409e41cbf05469ef8, type: 3}
-    - key: Worn Leather
-      priceInCents: 99
-      trayPrefab: {fileID: 4024096738920023099, guid: 06c95a177ae7963439d87d0e2db777d3, type: 3}
-    - key: Frozen Glacier
-      priceInCents: 99
-      trayPrefab: {fileID: 4024096738920023099, guid: db280071d9769604992a10d898e26aa6, type: 3}
-    - key: Ominous Derelict
-      priceInCents: 99
-      trayPrefab: {fileID: 4024096738920023099, guid: a7ef4d41512c906478b373a6ec1df680, type: 3}
-    - key: Deep Space
-      priceInCents: 99
-      trayPrefab: {fileID: 4013126702014494170, guid: be180bfd6eefe6644b0084a0cbb71e47, type: 3}
-    lightings:
-    - key: Flaming Hell
-      priceInCents: 99
-      lightingRig: {fileID: 186650604}
-    - key: Flickering Candle
-      priceInCents: 99
-      lightingRig: {fileID: 769857684}
-    - key: Sickly Glow
-      priceInCents: 99
-      lightingRig: {fileID: 1572498722}
-    - key: Enchanted Forest
-      priceInCents: 99
-      lightingRig: {fileID: 578500959}
-    - key: Flickering Candle
-      priceInCents: 99
-      lightingRig: {fileID: 769857684}
-    - key: Mystical Library
-      priceInCents: 99
-      lightingRig: {fileID: 2112473202}
-    - key: Mountain Shadow
-      priceInCents: 99
-      lightingRig: {fileID: 1174102106}
-    - key: Windswept Desert
-      priceInCents: 99
-      lightingRig: {fileID: 2126170948}
-    - key: Forest Waterfall
-      priceInCents: 99
-      lightingRig: {fileID: 1528864298}
-    - key: Snowy Overcast
-      priceInCents: 99
-      lightingRig: {fileID: 1329235725}
-    effects:
-    - key: Gold Coins
-      priceInCents: 99
-      onHitPrefab: {fileID: 8193979307960100090, guid: 9d53c5a5f14c4174ea22500c1d59f467, type: 3}
-      onFinishPrefab: {fileID: 0}
-      trailPrefab: {fileID: 0}
-      environmentPrefab: {fileID: 8193979307960100090, guid: 490a418382ed0fc4ebae313cb0fd25f6, type: 3}
-    - key: Bloody Mess
-      priceInCents: 99
-      onHitPrefab: {fileID: 736024842616012527, guid: eb77a9a034c1f9d449c471289dad79f9, type: 3}
-      onFinishPrefab: {fileID: 0}
-      trailPrefab: {fileID: 0}
-      environmentPrefab: {fileID: 0}
-    - key: Holy Light
-      priceInCents: 99
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 0}
-      trailPrefab: {fileID: 3782367489597873040, guid: 2a73383d76bb1cf488f768b3036141a5, type: 3}
-      environmentPrefab: {fileID: 2767213812985507836, guid: 3fd48d2d42c5f5f478baf1f423827694, type: 3}
-    - key: Blinding Flash
-      priceInCents: 99
-      onHitPrefab: {fileID: 6590860367052012227, guid: a5a26be47a144b44fb8a316bcfe6ac63, type: 3}
-      onFinishPrefab: {fileID: 6590860367052012227, guid: e55d255b6a7515e47a836b5ce897b7e4, type: 3}
-      trailPrefab: {fileID: 0}
-      environmentPrefab: {fileID: 0}
-    - key: Occult Glyphs
-      priceInCents: 0
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 2770298550063266373, guid: 3f7311cc2266ece4cb31d6877e5b3587, type: 3}
-      trailPrefab: {fileID: 2770298550063266373, guid: 9aa3910d284e12548ab018c62f4d72a1, type: 3}
-      environmentPrefab: {fileID: 0}
-    - key: Chilly Blizzard
-      priceInCents: 99
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 0}
-      trailPrefab: {fileID: 2770298550063266373, guid: d1737ffd085d1444d90b72ccb8a392c7, type: 3}
-      environmentPrefab: {fileID: 8965062019044865407, guid: b620bc587b7742a42ab9b1833f5671cb, type: 3}
-    - key: Cosmic Dust
-      priceInCents: 99
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 0}
-      trailPrefab: {fileID: 556016974602471877, guid: 91f6181a0f6d6f140bdc370efc77c801, type: 3}
-      environmentPrefab: {fileID: 2767213812985507836, guid: a05583c74694f064186c53f6c795788f, type: 3}
-    - key: Eldritch Runes
-      priceInCents: 99
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 2770298550063266373, guid: 136df5cba75a17b4db8a7464db143e69, type: 3}
-      trailPrefab: {fileID: 2770298550063266373, guid: 54ce00275b899d748baa3dbc7c747474, type: 3}
-      environmentPrefab: {fileID: 0}
-    - key: Explosions
-      priceInCents: 99
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 1533351909904190657, guid: f1c8a18745673934bb36c7ea818a0ad9, type: 3}
-      trailPrefab: {fileID: 2770298550063266373, guid: 42992f2b794dc6341a7550efba6f3ba3, type: 3}
-      environmentPrefab: {fileID: 0}
-    - key: Paw Prints
-      priceInCents: 99
-      onHitPrefab: {fileID: 736024842616012527, guid: 841112d57311e344fa30bc04d962f949, type: 3}
-      onFinishPrefab: {fileID: 0}
-      trailPrefab: {fileID: 0}
-      environmentPrefab: {fileID: 0}
-    - key: Black Hole
-      priceInCents: 99
-      onHitPrefab: {fileID: 0}
-      onFinishPrefab: {fileID: 0}
-      trailPrefab: {fileID: 8096811865283874265, guid: 6f5d4edcc5dd5434d96178ae8b32b3c8, type: 3}
-      environmentPrefab: {fileID: 3251456270331006922, guid: 3f1e196635149ac4c90355c2ef304820, type: 3}
-  purchased:
-    diceSets: []
-    trays: []
-    lightings: []
-    effects: []
 --- !u!82 &4031993789528059619
 AudioSource:
   m_ObjectHideFlags: 0
@@ -86334,23 +85950,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &5055718321632316940
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 233818018715364878}
-  - component: {fileID: 3998179795227566476}
-  m_Layer: 0
-  m_Name: AssetManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &5662788130292432881
 Transform:
   m_ObjectHideFlags: 0
@@ -86632,6 +86231,115 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1119858495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7899913492413067178
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1940373945}
+    m_Modifications:
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150159739534523291, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: free.lightings.Array.data[0].lightingRig
+      value: 
+      objectReference: {fileID: 2123916432}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: free.lightings.Array.data[1].lightingRig
+      value: 
+      objectReference: {fileID: 700863132}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: free.lightings.Array.data[2].lightingRig
+      value: 
+      objectReference: {fileID: 1157053814}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[0].lightingRig
+      value: 
+      objectReference: {fileID: 186650604}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[1].lightingRig
+      value: 
+      objectReference: {fileID: 769857684}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[2].lightingRig
+      value: 
+      objectReference: {fileID: 1572498722}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[3].lightingRig
+      value: 
+      objectReference: {fileID: 578500959}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[4].lightingRig
+      value: 
+      objectReference: {fileID: 769857684}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[5].lightingRig
+      value: 
+      objectReference: {fileID: 2112473202}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[6].lightingRig
+      value: 
+      objectReference: {fileID: 1174102106}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[7].lightingRig
+      value: 
+      objectReference: {fileID: 2126170948}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[8].lightingRig
+      value: 
+      objectReference: {fileID: 1528864298}
+    - target: {fileID: 1694466470538276418, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: paid.lightings.Array.data[9].lightingRig
+      value: 
+      objectReference: {fileID: 1329235725}
+    - target: {fileID: 7674416517561388714, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
+      propertyPath: m_Name
+      value: AssetManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1194e040626de6e45bd9163557cb9109, type: 3}
 --- !u!114 &8407431726809404562
 MonoBehaviour:
   m_ObjectHideFlags: 0

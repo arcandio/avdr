@@ -4,12 +4,14 @@ public class StartupManager : MonoBehaviour
 {
     public bool setupOnStart = true;
     public bool devGetsCheatCode = true;
+    public bool everyoneGetsCheatCode = true;
     public bool deleteObjectsOnStart = true;
     public GameObject[] deleteObjects;
     
     private ManagerBehaviour[] managerBehaviours;
 
     void Awake() {
+        Debug.LogWarning("STARTUP MANAGER LIVES");
         managerBehaviours = GetComponentsInChildren<ManagerBehaviour>();
         if(setupOnStart) {
             SetupAwake();
@@ -36,17 +38,20 @@ public class StartupManager : MonoBehaviour
 
     void SetupAwake() {
         foreach(ManagerBehaviour managerBehaviour in managerBehaviours) {
-            Debug.Log(managerBehaviour.gameObject.name);
+            // Debug.Log(managerBehaviour.gameObject.name);
             managerBehaviour.SetupInAwake();
             /* Begin edge cases */
             if(managerBehaviour is AssetManager assetManager) {
-                if(Debug.isDebugBuild && devGetsCheatCode) {
-            assetManager.CheatCode();
+                if(everyoneGetsCheatCode || devGetsCheatCode) {
+                    assetManager.CheatCode();
                 }
             }
         }
         if(deleteObjectsOnStart == true) {
             foreach(GameObject gameObject in deleteObjects) {
+                if(gameObject == null) {
+                    continue;
+                }
                 gameObject.SetActive(false);
                 Destroy(gameObject);
             }

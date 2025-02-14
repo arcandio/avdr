@@ -1,57 +1,86 @@
 using System;
 using System.Collections;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
+using System.Collections.Generic;
 
-[RequireComponent(typeof(Camera))]
 public class CaptureImage : MonoBehaviour
 {
+    #if UNITY_EDITOR
+    #region variables
     // public RenderTexture renderTexture;
     public int size = 1024;
     new public Camera camera;
 
-    private RenderTexture temporaryRenderTexture;
-    private Texture2D texture2D;
-    private GameObject[] prototypeDice;
-    private GameObject defaultTray;
-    private GameObject defaultLight;
+    private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+
+    /* manager references */
+    private CharacterManager characterManager;
+    private AssetManager assetManager;
+    private DiceManager diceManager;
+
+    private Vector3[] originalDicePositons;
+
+    #endregion
+    #region setup
 
     void Awake() {
-        /* gain control of the scene by turning off CharacterManager */
-        CharacterManager characterManager = FindFirstObjectByType<CharacterManager>(FindObjectsInactive.Include);
-        characterManager.enabled = false;
-        characterManager.gameObject.SetActive(false);
-    }
-
-    public void CaptureScreen() {
-        PerformCaptureTest();
-        // ScreenCapture.CaptureScreenshot(path, 1);
-    }
-
-    public void CaptureAllAssets() {
+        stopwatch.Start();
+        Debug.LogWarning("Capture Image Awake");
         StartCoroutine(CaptureAllCoroutine());
     }
 
-    private IEnumerator CaptureAllCoroutine() {
-        yield return new WaitForEndOfFrame();
-        /* get ready */
-        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-        stopwatch.Start();
+    public IEnumerator CaptureAllCoroutine() {
         Debug.LogWarning("Capture All Assets Started.");
+        yield return new WaitForEndOfFrame();
+        /* get references */
+        characterManager = FindFirstObjectByType<CharacterManager>(FindObjectsInactive.Include);
+        assetManager = FindFirstObjectByType<AssetManager>(FindObjectsInactive.Include);
+        diceManager = FindFirstObjectByType<DiceManager>(FindObjectsInactive.Include);
 
         
-        /* get the assets we need to capture */
-        AssetManager assetManager = FindFirstObjectByType<AssetManager>();
-        AKVPDice[] dicePairs = assetManager.All.diceSets;
 
+        /* check for dice */
+        diceManager.GetExistingDice();
+        if(diceManager.DiceInstances.Length < 7) {
+            EditorApplication.Beep();
+            Debug.LogError("Not enough preview dice. diceManager.DiceInstances.Length: " + diceManager.DiceInstances.Length);
+            yield break;
+        }
+
+        /* store original dice positions */
+        originalDicePositons = new Vector3[diceManager.DiceInstances.Length];
+        for(int d = 0; d < diceManager.DiceInstances.Length; d++) {
+            originalDicePositons[d] = diceManager.DiceInstances[d].transform.position;
+        }
+
+        /* gain control of the scene by turning off CharacterManager */
+        characterManager.enabled = false;
+        characterManager.gameObject.SetActive(false);
+        
         /* capture each asset */
-        yield return CaptureDiceSets(dicePairs, AssetType.DiceSet);
+        yield return CaptureDiceSets(assetManager.All.diceSets);
+        yield return CaptureTrays(assetManager.All.trays);
+        yield return CaptureLights(assetManager.All.lightings);
+        yield return CaptureEffects(assetManager.All.effects);
         
-        stopwatch.Stop();
-        string elapsed = stopwatch.Elapsed.ToString();
-        Debug.Log("Capture All Assets completed in " + elapsed.Split('.', StringSplitOptions.None)[0] + " s");
+        /* finish */
+        AssetDatabase.Refresh();
+        Output();
+        Destroy(gameObject);
+        EditorApplication.isPlaying = false;
     }
+
+    void Output() {
+        stopwatch.Stop();
+        string elapsed = stopwatch.Elapsed.ToString().Split('.', StringSplitOptions.None)[0];
+        stopwatch.Reset();
+        Debug.LogWarning("Capture All Assets completed in " + elapsed + " hh:mm:ss");
+    }
+
+    #endregion
+    #region dice
 
     /// <summary>
     /// Iterates over the given assets and creates a screenshot and saves it.
@@ -59,87 +88,283 @@ public class CaptureImage : MonoBehaviour
     /// <param name="dicePairs"></param>
     /// <param name="type"></param>
     /// <returns></returns>
-    private IEnumerator CaptureDiceSets(AKVPDice[] dicePairs, AssetType type) {
-        yield return new WaitForSeconds(1);
-        foreach(AKVPDice pair in dicePairs) {
-            Debug.Log(pair.key);
+    private IEnumerator CaptureDiceSets(AKVPDice[] dicePairs) {
+        yield return new WaitForEndOfFrame();
+        
+        /* set defaults */
+        ResetScene();
+        
+        /* wait for everything to update */
+        yield return new WaitForEndOfFrame();
+
+        /* iterate */
+        for(int i = 0; i < dicePairs.Length; i++) {
+            AKVPDice pair = dicePairs[i];
+            Debug.Log("Automatically Select Dice Set: " + pair.key);
             string path = "Resources/Screenshots/Dice/" + pair.key + ".png";
-            PerformSerialCapture(path);
+            
+            /* replace the dice set */
+            characterManager.SetDiceSet(i);
+
+            /* wait */
+            yield return new WaitForEndOfFrame();
+
+            /* capture */
+            ImageHandling.PerformSerialCapture(camera, size, path);
         }
     }
 
-    private void PerformSerialCapture(string path) {
-        RenderTexture temporary = RenderTexture.GetTemporary(size, size, 16, RenderTextureFormat.ARGB32);
-        camera.targetTexture = temporary;
+    #endregion
+    #region trays
 
-        camera.Render();
-
-        Texture2D texture2D = new Texture2D(size, size, TextureFormat.RGB24, false);
-
-        RenderTexture original = RenderTexture.active;
-        RenderTexture.active = temporary;
+    private IEnumerator CaptureTrays(AKVPTray[] trays) {
+        yield return new WaitForEndOfFrame();
         
-        texture2D.ReadPixels(new Rect(0, 0, size, size), 0, 0);
-        RenderTexture.ReleaseTemporary(temporary);
-        camera.targetTexture = null;
-        RenderTexture.active = original;
-        texture2D.Apply();
-        
-        SaveToDisk(texture2D, path);
+        /* set defaults */
+        // diceManager.GetExistingDice();
+        ResetScene();
 
-        if(Application.isPlaying) {
-            Destroy(texture2D);
+        /* hide dice */
+        foreach(SingleDie die in diceManager.DiceInstances) {
+            die.gameObject.SetActive(false);
         }
-        else {
-            DestroyImmediate(texture2D);
+        
+        /* wait for everything to update */
+        yield return new WaitForEndOfFrame();
+
+        /* iterate */
+        for(int i = 0; i < trays.Length; i++) {
+            AKVPTray pair = trays[i];
+            Debug.Log("Automatically Select tray: " + pair.key);
+            string path = "Resources/Screenshots/Trays/" + pair.key + ".png";
+            
+            /* replace the dice set */
+            characterManager.SetTray(i);
+
+            /* wait */
+            yield return new WaitForEndOfFrame();
+
+            /* capture */
+            ImageHandling.PerformSerialCapture(camera, size, path);
+        }
+
+        /* unhide dice */
+        foreach(SingleDie die in diceManager.DiceInstances) {
+            die.gameObject.SetActive(true);
         }
     }
-    
-    private void PerformCaptureTest() {
-        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-        stopwatch.Start();
+
+    #endregion
+    #region lights
+
+    private IEnumerator CaptureLights(AKVPLight[] lights) {
+        yield return new WaitForEndOfFrame();
         
-        RenderTexture temporary = RenderTexture.GetTemporary(size, size, 16, RenderTextureFormat.ARGB32);
-        camera.targetTexture = temporary;
+        /* set defaults */
+        ResetScene();
 
-        camera.Render();
-
-        Texture2D texture2D = new Texture2D(size, size, TextureFormat.RGB24, false);
-
-        RenderTexture original = RenderTexture.active;
-        RenderTexture.active = temporary;
-        
-        texture2D.ReadPixels(new Rect(0, 0, size, size), 0, 0);
-        RenderTexture.ReleaseTemporary(temporary);
-        camera.targetTexture = null;
-        RenderTexture.active = original;
-        texture2D.Apply();
-        
-        string path = "Resources/Screenshots/Test/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss SC") + ".png";
-        SaveToDisk(texture2D, path);
-
-        if(Application.isPlaying) {
-            Destroy(texture2D);
+        /* show dice */
+        foreach(SingleDie die in diceManager.DiceInstances) {
+            die.gameObject.SetActive(true);
         }
-        else {
-            DestroyImmediate(texture2D);
-        }
+        
+        /* wait for everything to update */
+        yield return new WaitForEndOfFrame();
 
-        Debug.Log($"rendered in {stopwatch.Elapsed.Milliseconds} ms");
+        /* iterate */
+        for(int i = 0; i < lights.Length; i++) {
+            AKVPLight pair = lights[i];
+            Debug.Log("Automatically Select light: " + pair.key);
+            string path = "Resources/Screenshots/Lights/" + pair.key + ".png";
+            
+            /* replace the dice set */
+            characterManager.SetLighting(i);
+
+            /* wait */
+            yield return new WaitForSeconds(.1f);
+
+            /* capture */
+            ImageHandling.PerformSerialCapture(camera, size, path);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
-    private void SaveToDisk(Texture2D texture2D, string localPath) {
-        if(texture2D == null) {
-            Debug.LogError("No texture to save.");
-            return;
+    #endregion
+    #region effects
+
+    private IEnumerator CaptureEffects(AKVPEffect[] effects) {
+        yield return new WaitForEndOfFrame();
+        
+        /* set defaults */
+        ResetScene();
+
+        /* show dice */
+        foreach(SingleDie die in diceManager.DiceInstances) {
+            die.gameObject.SetActive(true);
         }
-        if(string.IsNullOrEmpty(localPath)) {
-            Debug.LogError("path was empty");
-            return;
+        
+        /* wait for everything to update */
+        yield return new WaitForEndOfFrame();
+
+        /* iterate */
+        for(int i = 0; i < effects.Length; i++) {
+            /* remove the old set and let it clear out */
+            characterManager.SetEffects(0);
+            yield return new WaitForSeconds(.1f);
+
+            /* select the new effect */
+            AKVPEffect pair = effects[i];
+            Debug.Log("Automatically Select effect: " + pair.key);
+            string path = "Resources/Screenshots/Effects/" + pair.key + ".png";
+
+            /* organize dice sets */
+            int slots = 0;
+            int offset = UnityEngine.Random.Range(0, slots);
+            slots += pair.onHitPrefab != null ? 1 :0;
+            slots += pair.onFinishPrefab != null ? 1 :0;
+            slots += pair.trailPrefab != null ? 1 :0;
+            SingleDie[] trailDice = new SingleDie[0];
+            SingleDie[] hitDice = new SingleDie[0];
+            SingleDie[] finishDice = new SingleDie[0];
+            if(pair.onHitPrefab != null) {
+                hitDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, slots, offset + 0);
+            }
+            if(pair.onFinishPrefab != null) {
+                finishDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, slots, offset + 1);
+            }
+            if(pair.trailPrefab != null) {
+                trailDice = ExtensionMethods.GetPeriodicSubsetOfArray(diceManager.DiceInstances, slots, offset + 2);
+            }
+
+            /* record the finish positions of the trail dice */
+            ResetDicePositions();
+            Vector3[] finalPositions = new Vector3[trailDice.Length];
+            Vector3[] startPositions = new Vector3[trailDice.Length];
+            for(int t = 0; t < trailDice.Length; t++) {
+                Rigidbody rigidbody = trailDice[t].GetComponent<Rigidbody>();
+                rigidbody.isKinematic = true;
+                startPositions[t] = trailDice[t].transform.position * 2;
+                finalPositions[t] = trailDice[t].transform.position;
+                
+                /* move the trail dice to their starting positions */
+                trailDice[t].transform.position = startPositions[t];
+            }
+            
+            /* replace the effects */
+            characterManager.SetEffects(i);
+
+            /* set up the environment effect if it exists */
+            if(pair.environmentPrefab != null) {
+                GameObject parent = FindFirstObjectByType<ParticleEffectManager>().gameObject;
+                ParticleSystem[] children = parent.GetComponentsInChildren<ParticleSystem>();
+                ParticleSystem envSystem = null;
+                foreach(ParticleSystem child in children) {
+                    if(child.gameObject.name == pair.environmentPrefab.name + "(Clone)") {
+                        envSystem = child;
+                    }
+                }
+                if(envSystem != null) {
+                    ParticleSystem.MainModule main = envSystem.main;
+                    main.prewarm = true;
+                    ParticleSystem.EmissionModule emission = envSystem.emission;
+                    emission.rateOverTimeMultiplier *= pair.captureMultiplier;
+                    main.maxParticles = (int)(main.maxParticles * pair.captureMultiplier);
+                    envSystem.Play();
+                    yield return new WaitForEndOfFrame();
+                }
+            }
+
+            /* validate peak times */
+            foreach(AKVPEffect effect in assetManager.All.effects) {
+                if(effect.CheckValidity() == false) {
+                    Debug.LogError("Breaking the CaptureImage loop because of an invalid AKVPEffect. See above.");
+                    Debug.LogError("EFFECTS NOT RENDERED!");
+                    yield break;
+                }
+            }
+
+            /* get ready for our timing loop */
+            List<GameObject> deleteList = new List<GameObject>();
+            float renderDuration = pair.RenderDuration;
+            float startTime = Time.time;
+            float finishTime = startTime + renderDuration;
+            float hitSpawnTime = finishTime - pair.hitPeakTime;
+            float finishSpawnTime = finishTime - pair.finishPeakTime;
+            bool didSpawnHit = false;
+            bool didSpawnFinish = false;
+
+            /* timing loop */
+            while(Time.time <= finishTime) {
+                /* move trail dice around so the trail appears */
+                for(int m = 0; m < trailDice.Length; m++) {
+                    SingleDie die = trailDice[m];
+                    float percentage = TimePercentage(startTime, finishTime, renderDuration);
+                    die.transform.position = Vector3.Lerp(startPositions[m], finalPositions[m], percentage);
+                }
+                /* instantiate particle effects manually */
+                if(
+                    pair.onHitPrefab != null && 
+                    didSpawnHit == false &&
+                    Time.time >= hitSpawnTime
+                ) {
+                    didSpawnHit = true;
+                    foreach(SingleDie d in hitDice) {
+                        GameObject instance = Instantiate(pair.onHitPrefab, d.transform.position, Quaternion.identity);
+                        deleteList.Add(instance);
+                    }
+                }
+                if(
+                    pair.onFinishPrefab != null &&
+                    didSpawnFinish == false &&
+                    Time.time >= finishSpawnTime
+                ) {
+                    didSpawnFinish = true;
+                    foreach(SingleDie d in finishDice) {
+                        GameObject instance = Instantiate(pair.onFinishPrefab, d.transform.position, Quaternion.identity);
+                        deleteList.Add(instance);
+                    }
+                }
+                yield return new WaitForEndOfFrame();
+            }
+            /* totally reset the dice to ensure uniformity across thumbnails */
+            ResetDicePositions();
+
+            /* capture */
+            yield return new WaitForEndOfFrame();
+            ImageHandling.PerformSerialCapture(camera, size, path);
+
+            /* clear particle effects */
+            for(int e = 0; e < deleteList.Count; e++) {
+                GameObject gameObject = deleteList[e];
+                gameObject.SetActive(false);
+                Destroy(gameObject);
+            }
+            yield return new WaitForEndOfFrame();
         }
-        byte[] bytes = texture2D.EncodeToPNG();
-        string path = Application.dataPath + "/" + localPath;
-        File.WriteAllBytes(path, bytes);
-        Debug.Log(path);
     }
+
+    private void ResetScene() {
+        characterManager.SetDiceSet(0);
+        characterManager.SetTray(0);
+        characterManager.SetLighting(0);
+        characterManager.SetEffects(0);
+        ResetDicePositions();
+    }
+    private void ResetDicePositions() {
+        for(int d = 0; d < diceManager.DiceInstances.Length; d++) {
+            diceManager.DiceInstances[d].transform.position = originalDicePositons[d];
+        }
+    }
+
+    private float TimePercentage(float start, float finish, float duration) {
+        float progress = finish - start;
+        if(duration <= 0) {
+            Debug.LogError("duration cannot be zero.");
+            return 0;
+        }
+        return progress / duration;
+    }
+
+    #endregion
+    #endif
 }
