@@ -4,10 +4,10 @@ using System.IO;
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using UnityEngine.Rendering.Universal;
 
 public class CaptureImage : MonoBehaviour
 {
+    #if UNITY_EDITOR
     #region variables
     // public RenderTexture renderTexture;
     public int size = 1024;
@@ -110,7 +110,7 @@ public class CaptureImage : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
             /* capture */
-            PerformSerialCapture(path);
+            ImageHandling.PerformSerialCapture(camera, size, path);
         }
     }
 
@@ -145,7 +145,7 @@ public class CaptureImage : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
             /* capture */
-            PerformSerialCapture(path);
+            ImageHandling.PerformSerialCapture(camera, size, path);
         }
 
         /* unhide dice */
@@ -184,7 +184,7 @@ public class CaptureImage : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
             /* capture */
-            PerformSerialCapture(path);
+            ImageHandling.PerformSerialCapture(camera, size, path);
             yield return new WaitForEndOfFrame();
         }
     }
@@ -331,7 +331,7 @@ public class CaptureImage : MonoBehaviour
 
             /* capture */
             yield return new WaitForEndOfFrame();
-            PerformSerialCapture(path);
+            ImageHandling.PerformSerialCapture(camera, size, path);
 
             /* clear particle effects */
             for(int e = 0; e < deleteList.Count; e++) {
@@ -366,48 +366,5 @@ public class CaptureImage : MonoBehaviour
     }
 
     #endregion
-    #region capture
-
-    private void PerformSerialCapture(string path) {
-        RenderTexture temporary = RenderTexture.GetTemporary(size, size, 16, RenderTextureFormat.ARGB32);
-        camera.targetTexture = temporary;
-
-        camera.Render();
-
-        Texture2D texture2D = new Texture2D(size, size, TextureFormat.RGB24, false);
-
-        RenderTexture original = RenderTexture.active;
-        RenderTexture.active = temporary;
-        
-        texture2D.ReadPixels(new Rect(0, 0, size, size), 0, 0);
-        RenderTexture.ReleaseTemporary(temporary);
-        camera.targetTexture = null;
-        RenderTexture.active = original;
-        texture2D.Apply();
-        
-        SaveToDisk(texture2D, path);
-
-        if(Application.isPlaying) {
-            Destroy(texture2D);
-        }
-        else {
-            DestroyImmediate(texture2D);
-        }
-    }
-
-    private void SaveToDisk(Texture2D texture2D, string localPath) {
-        if(texture2D == null) {
-            Debug.LogError("No texture to save.");
-            return;
-        }
-        if(string.IsNullOrEmpty(localPath)) {
-            Debug.LogError("path was empty");
-            return;
-        }
-        byte[] bytes = texture2D.EncodeToPNG();
-        string path = Application.dataPath + "/" + localPath;
-        File.WriteAllBytes(path, bytes);
-        Debug.Log(path);
-    }
-    #endregion
+    #endif
 }

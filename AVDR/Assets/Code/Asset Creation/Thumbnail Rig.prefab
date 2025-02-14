@@ -143,7 +143,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7172975962621443297}
-  - component: {fileID: 4382488397676587396}
   m_Layer: 0
   m_Name: Thumbnail Rig
   m_TagString: EditorOnly
@@ -170,20 +169,6 @@ Transform:
   - {fileID: 607382207217422298}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4382488397676587396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474793540734856679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a08c5aaade35984c92018c0a8f626d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 2048
-  camera: {fileID: 4798740751055940053}
 --- !u!1 &3559343084857624423
 GameObject:
   m_ObjectHideFlags: 0

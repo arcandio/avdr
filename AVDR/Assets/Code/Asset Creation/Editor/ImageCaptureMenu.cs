@@ -18,7 +18,7 @@ public class ImageCaptureMenu : MonoBehaviour
         Debug.Log(path);
         System.Diagnostics.Process.Start("explorer.exe", (Directory.Exists(dataPath) ? "/root," : "/select,") + dataPath);
     }
-    [MenuItem("AVDR/Screenshots/Marketing Screenshot _5", false, 0)]
+    [MenuItem("AVDR/Screenshots/Marketing Screenshot x2 _5", false, 0)]
     static void TestScreenshot2x() {
         string now = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
         string path = $"Marketing/Screenshots/{now} 2x.png";
